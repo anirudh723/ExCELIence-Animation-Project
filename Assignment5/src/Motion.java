@@ -15,10 +15,10 @@ public class Motion {
   /**
    * Constructs a Motion.
    *
-   * @param tick the starting tick of the Motion.
-   * @param position the starting position of the Motion.
+   * @param tick      the starting tick of the Motion.
+   * @param position  the starting position of the Motion.
    * @param dimension the starting width and height of the Motion.
-   * @param color the starting color of the Motion.
+   * @param color     the starting color of the Motion.
    * @throws IllegalArgumentException if start tick is negative.
    * @throws IllegalArgumentException if starting position coordinates is negative
    * @throws IllegalArgumentException if start width or height is negative.
@@ -28,10 +28,12 @@ public class Motion {
       throw new IllegalArgumentException("Start tick cannot be negative.");
     }
     this.tick = tick;
+
     if (position.getX() < 0 || position.getY() < 0) {
       throw new IllegalArgumentException("Starting position coordinates cannot be negative.");
     }
     this.position = position;
+
     if (dimension.getWidth() < 0 || dimension.getHeight() < 0) {
       throw new IllegalArgumentException("Start width cannot be negative.");
     }
@@ -83,9 +85,14 @@ public class Motion {
    */
   public String writeMotion() {
     StringBuilder str = new StringBuilder();
-    str.append(tick + " " + (int) position.getX() + " " + (int) position.getY() + " "
-        + (int) dimension.getWidth() + " " + (int) dimension.getHeight() + " " + color.getRed()
-        + " " + color.getGreen() + " " + color.getBlue());
+    str.append(tick + " "
+            + (int) position.getX() + " "
+            + (int) position.getY() + " "
+            + (int) dimension.getWidth() + " "
+            + (int) dimension.getHeight() + " "
+            + color.getRed() + " "
+            + color.getGreen() + " "
+            + color.getBlue());
 
     return str.toString();
   }

@@ -6,7 +6,6 @@ import java.awt.geom.Point2D;
  * Represents a Rectangle, which is a specific type of Shape.
  */
 public class MyRectangle extends AbstractShape {
-
   /**
    * Constructs a MyRectangle.
    *

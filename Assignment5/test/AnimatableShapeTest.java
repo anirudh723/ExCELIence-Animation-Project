@@ -3,8 +3,10 @@ import static org.junit.Assert.assertEquals;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -32,6 +34,10 @@ public class AnimatableShapeTest {
   private AnimatableShape animatableRectangle;
   private AnimatableShape animatableEllipse;
 
+  /**
+   * Initialize variables to represent animatable shapes - rectangle, its list of motions, and an
+   * ellipse and its list of motions.
+   */
   @Before
   public void setUp() {
     rectangle = new MyRectangle("R", new Dimension(200, 200),
@@ -70,66 +76,94 @@ public class AnimatableShapeTest {
     animatableEllipse = new AnimatableShape(ellipse, new ArrayList<>());
   }
 
+  /**
+   * Test getting an AnimatableShape's type.
+   */
   @Test
   public void getTypeRectangle() {
     assertEquals("rectangle", animatableRectangle.getType());
   }
 
+  /**
+   * Test getting an AnimatableShape's type.
+   */
   @Test
   public void getTypeEllipse() {
     assertEquals("ellipse", animatableEllipse.getType());
   }
 
+  /**
+   * Test getting an AnimatableShape's name.
+   */
   @Test
   public void getNameRectangle() {
     assertEquals("R", animatableRectangle.getName());
   }
 
+  /**
+   * Test getting an AnimatableShape's name.
+   */
   @Test
   public void getNameEllipse() {
     assertEquals("C", animatableEllipse.getName());
   }
 
+  /**
+   * Test outputting the motions for an AnimatableShape with no motions.
+   */
   @Test
   public void outputMotionsRectangleEmpty() {
     assertEquals("", animatableRectangle.outputMotions());
   }
 
+  /**
+   * Test outputting the motions for an AnimatableShape with no motions.
+   */
   @Test
   public void outputMotionsEllipseEmpty() {
     assertEquals("", animatableEllipse.outputMotions());
   }
 
+
+  /**
+   * Test outputting a string of the motions for an AnimatableShape with motions.
+   */
   @Test
   public void outputMotionsRectangle() {
     setUp();
     rectangle = new MyRectangle("R", new Dimension(200, 200),
-        Color.RED, new Point(200, 200));
+            Color.RED, new Point(200, 200));
     assertEquals(animatableRectangle.getMotions().size(), 0);
     animatableRectangle.addMotionInShape(motionR1);
     animatableRectangle.addMotionInShape(motionR2);
     animatableRectangle.addMotionInShape(motionR3);
     assertEquals(animatableRectangle.getMotions().size(), 3);
     String str = "motion R 1 200 200 50 100 255 0 0\t\t10 200 200 50 100 255 0 0\n"
-        + "motion R 10 200 200 50 100 255 0 0\t\t50 300 300 50 100 255 0 0\n";
+            + "motion R 10 200 200 50 100 255 0 0\t\t50 300 300 50 100 255 0 0\n";
     assertEquals(str, animatableRectangle.outputMotions());
   }
 
+  /**
+   * Test outputting a string of the motions for an AnimatableShape with motions.
+   */
   @Test
   public void outputMotionsEllipse() {
     setUp();
     ellipse = new MyEllipse("C", new Dimension(120, 60),
-        Color.BLUE, new Point(440, 70));
+            Color.BLUE, new Point(440, 70));
     assertEquals(animatableEllipse.getMotions().size(), 0);
     animatableEllipse.addMotionInShape(motionE1);
     animatableEllipse.addMotionInShape(motionE2);
     animatableEllipse.addMotionInShape(motionE3);
     assertEquals(animatableEllipse.getMotions().size(), 3);
     String str = "motion C 6 440 70 120 60 0 0 255\t\t20 440 70 120 60 0 0 255\n"
-        + "motion C 20 440 70 120 60 0 0 255\t\t50 440 250 120 60 0 0 255\n";
+            + "motion C 20 440 70 120 60 0 0 255\t\t50 440 250 120 60 0 0 255\n";
     assertEquals(str, animatableEllipse.outputMotions());
   }
 
+  /**
+   * Test adding motions to an AnimatableShape.
+   */
   @Test
   public void addMotionInShapeRectangle() {
     setUp();
@@ -143,6 +177,9 @@ public class AnimatableShapeTest {
     assertEquals(animatableRectangle.getMotions().get(2).getTick(), motionR6.getTick());
   }
 
+  /**
+   * Test adding motions to an AnimatableShape.
+   */
   @Test
   public void addMotionInShapeEllipse() {
     setUp();
@@ -156,6 +193,9 @@ public class AnimatableShapeTest {
     assertEquals(animatableEllipse.getMotions().get(2).getTick(), motionE6.getTick());
   }
 
+  /**
+   * Test removing motions to an AnimatableShape.
+   */
   @Test
   public void removeMotionInShapeRectangle() {
     setUp();
@@ -167,6 +207,9 @@ public class AnimatableShapeTest {
     assertEquals(animatableRectangle.getMotions().get(0).getTick(), motionR1.getTick());
   }
 
+  /**
+   * Test removing motions to an AnimatableShape.
+   */
   @Test
   public void removeMotionInShapeEllipse() {
     setUp();
@@ -178,6 +221,9 @@ public class AnimatableShapeTest {
     assertEquals(animatableEllipse.getMotions().get(0).getTick(), motionE1.getTick());
   }
 
+  /**
+   * Test getting a list of motions from an AnimatableShape.
+   */
   @Test
   public void getMotionsEllipse() {
     setUp();
@@ -185,12 +231,15 @@ public class AnimatableShapeTest {
     animatableEllipse.addMotionInShape(motionE2);
     animatableEllipse.addMotionInShape(motionE3);
     ArrayList<Motion> expectedMotions =
-        new ArrayList<Motion>(Arrays.asList(motionE1, motionE2, motionE3));
+            new ArrayList<Motion>(Arrays.asList(motionE1, motionE2, motionE3));
     assertEquals(expectedMotions.get(0).getTick(), animatableEllipse.getMotions().get(0).getTick());
     assertEquals(expectedMotions.get(1).getTick(), animatableEllipse.getMotions().get(1).getTick());
     assertEquals(expectedMotions.get(2).getTick(), animatableEllipse.getMotions().get(2).getTick());
   }
 
+  /**
+   * Test getting a list of motions from an AnimatableShape.
+   */
   @Test
   public void getMotionsRectangle() {
     setUp();
@@ -198,24 +247,33 @@ public class AnimatableShapeTest {
     animatableRectangle.addMotionInShape(motionR2);
     animatableRectangle.addMotionInShape(motionR3);
     ArrayList<Motion> expectedMotions =
-        new ArrayList<>(Arrays.asList(motionR1, motionR2, motionR3));
+            new ArrayList<>(Arrays.asList(motionR1, motionR2, motionR3));
     assertEquals(expectedMotions.get(0).getTick(), motionR1.getTick());
     assertEquals(expectedMotions.get(1).getTick(), motionR2.getTick());
     assertEquals(expectedMotions.get(2).getTick(), motionR3.getTick());
   }
 
+  /**
+   * Test getting a list of motions from an AnimatableShape with no motions.
+   */
   @Test
   public void getMotionsRectangleEmpty() {
     setUp();
     assertEquals(new ArrayList<Motion>(), animatableRectangle.getMotions());
   }
 
+  /**
+   * Test getting a list of motions from an AnimatableShape with no motions.
+   */
   @Test
   public void getMotionsEllipseEmpty() {
     setUp();
     assertEquals(new ArrayList<Motion>(), animatableEllipse.getMotions());
   }
 
+  /**
+   * Test removing a motion that doesn't exist from an AnimatableShape.
+   */
   @Test(expected = IllegalArgumentException.class)
   public void removeNonexistantMotionInShapeRectangle() {
     setUp();
@@ -223,6 +281,9 @@ public class AnimatableShapeTest {
     animatableRectangle.removeMotionInShape(motionR2);
   }
 
+  /**
+   * Test removing a motion that doesn't exist from an AnimatableShape.
+   */
   @Test(expected = IllegalArgumentException.class)
   public void removeNonexistantMotionInShapeEllipse() {
     setUp();
@@ -230,7 +291,10 @@ public class AnimatableShapeTest {
     animatableEllipse.removeMotionInShape(motionE2);
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  /**
+   * Test adding an invalid motion to an AnimatableShape.
+   */
+  @Test(expected = IllegalArgumentException.class)
   public void addInvalidMotionInShapeRectangle() {
     setUp();
     animatableRectangle.addMotionInShape(new Motion(-1, new Point(200, 200),
@@ -238,7 +302,10 @@ public class AnimatableShapeTest {
 
   }
 
-  @Test (expected = IllegalArgumentException.class)
+  /**
+   * Test adding an invalid motion to an AnimatableShape.
+   */
+  @Test(expected = IllegalArgumentException.class)
   public void addInvalidMotionInShapeEllipse() {
     setUp();
     animatableEllipse.addMotionInShape(new Motion(-1, new Point(200, 200),
@@ -248,7 +315,7 @@ public class AnimatableShapeTest {
   /**
    * Tests adding a motion to a shape that already has a motion there.
    */
-  @Test (expected = IllegalArgumentException.class)
+  @Test(expected = IllegalArgumentException.class)
   public void testAddMotionAtSameTimeToAnother() {
     setUp();
     animatableRectangle.addMotionInShape(motionR6);

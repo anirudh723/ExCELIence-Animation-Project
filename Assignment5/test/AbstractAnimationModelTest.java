@@ -1,10 +1,12 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
 import org.junit.Test;
 
 /**
@@ -33,7 +35,7 @@ public class AbstractAnimationModelTest {
   private Motion motion7;
 
   /**
-   * resets the variables to certain data to use for specific tests.
+   * resets the rectangle variables to certain data to use for specific tests.
    */
   void resetRectangle() {
     motion1 = new Motion(1, new Point(200, 200),
@@ -57,7 +59,7 @@ public class AbstractAnimationModelTest {
     rectMotions.add(motion6);
 
     rectangle = new MyRectangle("R", new Dimension(200, 200),
-            Color.RED, new Point(200,200));
+            Color.RED, new Point(200, 200));
     animatableRect = new AnimatableShape(rectangle, rectMotions);
 
     shapes = new LinkedHashMap<>();
@@ -66,19 +68,22 @@ public class AbstractAnimationModelTest {
     model = new AnimationModelImpl(this.shapes);
   }
 
+  /**
+   * resets the ellipse variables to certain data to use for specific tests.
+   */
   void resetEllipse() {
-    motion1 = new Motion(6, new Point(440,70),
-            new Dimension(120,60), Color.BLUE);
-    motion2 = new Motion(20, new Point(440,70),
-            new Dimension(120,60), Color.BLUE);
-    motion3 = new Motion(50, new Point(440,250),
-            new Dimension(120,60), Color.BLUE);
-    motion4 = new Motion(70, new Point(440,370),
-            new Dimension(120,60), new Color(0, 170, 85));
-    motion5 = new Motion(80, new Point(440,370),
-            new Dimension(120,60), Color.GREEN);
-    motion6 = new Motion(100, new Point(440,370),
-            new Dimension(120,60), Color.GREEN);
+    motion1 = new Motion(6, new Point(440, 70),
+            new Dimension(120, 60), Color.BLUE);
+    motion2 = new Motion(20, new Point(440, 70),
+            new Dimension(120, 60), Color.BLUE);
+    motion3 = new Motion(50, new Point(440, 250),
+            new Dimension(120, 60), Color.BLUE);
+    motion4 = new Motion(70, new Point(440, 370),
+            new Dimension(120, 60), new Color(0, 170, 85));
+    motion5 = new Motion(80, new Point(440, 370),
+            new Dimension(120, 60), Color.GREEN);
+    motion6 = new Motion(100, new Point(440, 370),
+            new Dimension(120, 60), Color.GREEN);
 
     ellipseMotions.add(motion1);
     ellipseMotions.add(motion2);
@@ -87,8 +92,8 @@ public class AbstractAnimationModelTest {
     ellipseMotions.add(motion5);
     ellipseMotions.add(motion6);
 
-    ellipse = new MyEllipse("C", new Dimension(120,60),
-            Color.BLUE, new Point(440,70));
+    ellipse = new MyEllipse("C", new Dimension(120, 60),
+            Color.BLUE, new Point(440, 70));
     animatableEllipse = new AnimatableShape(ellipse, ellipseMotions);
 
     shapes = new LinkedHashMap<>();
@@ -139,8 +144,8 @@ public class AbstractAnimationModelTest {
   @Test
   public void testGetDescription2() {
     resetEllipse();
-    ellipse = new MyEllipse("C", new Dimension(120,60),
-        Color.BLUE, new Point(440,70));
+    ellipse = new MyEllipse("C", new Dimension(120, 60),
+            Color.BLUE, new Point(440, 70));
     animatableEllipse = new AnimatableShape(ellipse, ellipseMotions);
 
     shapes = new LinkedHashMap<>();
@@ -182,8 +187,8 @@ public class AbstractAnimationModelTest {
   @Test
   public void testAddMotionAtFront() {
     resetRectangle();
-    motion7 = new Motion(101,new Point(200,200),
-        new Dimension(25,100), Color.RED);
+    motion7 = new Motion(101, new Point(200, 200),
+            new Dimension(25, 100), Color.RED);
     assertEquals(shapes.get(1).getMotions().size(), 6);
     model.addMotion(1, motion7);
     assertEquals(shapes.get(1).getMotions().size(), 7);
@@ -196,8 +201,8 @@ public class AbstractAnimationModelTest {
   @Test
   public void testAddMotionAtEnd() {
     resetRectangle();
-    motion7 = new Motion(101,new Point(200,200),
-        new Dimension(25,100), Color.RED);
+    motion7 = new Motion(101, new Point(200, 200),
+            new Dimension(25, 100), Color.RED);
     assertEquals(shapes.get(1).getMotions().size(), 6);
     model.addMotion(1, motion7);
     assertEquals(shapes.get(1).getMotions().size(), 7);
@@ -210,8 +215,8 @@ public class AbstractAnimationModelTest {
   @Test
   public void testAddMotionInBetween() {
     resetRectangle();
-    this.motion7 = new Motion(56,new Point(205,200),
-        new Dimension(25,100), Color.RED);
+    this.motion7 = new Motion(56, new Point(205, 200),
+            new Dimension(25, 100), Color.RED);
     assertEquals(this.shapes.get(1).getMotions().size(), 6);
     this.model.addMotion(1, this.motion7);
     assertEquals(shapes.get(1).getMotions().size(), 7);
@@ -232,9 +237,8 @@ public class AbstractAnimationModelTest {
   }
 
   /**
-   * Tests the removing of a motion at the end of a shape's list of motions.
-   * Checks the new size of the list, and where the motion before the removed motions
-   * is now in the list.
+   * Tests the removing of a motion at the end of a shape's list of motions. Checks the new size of
+   * the list, and where the motion before the removed motions is now in the list.
    */
   @Test
   public void testRemoveMotionAtEnd() {
@@ -246,9 +250,8 @@ public class AbstractAnimationModelTest {
   }
 
   /**
-   * Tests the removing of a motion in between a shape's list of motions.
-   * Checks the new size of the list, and where the motions before and after the removed motion
-   * are in the list.
+   * Tests the removing of a motion in between a shape's list of motions. Checks the new size of the
+   * list, and where the motions before and after the removed motion are in the list.
    */
   @Test
   public void testRemoveMotionInBetween() {
@@ -269,7 +272,7 @@ public class AbstractAnimationModelTest {
   public void testRemoveMotionFromNonExistentShape() {
     resetRectangle();
     rectangle = new MyRectangle("R", new Dimension(200, 200),
-        Color.RED, new Point(200,200));
+            Color.RED, new Point(200, 200));
     animatableRect = new AnimatableShape(rectangle, rectMotions);
 
     shapes = new LinkedHashMap<>();
@@ -280,14 +283,14 @@ public class AbstractAnimationModelTest {
   }
 
   /**
-   * Tests removing a motion from a shape that doesn't have that motion.
-   * Expect IllegalArgumentException.
+   * Tests removing a motion from a shape that doesn't have that motion. Expect
+   * IllegalArgumentException.
    */
   @Test(expected = IllegalArgumentException.class)
   public void testRemoveMotionFromShapeThatDoesNotHaveMotion() {
     resetRectangle();
-    motion7 = new Motion(6, new Point(440,70),
-        new Dimension(120,60), Color.BLUE);
+    motion7 = new Motion(6, new Point(440, 70),
+            new Dimension(120, 60), Color.BLUE);
     model.removeMotion(10, motion7);
   }
 
@@ -298,7 +301,7 @@ public class AbstractAnimationModelTest {
   public void testRemoveMotionFromShapeWithNoMotions() {
     resetRectangle();
     MyRectangle rect = new MyRectangle("no motions", new Dimension(200, 200),
-            Color.RED, new Point(200,200));
+            Color.RED, new Point(200, 200));
     this.model.addShape(3, rect);
     this.model.removeMotion(3, motion1);
   }
@@ -329,7 +332,7 @@ public class AbstractAnimationModelTest {
   public void testAddShapeToShapeWithNoMotions() {
     resetRectangle();
     MyRectangle rect = new MyRectangle("no motions", new Dimension(200, 200),
-            Color.RED, new Point(200,200));
+            Color.RED, new Point(200, 200));
     this.model.addShape(3, rect);
     assertTrue(this.shapes.containsKey(3));
     assertEquals(this.shapes.get(3).getName(), rect.getName());
@@ -342,7 +345,7 @@ public class AbstractAnimationModelTest {
   public void testAddShapeWithNoMotions() {
     resetRectangle();
     MyRectangle rect = new MyRectangle("no motions", new Dimension(200, 200),
-            Color.RED, new Point(200,200));
+            Color.RED, new Point(200, 200));
     this.model.addShape(3, rect);
     this.model.addMotion(3, this.motion5);
     assertEquals(this.shapes.get(3).getMotions().get(0).getTick(), this.motion5.getTick());
