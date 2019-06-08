@@ -10,6 +10,12 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import cs3500.animator.model.AnimatableShape;
+import cs3500.animator.model.IShape;
+import cs3500.animator.model.Motion;
+import cs3500.animator.model.MyEllipse;
+import cs3500.animator.model.MyRectangle;
+
 /**
  * Tests the methods regarding Animatable Shapes.
  */

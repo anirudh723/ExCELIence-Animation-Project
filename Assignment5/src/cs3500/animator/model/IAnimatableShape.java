@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.util.List;
 
 /**
@@ -38,7 +40,7 @@ public interface IAnimatableShape {
    *
    * @param m the Motion to be added.
    * @throws IllegalArgumentException if there is an existing motion at the same tick as the motion
-   *     trying to be added.
+   *                                  trying to be added.
    * @throws IllegalArgumentException if the given motion is null.
    */
   void addMotionInShape(Motion m) throws IllegalArgumentException;

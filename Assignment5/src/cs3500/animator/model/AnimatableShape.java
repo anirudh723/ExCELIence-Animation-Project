@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class AnimatableShape implements IAnimatableShape {
   /**
    * Constructs an Animatable shape.
    *
-   * @param shape the Shape.
+   * @param shape   the Shape.
    * @param motions the list of Motions that correspond with the given Shape.
    * @throws IllegalArgumentException if the given Shape is null.
    * @throws IllegalArgumentException if the given list of Motions is null.
@@ -54,7 +56,7 @@ public class AnimatableShape implements IAnimatableShape {
     StringBuilder str = new StringBuilder();
     for (int i = 0; i < motions.size() - 1; i++) {
       str.append("motion " + shape.getName() + " " + motions.get(i).writeMotion() + "\t\t" + motions
-          .get(i + 1).writeMotion() + "\n");
+              .get(i + 1).writeMotion() + "\n");
     }
     return str.toString();
   }
@@ -68,16 +70,13 @@ public class AnimatableShape implements IAnimatableShape {
       if (motions.get(0).getTick() > m.getTick()) {
         motions.add(0, m);
         return;
-      }
-      else if (motions.get(0).getTick() < m.getTick()) {
+      } else if (motions.get(0).getTick() < m.getTick()) {
         motions.add(m);
         return;
-      }
-      else {
+      } else {
         throw new IllegalArgumentException("Trying to add a Motion where another Motion exists.");
       }
-    }
-    else {
+    } else {
       for (int i = 0; i < motions.size() - 1; i++) {
         if (motions.get(i).getTick() == m.getTick()) {
           throw new IllegalArgumentException("Trying to add a Motion where another Motion exists.");
@@ -99,7 +98,7 @@ public class AnimatableShape implements IAnimatableShape {
     for (int i = 0; i < motions.size(); i++) {
       if (motions.get(i).getTick() == m.getTick()) {
         motions.remove(i);
-        return ;
+        return;
       }
     }
     throw new IllegalArgumentException("Trying to remove a Motion that doesn't exist");

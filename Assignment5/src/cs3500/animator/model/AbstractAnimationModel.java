@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -69,7 +71,7 @@ public abstract class AbstractAnimationModel implements AnimationModel {
     }
     if (!shapes.containsKey(shapeId)) {
       throw new IllegalArgumentException(
-          "Trying to remove a motion to a shape that doesn't exist.");
+              "Trying to remove a motion to a shape that doesn't exist.");
     }
     shapes.get(shapeId).removeMotionInShape(m);
   }

@@ -1,5 +1,6 @@
 import org.junit.Before;
 
+
 /**
  * Testing the implementation for the Animation Model, which will be implemented and tested later.
  */

@@ -7,6 +7,9 @@ import java.awt.Point;
 import org.junit.Before;
 import org.junit.Test;
 
+import cs3500.animator.model.Motion;
+
+
 /**
  * Tests the functionalities regarding Motions.
  */

@@ -7,6 +7,10 @@ import java.awt.Point;
 import org.junit.Before;
 import org.junit.Test;
 
+import cs3500.animator.model.IShape;
+import cs3500.animator.model.MyEllipse;
+import cs3500.animator.model.MyRectangle;
+
 /**
  * Tests the methods regarding Abstract Shapes.
  */

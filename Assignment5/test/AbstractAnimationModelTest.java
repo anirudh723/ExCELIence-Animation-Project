@@ -9,6 +9,15 @@ import java.util.LinkedHashMap;
 
 import org.junit.Test;
 
+import cs3500.animator.model.AnimatableShape;
+import cs3500.animator.model.AnimationModel;
+import cs3500.animator.model.AnimationModelImpl;
+import cs3500.animator.model.IAnimatableShape;
+import cs3500.animator.model.IShape;
+import cs3500.animator.model.Motion;
+import cs3500.animator.model.MyEllipse;
+import cs3500.animator.model.MyRectangle;
+
 /**
  * Represents the tests for an abstract Animation Model.
  */

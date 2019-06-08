@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
@@ -10,10 +12,10 @@ public class MyEllipse extends AbstractShape {
   /**
    * Constructs a MyEllipse.
    *
-   * @param name the name of the Ellipse.
+   * @param name      the name of the Ellipse.
    * @param dimension the dimension of the Ellipse.
-   * @param color the color of the Ellipse.
-   * @param position the position of the Ellipse.
+   * @param color     the color of the Ellipse.
+   * @param position  the position of the Ellipse.
    * @throws IllegalArgumentException if the width or height of this Ellipse is negative.
    * @throws IllegalArgumentException if the position coordinates of this Ellipse are negative.
    */

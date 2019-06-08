@@ -1,3 +1,6 @@
+
+package cs3500.animator.model;
+
 /**
  * Represents the functions regarding Shapes.
  */

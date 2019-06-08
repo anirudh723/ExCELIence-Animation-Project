@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
@@ -16,10 +18,10 @@ public abstract class AbstractShape implements IShape {
   /**
    * Constructs an abstract Shape.
    *
-   * @param name the name of the Shape.
+   * @param name      the name of the Shape.
    * @param dimension the width and height of the Shape.
-   * @param color the color of the Shape.
-   * @param position the position of the Shape.
+   * @param color     the color of the Shape.
+   * @param position  the position of the Shape.
    * @throws IllegalArgumentException if the width or height of a shape is negative.
    * @throws IllegalArgumentException if the coordinates of the Position are negative.
    */
