@@ -9,7 +9,7 @@ import java.util.List;
 public class AnimatableShape implements IAnimatableShape {
 
   private IShape shape;
-  private ArrayList<Motion> motions;
+  private ArrayList<IMotion> motions;
 
   /**
    * Constructs an Animatable shape.
@@ -20,7 +20,7 @@ public class AnimatableShape implements IAnimatableShape {
    * @throws IllegalArgumentException if the given list of Motions is null.
    * @throws IllegalArgumentException if the list of motions are not in order by tick.
    */
-  public AnimatableShape(IShape shape, ArrayList<Motion> motions) {
+  public AnimatableShape(IShape shape, ArrayList<IMotion> motions) {
     if (shape == null) {
       throw new IllegalArgumentException("Given Shape is null.");
     }
@@ -43,8 +43,8 @@ public class AnimatableShape implements IAnimatableShape {
   }
 
   @Override
-  public List<Motion> getMotions() {
-    ArrayList<Motion> copy = new ArrayList<>();
+  public List<IMotion> getMotions() {
+    ArrayList<IMotion> copy = new ArrayList<>();
     for (Motion m : this.motions) {
       copy.add(new Motion(m.getTick(), m.getPosition(), m.getDimension(), m.getColor()));
     }
@@ -62,7 +62,7 @@ public class AnimatableShape implements IAnimatableShape {
   }
 
   @Override
-  public void addMotionInShape(Motion m) {
+  public void addMotionInShape(IMotion m) {
     if (m == null) {
       throw new IllegalArgumentException("Given Motion is null");
     }
@@ -91,7 +91,7 @@ public class AnimatableShape implements IAnimatableShape {
   }
 
   @Override
-  public void removeMotionInShape(Motion m) {
+  public void removeMotionInShape(IMotion m) {
     if (m == null) {
       throw new IllegalArgumentException("Given Motion is null");
     }

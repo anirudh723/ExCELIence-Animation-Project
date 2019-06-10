@@ -9,7 +9,11 @@ import java.util.Map;
  */
 public abstract class AbstractAnimationModel implements AnimationModel {
 
-  private Map<Integer, IAnimatableShape> shapes;
+  private Map<String, IAnimatableShape> shapes;
+  private int leftMostX;
+  private int topMostY;
+  private int width;
+  private int height;
 
   /**
    * Constructs an AbstractAnimationModel.
@@ -17,11 +21,22 @@ public abstract class AbstractAnimationModel implements AnimationModel {
    * @param shapes the LinkedHashMap of shapes
    * @throws IllegalArgumentException if the LinkedHashMap of shapes is null.
    */
-  public AbstractAnimationModel(LinkedHashMap<Integer, IAnimatableShape> shapes) {
+  public AbstractAnimationModel(LinkedHashMap<String, IAnimatableShape> shapes, int leftMostX,
+      int topMostY, int width, int height) {
     if (shapes == null) {
       throw new IllegalArgumentException("Map of shapes is null");
     }
     this.shapes = shapes;
+    this.leftMostX = leftMostX;
+    this.topMostY = topMostY;
+    if (width < 0) {
+      throw new IllegalArgumentException("Width is negative");
+    }
+    this.width = width;
+    if (height < 0) {
+      throw new IllegalArgumentException("Height is negative");
+    }
+    this.height = height;
   }
 
   @Override
@@ -35,14 +50,16 @@ public abstract class AbstractAnimationModel implements AnimationModel {
   }
 
   @Override
-  public void addShape(int shapeId, IShape shape) throws IllegalArgumentException {
-    if (shape == null) {
-      throw new IllegalArgumentException("Given shape is null.");
-    }
-    if (shapes.containsKey(shapeId)) {
+  public void addShape(String name, String type) throws IllegalArgumentException {
+    if (shapes.containsKey(name)) {
       throw new IllegalArgumentException("Trying to add a shape that already exists in map.");
     }
-    shapes.put(shapeId, new AnimatableShape(shape, new ArrayList<Motion>()));
+    if (name.equals("rectangle")) {
+      shapes.put(name, new AnimatableShape(new MyRectangle(), new ArrayList<IMotion>()));
+    }
+    else {
+      shapes.put(name, new AnimatableShape(new MyEllipse(), new ArrayList<IMotion>()));
+    }
   }
 
   @Override

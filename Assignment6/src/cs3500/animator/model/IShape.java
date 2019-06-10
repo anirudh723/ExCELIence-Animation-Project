@@ -13,10 +13,10 @@ public interface IShape {
    */
   String getType();
 
-  /**
-   * Return the name of the shape.
-   *
-   * @return the String type of the shape.
-   */
-  String getName();
+//  /**
+//   * Return the name of the shape.
+//   *
+//   * @return the String type of the shape.
+//   */
+//  String getName();
 }

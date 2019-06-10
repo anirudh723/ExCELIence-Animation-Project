@@ -7,7 +7,7 @@ import java.awt.geom.Point2D;
 /**
  * Represents a Motion.
  */
-public class Motion {
+public class Motion implements IMotion {
 
   private int tick;
   private Point2D position;

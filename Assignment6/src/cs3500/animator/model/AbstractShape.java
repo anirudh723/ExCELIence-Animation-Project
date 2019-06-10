@@ -9,8 +9,7 @@ import java.awt.geom.Point2D;
  */
 public abstract class AbstractShape implements IShape {
 
-  protected String name;
-  protected String type;
+  protected String type; // "rectangle"
   protected Dimension dimension;
   protected Color color;
   protected Point2D position;
@@ -18,15 +17,13 @@ public abstract class AbstractShape implements IShape {
   /**
    * Constructs an abstract Shape.
    *
-   * @param name      the name of the Shape.
    * @param dimension the width and height of the Shape.
    * @param color     the color of the Shape.
    * @param position  the position of the Shape.
    * @throws IllegalArgumentException if the width or height of a shape is negative.
    * @throws IllegalArgumentException if the coordinates of the Position are negative.
    */
-  protected AbstractShape(String name, Dimension dimension, Color color, Point2D position) {
-    this.name = name;
+  protected AbstractShape(Dimension dimension, Color color, Point2D position) {
     this.type = getType();
     if (dimension.getWidth() < 0 || dimension.getHeight() < 0) {
       throw new IllegalArgumentException("Width or Height of a shape cannot be negative.");
@@ -41,11 +38,5 @@ public abstract class AbstractShape implements IShape {
 
   @Override
   public abstract String getType();
-
-  @Override
-  public String getName() {
-    return this.name;
-  }
-
 
 }

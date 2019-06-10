@@ -12,7 +12,6 @@ public class MyEllipse extends AbstractShape {
   /**
    * Constructs a MyEllipse.
    *
-   * @param name      the name of the Ellipse.
    * @param dimension the dimension of the Ellipse.
    * @param color     the color of the Ellipse.
    * @param position  the position of the Ellipse.
@@ -20,7 +19,11 @@ public class MyEllipse extends AbstractShape {
    * @throws IllegalArgumentException if the position coordinates of this Ellipse are negative.
    */
   public MyEllipse(String name, Dimension dimension, Color color, Point2D position) {
-    super(name, dimension, color, position);
+    super(dimension, color, position);
+  }
+
+  public MyEllipse() {
+    super(new Dimension(0,0), new Color(0,0,0), new Point2D.Double(0, 0));
   }
 
   @Override

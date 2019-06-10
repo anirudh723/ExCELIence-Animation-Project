@@ -26,7 +26,7 @@ public interface IAnimatableShape {
    *
    * @return the list of motions for this Shape.
    */
-  List<Motion> getMotions();
+  List<IMotion> getMotions();
 
   /**
    * Outputs the motions for a Shape.
@@ -43,7 +43,7 @@ public interface IAnimatableShape {
    *                                  trying to be added.
    * @throws IllegalArgumentException if the given motion is null.
    */
-  void addMotionInShape(Motion m) throws IllegalArgumentException;
+  void addMotionInShape(IMotion m) throws IllegalArgumentException;
 
   /**
    * Removes a Motion from a Shape.
@@ -52,7 +52,7 @@ public interface IAnimatableShape {
    * @throws IllegalArgumentException if the motion trying to be removed doesn't exist.
    * @throws IllegalArgumentException if the motion to be removed is null.
    */
-  void removeMotionInShape(Motion m) throws IllegalArgumentException;
+  void removeMotionInShape(IMotion m) throws IllegalArgumentException;
 
   /**
    * Ensures that the list of Motions of an Animatable Shape is in order by their ticks.

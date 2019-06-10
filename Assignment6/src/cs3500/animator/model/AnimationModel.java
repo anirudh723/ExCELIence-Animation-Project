@@ -17,12 +17,12 @@ public interface AnimationModel {
   /**
    * Adds a Shape to the model.
    *
-   * @param shapeId the shapeId that the given Shape corresponds in the Map.
-   * @param shape   the given Shape to be added to the Map.
+   * @param name
+   * @param type
    * @throws IllegalArgumentException if a user tries to add a shape that already exists in map.
    * @throws IllegalArgumentException if the given Shape is null.
    */
-  void addShape(int shapeId, IShape shape) throws IllegalArgumentException;
+  void addShape(String name, String type) throws IllegalArgumentException;
 
   /**
    * Removes a Shape to the model.
