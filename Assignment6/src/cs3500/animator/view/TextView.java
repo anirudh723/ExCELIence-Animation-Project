@@ -1,24 +1,27 @@
 package cs3500.animator.view;
 
 import cs3500.animator.model.IAnimatableShape;
+import cs3500.animator.model.IAnimatableShapeReadOnly;
+
 import java.awt.Dimension;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class TextView extends AbstractView {
 
   TextView(Appendable in, Readable out, int ticksPerSecond, Dimension canvas,
-      List<IViewShape> shapes) {
+           LinkedHashMap<String, IAnimatableShapeReadOnly> shapes) {
     super(in, out, ticksPerSecond, canvas, shapes);
   }
 
   @Override
   public void render() {
     StringBuilder str = new StringBuilder();
-    str.append("canvas " + (int) canvas.getWidth() + (int) canvas.getHeight());
-    for (IAnimatableShape shape : shapes.values()) {
-      str.append("shape " + shape.getName() + " " + shape.getType() + "\n");
-      str.append(shape.outputMotions());
+    for(String key : shapes.keySet()) {
+      str.append("shape " + key);
+      str.append(" " + this.shapes.get(key).getType() + "\n");
+      str.append(this.shapes.get(key).outputMotions(key)+"\n");
     }
-    //in.append(str.substring(0, str.toString().length() - 1));
+    tryAppend(str.substring(0, str.toString().length() - 1));
   }
 }

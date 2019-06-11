@@ -37,29 +37,26 @@ public class AnimatableShape implements IAnimatableShape {
     return this.shape.getType();
   }
 
-  @Override
-  public String getName() {
-    return this.shape.getName();
-  }
 
   @Override
   public List<IMotion> getMotions() {
     ArrayList<IMotion> copy = new ArrayList<>();
-    for (Motion m : this.motions) {
+    for (IMotion m : this.motions) {
       copy.add(new Motion(m.getTick(), m.getPosition(), m.getDimension(), m.getColor()));
     }
     return copy;
   }
 
-  @Override
-  public String outputMotions() {
-    StringBuilder str = new StringBuilder();
-    for (int i = 0; i < motions.size() - 1; i++) {
-      str.append("motion " + shape.getName() + " " + motions.get(i).writeMotion() + "\t\t" + motions
-              .get(i + 1).writeMotion() + "\n");
-    }
-    return str.toString();
-  }
+  //todo change this
+//  @Override
+//  public String outputMotions() {
+//    StringBuilder str = new StringBuilder();
+//    for (int i = 0; i < motions.size() - 1; i++) {
+//      str.append("motion " + shape.getName() + " " + motions.get(i).writeMotion() + "\t\t" + motions
+//              .get(i + 1).writeMotion() + "\n");
+//    }
+//    return str.toString();
+//  }
 
   @Override
   public void addMotionInShape(IMotion m) {

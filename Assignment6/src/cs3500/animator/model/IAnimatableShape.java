@@ -14,12 +14,6 @@ public interface IAnimatableShape {
    */
   String getType();
 
-  /**
-   * Return the name of the shape.
-   *
-   * @return the String type of the shape.
-   */
-  String getName();
 
   /**
    * Returns the a deep copy of the list of motions.
@@ -33,7 +27,7 @@ public interface IAnimatableShape {
    *
    * @return the String consisting of the Shape's corresponding motions.
    */
-  String outputMotions();
+//  String outputMotions();
 
   /**
    * Adds a Motion to a Shape.

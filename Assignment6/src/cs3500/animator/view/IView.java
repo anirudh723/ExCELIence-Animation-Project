@@ -13,4 +13,6 @@ public interface IView {
 
   void render();
 
+  void tryAppend(String ... lines);
+
 }

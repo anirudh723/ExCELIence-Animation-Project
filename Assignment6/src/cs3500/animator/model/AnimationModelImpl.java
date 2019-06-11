@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Represents an Implementation of an Animation Model.
  */
-public final class AnimationModelImpl extends AbstractAnimationModel {
+public final class AnimationModelImpl extends AbstractAnimationModel{
 
   /**
    * Constructs an implementation of an Animation Model.
@@ -24,10 +24,10 @@ public final class AnimationModelImpl extends AbstractAnimationModel {
     super(shapes, leftMostX, topMostY, width, height);
   }
 
-  @Override
-  public List<IShape> getAllShapesAtTick(int tick) {
-    return null;
-  }
+//  @Override
+//  public List<IShape> getAllShapesAtTick(int tick) {
+//    return null;
+//  }
 
 
   /**

@@ -2,14 +2,13 @@ package cs3500.animator.model;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * Represents an abstract Animation Model.
  */
 public abstract class AbstractAnimationModel implements AnimationModel {
 
-  private Map<String, IAnimatableShape> shapes;
+  private LinkedHashMap<String, IAnimatableShape> shapes;
   private int leftMostX;
   private int topMostY;
   private int width;
@@ -39,15 +38,16 @@ public abstract class AbstractAnimationModel implements AnimationModel {
     this.height = height;
   }
 
-  @Override
-  public String getDescription() {
-    StringBuilder str = new StringBuilder();
-    for (IAnimatableShape shape : shapes.values()) {
-      str.append("shape " + shape.getName() + " " + shape.getType() + "\n");
-      str.append(shape.outputMotions());
-    }
-    return str.substring(0, str.toString().length() - 1);
-  }
+//  @Override
+//  public String getDescription() {
+//    StringBuilder str = new StringBuilder();
+//    for(String key : shapes.keySet()) {
+//      str.append("shape " + key);
+//        str.append(" " + this.shapes.get(key).getType() + "\n");
+//        str.append(this.shapes.get(key).outputMotions()+"\n");
+//      }
+//    return str.substring(0, str.toString().length() - 1);
+//  }
 
   @Override
   public void addShape(String name, String type) throws IllegalArgumentException {
@@ -91,5 +91,15 @@ public abstract class AbstractAnimationModel implements AnimationModel {
               "Trying to remove a motion to a shape that doesn't exist.");
     }
     shapes.get(shapeId).removeMotionInShape(m);
+  }
+
+
+  @Override
+  public LinkedHashMap<String,IAnimatableShapeReadOnly> getShapeMap(){
+    LinkedHashMap<String,IAnimatableShapeReadOnly> readOnlyCopy = new LinkedHashMap<>();
+    for(String key : this.shapes.keySet()){
+      readOnlyCopy.put(key, new AnimatableShapeReadOnly(this.shapes.get(key)));
+    }
+    return readOnlyCopy;
   }
 }

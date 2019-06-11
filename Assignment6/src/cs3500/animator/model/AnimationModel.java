@@ -1,18 +1,19 @@
 package cs3500.animator.model;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
  * Represents the functions for an AnimationModel.
  */
-public interface AnimationModel {
+public interface AnimationModel{
 
   /**
    * Creates a text description of the animation.
    *
    * @return the String description of the animation.
    */
-  String getDescription();
+//  String getDescription();
 
   /**
    * Adds a Shape to the model.
@@ -65,6 +66,8 @@ public interface AnimationModel {
    * @return the list of all shapes.
    * @throws IllegalArgumentException if the given tick is negative
    */
-  List<IShape> getAllShapesAtTick(int tick) throws IllegalArgumentException;
+//  List<IShape> getAllShapesAtTick(int tick) throws IllegalArgumentException;
 
+
+   LinkedHashMap<String, IAnimatableShapeReadOnly> getShapeMap();
 }

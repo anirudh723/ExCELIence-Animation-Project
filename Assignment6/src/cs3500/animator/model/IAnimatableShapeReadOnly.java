@@ -14,12 +14,7 @@ public interface IAnimatableShapeReadOnly {
    */
   String getType();
 
-  /**
-   * Return the name of the shape.
-   *
-   * @return the String type of the shape.
-   */
-  String getName();
+  String outputMotions(String name);
 
   /**
    * Returns the a deep copy of the list of motions.
