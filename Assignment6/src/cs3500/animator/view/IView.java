@@ -15,4 +15,6 @@ public interface IView {
 
   void tryAppend(String ... lines);
 
+
+
 }

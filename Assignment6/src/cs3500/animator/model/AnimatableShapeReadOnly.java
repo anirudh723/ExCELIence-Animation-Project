@@ -5,7 +5,7 @@ import java.util.List;
 public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
   IAnimatableShape delegate;
 
-  AnimatableShapeReadOnly(IAnimatableShape delegate) {
+  public AnimatableShapeReadOnly(IAnimatableShape delegate) {
     this.delegate = delegate;
   }
 
@@ -23,9 +23,13 @@ public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
   @Override
   public String outputMotions(String name) {
     StringBuilder str = new StringBuilder();
-    for (int i = 0; i < this.delegate.getMotions().size() - 1; i++) {
-      str.append("motion " + name + " " + this.delegate.getMotions().get(i).writeMotion()
-              + "\t\t" + this.delegate.getMotions().get(i + 1).writeMotion() + "\n");
+    if (this.delegate.getMotions().size() == 1) {
+      str.append("motion " + name + " " + this.delegate.getMotions().get(0).writeMotion());
+    } else {
+      for (int i = 0; i < this.delegate.getMotions().size() - 1; i++) {
+        str.append("motion " + name + " " + this.delegate.getMotions().get(i).writeMotion()
+                + "\t\t" + this.delegate.getMotions().get(i + 1).writeMotion() + "\n");
+      }
     }
     return str.toString();
   }

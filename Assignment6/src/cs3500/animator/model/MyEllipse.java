@@ -18,7 +18,7 @@ public class MyEllipse extends AbstractShape {
    * @throws IllegalArgumentException if the width or height of this Ellipse is negative.
    * @throws IllegalArgumentException if the position coordinates of this Ellipse are negative.
    */
-  public MyEllipse(String name, Dimension dimension, Color color, Point2D position) {
+  public MyEllipse(Dimension dimension, Color color, Point2D position) {
     super(dimension, color, position);
   }
 

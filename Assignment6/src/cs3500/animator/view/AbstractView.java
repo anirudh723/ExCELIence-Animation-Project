@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import cs3500.animator.model.IAnimatableShapeReadOnly;
+import cs3500.animator.model.IReadOnlyAnimationModel;
 
 public abstract class AbstractView implements IView {
   protected Appendable in;
@@ -12,9 +13,11 @@ public abstract class AbstractView implements IView {
   protected int ticksPerSecond;
   protected Dimension canvas;
   protected LinkedHashMap<String, IAnimatableShapeReadOnly> shapes;
+  protected IReadOnlyAnimationModel model;
+
 
   AbstractView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-               LinkedHashMap<String, IAnimatableShapeReadOnly> shapes) {
+               LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
     if (ap == null) {
       throw new IllegalArgumentException("Appendable is null.");
     }
@@ -28,7 +31,8 @@ public abstract class AbstractView implements IView {
       throw new IllegalArgumentException("Dimensions are null.");
     }
     this.canvas = canvas;
-    this.shapes = shapes;
+    this.model = model;
+    this.shapes = model.getShapeMap();
   }
 
   @Override

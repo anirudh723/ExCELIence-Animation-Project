@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
@@ -63,7 +65,7 @@ public abstract class AbstractAnimationModel implements AnimationModel {
   }
 
   @Override
-  public void removeShape(int shapeId) throws IllegalArgumentException {
+  public void removeShape(String shapeId) throws IllegalArgumentException {
     if (!shapes.containsKey(shapeId)) {
       throw new IllegalArgumentException("Trying to remove a shape that doesn't exist in map.");
     }
@@ -71,7 +73,7 @@ public abstract class AbstractAnimationModel implements AnimationModel {
   }
 
   @Override
-  public void addMotion(int shapeId, Motion m) throws IllegalArgumentException {
+  public void addMotion(String shapeId, IMotion m) throws IllegalArgumentException {
     if (m == null) {
       throw new IllegalArgumentException("Given Motion is null.");
     }
@@ -82,7 +84,7 @@ public abstract class AbstractAnimationModel implements AnimationModel {
   }
 
   @Override
-  public void removeMotion(int shapeId, Motion m) throws IllegalArgumentException {
+  public void removeMotion(String shapeId, IMotion m) throws IllegalArgumentException {
     if (m == null) {
       throw new IllegalArgumentException("Given Motion is null.");
     }
@@ -101,5 +103,15 @@ public abstract class AbstractAnimationModel implements AnimationModel {
       readOnlyCopy.put(key, new AnimatableShapeReadOnly(this.shapes.get(key)));
     }
     return readOnlyCopy;
+  }
+
+  @Override
+  public Dimension getCanvasDimension(){
+    return new Dimension(this.width, this.height);
+  }
+
+  @Override
+  public Point getTopXY(){
+    return new Point(this.leftMostX, this.topMostY);
   }
 }

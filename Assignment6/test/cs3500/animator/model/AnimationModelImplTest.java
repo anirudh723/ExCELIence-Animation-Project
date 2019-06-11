@@ -1,3 +1,5 @@
+package cs3500.animator.model;
+
 import org.junit.Before;
 
 
