@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.List;
 
 /**
@@ -21,6 +23,20 @@ public interface IAnimatableShape {
    * @return the list of motions for this Shape.
    */
   List<IMotion> getMotions();
+
+  /**
+   * Returns a new Position with the x and y coordinates of this position.
+   *
+   * @return the new Position.
+   */
+   Point2D getPosition();
+
+  /**
+   * Returns a new Dimension with the width and height elements of this dimension.
+   *
+   * @return the new Dimension.
+   */
+   Dimension getDimension();
 
   /**
    * Outputs the motions for a Shape.

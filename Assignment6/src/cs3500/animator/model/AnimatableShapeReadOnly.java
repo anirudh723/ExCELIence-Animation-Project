@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.List;
 
 public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
@@ -12,6 +14,16 @@ public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
   @Override
   public String getType() {
     return this.delegate.getType();
+  }
+
+  @Override
+  public Point2D getPosition() {
+    return this.delegate.getPosition();
+  }
+
+  @Override
+  public Dimension getDimension() {
+    return this.delegate.getDimension();
   }
 
 

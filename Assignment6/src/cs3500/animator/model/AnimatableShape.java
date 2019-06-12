@@ -1,5 +1,7 @@
 package cs3500.animator.model;
 
+import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +49,16 @@ public class AnimatableShape implements IAnimatableShape {
     return copy;
   }
 
+  @Override
+  public Point2D getPosition() {
+    return this.shape.getPosition();
+  }
+
+  @Override
+  public Dimension getDimension() {
+    return this.shape.getDimension();
+  }
+
   //todo change this
 //  @Override
 //  public String outputMotions() {
@@ -63,7 +75,11 @@ public class AnimatableShape implements IAnimatableShape {
     if (m == null) {
       throw new IllegalArgumentException("Given Motion is null");
     }
-    if (motions.size() == 1) {
+    if (motions.size() == 0) {
+      motions.add(m);
+      putShapeAtInitialMotion();
+    }
+    else if (motions.size() == 1) {
       if (motions.get(0).getTick() > m.getTick()) {
         motions.add(0, m);
         return;
@@ -85,6 +101,11 @@ public class AnimatableShape implements IAnimatableShape {
       }
       motions.add(m);
     }
+  }
+
+  private void putShapeAtInitialMotion() {
+    this.shape.assignInitialMotion(this.motions.get(0).getDimension(),
+            this.motions.get(0).getPosition(), this.motions.get(0).getColor());
   }
 
   @Override

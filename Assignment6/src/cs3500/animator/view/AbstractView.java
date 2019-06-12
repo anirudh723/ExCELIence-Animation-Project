@@ -31,7 +31,14 @@ public abstract class AbstractView implements IView {
       throw new IllegalArgumentException("Dimensions are null.");
     }
     this.canvas = canvas;
+    if (model == null) {
+      throw new IllegalArgumentException("Model is null");
+    }
     this.model = model;
+    if (shapes == null) {
+      throw new IllegalArgumentException("Map of shapes is null");
+    }
+    this.shapes = shapes;
     this.shapes = model.getShapeMap();
   }
 

@@ -1,7 +1,6 @@
 package cs3500.animator.model;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.geom.Point2D;
 
 /**
@@ -9,7 +8,7 @@ import java.awt.geom.Point2D;
  */
 public abstract class AbstractShape implements IShape {
 
-  protected String type; // "rectangle"
+  protected String type;
   protected Dimension dimension;
   protected Color color;
   protected Point2D position;
@@ -39,4 +38,21 @@ public abstract class AbstractShape implements IShape {
   @Override
   public abstract String getType();
 
+  @Override
+  public Point2D getPosition() {
+    return new Point2D.Double(this.position.getX(), this.position.getY());
+  }
+
+  @Override
+  public Dimension getDimension() {
+    return new Dimension((int) this.dimension.getWidth(), (int) this.dimension.getHeight());
+  }
+
+  @Override
+  public void assignInitialMotion(Dimension d, Point2D p, Color c) {
+    this.position = new Point2D.Double(p.getX(), p.getY());
+    this.dimension = new Dimension((int) d.getWidth(), (int) d.getHeight());
+    this.color = new Color(c.getRed(), c.getGreen(), c.getBlue());
+
+  }
 }
