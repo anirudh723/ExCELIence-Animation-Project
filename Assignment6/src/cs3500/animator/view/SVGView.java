@@ -17,23 +17,25 @@ public class SVGView extends AbstractView {
 
   @Override
   public void render() {
+    tryAppend("<svg width=\"" + canvas.getWidth() + "\" height= " + canvas.getHeight() + "\"");
     for(IAnimatableShapeReadOnly shape : this.shapes.values()){
       String type = handleType(shape.getType());
       tryAppend("<"+type+" x=\""+(int)shape.getPosition().getX()+"\" y=\""
               +(int)shape.getPosition().getY()+"\" width=\""+(int)shape.getDimension().getWidth()
               +"\" height=\""+(int)shape.getDimension().getHeight()+"\">\n");
       writeMotionSVG(shape);
-      tryAppend("  </rect>");
+      tryAppend("  </"+type+">");
     }
+    tryAppend("</svg>");
   }
 
 
   private void writeMotionSVG(IAnimatableShapeReadOnly shape){
-    for(int i=0; i < shape.getMotions().size()-1; i++){
-      IMotion fromMotion =shape.getMotions().get(i);
-      IMotion toMotion =shape.getMotions().get(i+ 1);
+    for(int i = 0; i < shape.getMotions().size()-1; i++){
+      IMotion fromMotion = shape.getMotions().get(i);
+      IMotion toMotion = shape.getMotions().get(i + 1);
 
-      int ticks = fromMotion.getTick() -  toMotion.getTick();
+      int ticks = toMotion.getTick() - fromMotion.getTick();
       int tps = ticksToSeconds(ticks);
 
       String fromRGB = formatAsRGB(fromMotion.getColor().getRed(),
@@ -47,33 +49,32 @@ public class SVGView extends AbstractView {
       int fromHeight = (int)fromMotion.getDimension().getHeight();
       int toHeight = (int)toMotion.getDimension().getHeight();
 
-
       tryAppend(
               "<path d=\"M "
               +(int)fromMotion.getPosition().getX()+","
               +(int)fromMotion.getPosition().getY() +
               " L " +(int)toMotion.getPosition().getX()+","
               +(int)toMotion.getPosition().getY()+"\"" +
-               "id=\"motionPath\"/>");
-      tryAppend("<animateMotion dur=\""+tps+"s\" reapeatCount=\"indefinite\"/>"+
+               " id=\"motionPath\"/>");
+      tryAppend("<animateMotion dur=\""+tps+"s\" repeatCount=\"indefinite\">"+
               "<mpath xlink:href=\"#motionPath\"/> </animateMotion>");
 
-      tryAppend("<animateColor attributeName=\"fill\" attributeType=\"XML\"\n" +
-              "        from=\""+fromRGB+"\" to=\""+toRGB+"\" dur=\""+tps+"\" repeatCount=\"indefinite\"/>");
+      tryAppend("<animateColor attributeName=\"fill\" attributeType=\"XML\"" +
+              " from=\""+fromRGB+"\" to=\""+toRGB+"\" dur=\""+tps+"\" repeatCount=\"indefinite\"/>");
 
       tryAppend("<animateTransform attributeName=\"width\"\n" +
-              "attributeType=\"XML\"\n" +
-              "type=\"scale\"\n" +
-              "from=\""+fromWidth+"\"\n" +
-              "to=\""+toWidth+"\"\n" +
-              "dur=\""+tps+"\"\n" +
+              "attributeType=\"XML\" " +
+              "type=\"scale\" " +
+              "from=\""+fromWidth+"\" " +
+              "to=\""+toWidth+"\" " +
+              "dur=\""+tps+"\" " +
               "repeatCount=\"indefinite\"/>");
-      tryAppend("<animateTransform attributeName=\"height\"\n" +
-              "attributeType=\"XML\"\n" +
-              "type=\"scale\"\n" +
-              "from=\""+fromHeight+"\"\n" +
-              "to=\""+toHeight+"\"\n" +
-              "dur=\""+tps+"\"\n" +
+      tryAppend("<animateTransform attributeName=\"height\" " +
+              "attributeType=\"XML\" " +
+              "type=\"scale\" " +
+              "from=\""+fromHeight+"\" " +
+              "to=\""+toHeight+"\" " +
+              "dur=\""+tps+"\" " +
               "repeatCount=\"indefinite\"/>");
     }
   }
