@@ -17,6 +17,13 @@ public interface IAnimatableShapeReadOnly {
   String getType();
 
   /**
+   * Return the color of the shape.
+   *
+   * @return the String type of the shape.
+   */
+  Color getColor();
+
+  /**
    * Returns a new Position with the x and y coordinates of this position.
    *
    * @return the new Position.

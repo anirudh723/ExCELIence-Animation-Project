@@ -49,6 +49,11 @@ public abstract class AbstractShape implements IShape {
   }
 
   @Override
+  public Color getColor() {
+    return new Color( this.color.getRed(), this.color.getGreen(), this.color.getBlue());
+  }
+
+  @Override
   public void assignInitialMotion(Dimension d, Point2D p, Color c) {
     this.position = new Point2D.Double(p.getX(), p.getY());
     this.dimension = new Dimension((int) d.getWidth(), (int) d.getHeight());

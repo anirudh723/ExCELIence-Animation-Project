@@ -41,6 +41,12 @@ public class AnimatableShape implements IAnimatableShape {
 
 
   @Override
+  public Color getColor() {
+    return this.shape.getColor();
+  }
+
+
+  @Override
   public List<IMotion> getMotions() {
     ArrayList<IMotion> copy = new ArrayList<>();
     for (IMotion m : this.motions) {

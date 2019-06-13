@@ -17,6 +17,11 @@ public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
   }
 
   @Override
+  public Color getColor() {
+    return this.delegate.getColor();
+  }
+
+  @Override
   public Point2D getPosition() {
     return this.delegate.getPosition();
   }

@@ -32,6 +32,14 @@ public interface IShape {
    */
    Dimension getDimension();
 
+
+  /**
+   * Returns a new Color with the rgb elements of this Color.
+   *
+   * @return the new Dimension.
+   */
+  Color getColor();
+
   /**
    * Assigns the shape to its initial motion
    */

@@ -18,6 +18,14 @@ public interface IAnimatableShape {
 
 
   /**
+   * Return the color of the shape.
+   *
+   * @return the String type of the shape.
+   */
+  Color getColor();
+
+
+  /**
    * Returns the a deep copy of the list of motions.
    *
    * @return the list of motions for this Shape.

@@ -33,54 +33,110 @@ public class SVGViewTest {
   LinkedHashMap<String, IAnimatableShapeReadOnly> readOnlyShapes;
   LinkedHashMap<String, IAnimatableShape> shapes;
   int ticksPerSecond;
-  IMotion motion1;
-  IMotion motion2;
-  IMotion motion3;
-  IMotion motion4;
+//  IMotion motion1;
+//  IMotion motion2;
+//  IMotion motion3;
+//  IMotion motion4;
+
+  IMotion motionR1;
+  IMotion motionR2;
+  IMotion motionR3;
+  IMotion motionR4;
+  IMotion motionR5;
+  IMotion motionR6;
+
+  IMotion motionE1;
+  IMotion motionE2;
+  IMotion motionE3;
+  IMotion motionE4;
+  IMotion motionE5;
+  IMotion motionE6;
+
   IShape shape1;
   IShape shape2;
-  ArrayList<IMotion> motions;
-  IAnimatableShape ashape;
+  ArrayList<IMotion> motions1;
+  ArrayList<IMotion> motions2;
+  IAnimatableShape ashape1;
   IAnimatableShape ashape2;
-  IAnimatableShapeReadOnly readOnlyAShape;
+  IAnimatableShapeReadOnly readOnlyAShape1;
   IAnimatableShapeReadOnly readOnlyAShape2;
   AnimationModel model;
   IReadOnlyAnimationModel readOnlyModel;
 
-  void reset(){
+  void reset() {
     ap = new StringBuilder();
     rd = new InputStreamReader(System.in);
     canvas = new Dimension(500, 500);
     readOnlyShapes = new LinkedHashMap<String, IAnimatableShapeReadOnly>();
     shapes = new LinkedHashMap<String, IAnimatableShape>();
-    ticksPerSecond = 2;
-    shape1 = new MyRectangle(new Dimension(20, 20),
-            new Color(0, 0, 0), new Point(10, 10));
-    shape2 = new MyEllipse(new Dimension(20, 20),
-            new Color(0, 0, 0), new Point(10, 10));
-    motion1 = new Motion(1, new Point(200, 200),
-            new Dimension(50, 100), new Color(255, 0, 0));
-    motion2 = new Motion(10, new Point(200, 200),
-            new Dimension(50, 100), new Color(255, 0, 0));
-    motion3 = new Motion(50, new Point(300, 300),
-            new Dimension(50, 100), new Color(255, 0, 0));
-    motion4 = new Motion(51, new Point(300, 300),
-            new Dimension(50, 100), new Color(255, 0, 0));
-    motions = new ArrayList<>(Arrays.asList(motion1, motion2, motion3, motion4));
-    ashape = new AnimatableShape(shape1, motions);
-    ashape2 = new AnimatableShape(shape2, motions);
-    readOnlyAShape = new AnimatableShapeReadOnly(ashape);
+    ticksPerSecond = 1;
+
+    shape1 = new MyRectangle(new Dimension(50, 100),
+             Color.red, new Point(10, 10));
+    shape2 = new MyEllipse(new Dimension(60, 60),
+            Color.orange, new Point(10, 10));
+
+
+    motionR1 = new Motion(1, new Point(200, 200),
+            new Dimension(50, 100), Color.orange);
+    motionR2 = new Motion(10, new Point(200, 200),
+            new Dimension(50, 100), Color.orange);
+    motionR3 = new Motion(20, new Point(300, 300),
+            new Dimension(50, 100), Color.orange);
+    motionR4 = new Motion(30, new Point(300, 300),
+            new Dimension(50, 100), Color.red);
+    motionR5 = new Motion(40, new Point(300, 300),
+            new Dimension(25, 100), Color.orange);
+    motionR6 = new Motion(50, new Point(200, 200),
+            new Dimension(25, 80), Color.orange);
+
+
+    motionE1 = new Motion(1, new Point(300, 300),
+            new Dimension(60, 60), Color.orange);
+    motionE2 = new Motion(10, new Point(200, 200),
+            new Dimension(60, 60), Color.red);
+    motionE3 = new Motion(20, new Point(400, 400),
+            new Dimension(60, 60), Color.blue);
+    motionE4 = new Motion(30, new Point(500, 500),
+            new Dimension(60, 60), Color.blue);
+    motionE5 = new Motion(40, new Point(400, 400),
+            new Dimension(60, 60), Color.green);
+    motionE6 = new Motion(50, new Point(300, 300),
+            new Dimension(60, 60), Color.green);
+
+    motions1 = new ArrayList<>(Arrays.asList(motionR1, motionR2, motionR3, motionR4, motionR5, motionR6));
+    motions2 = new ArrayList<>(Arrays.asList(motionE1, motionE2, motionE3, motionE4, motionE5, motionE6));
+
+    ashape1 = new AnimatableShape(shape1, motions1);
+    ashape2 = new AnimatableShape(shape2, motions2);
+
+    readOnlyAShape1 = new AnimatableShapeReadOnly(ashape1);
     readOnlyAShape2 = new AnimatableShapeReadOnly(ashape2);
-    shapes.put("R", ashape);
+
+    shapes.put("R", ashape1);
+    shapes.put("E", ashape2);
+
     model = AnimationModelImpl.builder().setWidth(200).setHeight(200).setX(50).setY(50).declareShape(
             "R", "rectangle").declareShape("E", "ellipse").build();
-    model.addMotion("R", motion1);
-    model.addMotion("R", motion2);
+
+
     readOnlyModel = new ReadOnlyAnimationModel(model);
-    readOnlyShapes.put("R", readOnlyAShape);
+    readOnlyShapes.put("R", readOnlyAShape1);
     readOnlyShapes.put("E", readOnlyAShape2);
-    model.addMotion("E", motion1);
-    model.addMotion("E", motion2);
+
+    model.addMotion("R", motionR1);
+    model.addMotion("R", motionR2);
+    model.addMotion("R", motionR3);
+    model.addMotion("R", motionR4);
+    model.addMotion("R", motionR5);
+    model.addMotion("R", motionR6);
+
+    model.addMotion("E", motionE1);
+    model.addMotion("E", motionE2);
+    model.addMotion("E", motionE3);
+    model.addMotion("E", motionE4);
+    model.addMotion("E", motionE5);
+    model.addMotion("E", motionE6);
 
     svgView = new SVGView(ap, rd, ticksPerSecond, canvas, readOnlyShapes, readOnlyModel);
   }
