@@ -88,9 +88,11 @@ public class AnimatableShape implements IAnimatableShape {
     else if (motions.size() == 1) {
       if (motions.get(0).getTick() > m.getTick()) {
         motions.add(0, m);
+        putShapeAtInitialMotion();
         return;
       } else if (motions.get(0).getTick() < m.getTick()) {
         motions.add(m);
+        putShapeAtInitialMotion();
         return;
       } else {
         throw new IllegalArgumentException("Trying to add a Motion where another Motion exists.");
@@ -102,11 +104,13 @@ public class AnimatableShape implements IAnimatableShape {
         }
         if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m.getTick()) {
           motions.add(i + 1, m);
+          putShapeAtInitialMotion();
           return;
         }
       }
       motions.add(m);
     }
+    putShapeAtInitialMotion();
   }
 
   private void putShapeAtInitialMotion() {

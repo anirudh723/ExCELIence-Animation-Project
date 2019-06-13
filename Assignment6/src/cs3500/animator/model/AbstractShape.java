@@ -58,6 +58,5 @@ public abstract class AbstractShape implements IShape {
     this.position = new Point2D.Double(p.getX(), p.getY());
     this.dimension = new Dimension((int) d.getWidth(), (int) d.getHeight());
     this.color = new Color(c.getRed(), c.getGreen(), c.getBlue());
-
   }
 }

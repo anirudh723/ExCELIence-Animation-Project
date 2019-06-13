@@ -1,19 +1,20 @@
 package cs3500.animator.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Represents the functionality of a View.
  */
 public interface IView {
 
   /**
-   * Tweens the animation.....
-   */
-  void tweening();
-
-  /**
    * Renders the animations into a view.
    */
   void render();
+
+
+  void renderGUIShapes(List<ArrayList<String>> shapesToRender);
 
   /**
    * Appends the given lines to the Appendable.

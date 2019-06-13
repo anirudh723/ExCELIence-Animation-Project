@@ -1,6 +1,7 @@
 package cs3500.animator.view;
 
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -64,10 +65,6 @@ public abstract class AbstractView implements IView {
     this.shapes = model.getShapeMap();
   }
 
-  @Override
-  public void tweening() {
-
-  }
 
   @Override
   public abstract void render();
@@ -82,5 +79,10 @@ public abstract class AbstractView implements IView {
       throw new IllegalArgumentException("Cannot append to Appendable.");
     }
 
+  }
+
+  @Override
+  public void renderGUIShapes(List<ArrayList<String>> shapesToRender){
+    throw new UnsupportedOperationException("Cannot render GUI shapes in this IView implementation.");
   }
 }
