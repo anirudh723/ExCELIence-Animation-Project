@@ -2,14 +2,30 @@ package cs3500.animator.view;
 
 import java.awt.Dimension;
 import java.util.LinkedHashMap;
-import java.util.List;
-
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
+/**
+ * Represents an SVG view.
+ */
 public class SVGView extends AbstractView {
 
+  /**
+   * Constructs an SVG view.
+   * @param ap the Appendable.
+   * @param rd the Readable.
+   * @param ticksPerSecond ticks per second.
+   * @param canvas the canvas for the view.
+   * @param shapes the map of shapes.
+   * @param model the read only version of the model.
+   * @throws IllegalArgumentException if Appendable is null.
+   * @throws IllegalArgumentException if Readable is null.
+   * @throws IllegalArgumentException if the ticks per second is negative.
+   * @throws IllegalArgumentException if the dimension is null.
+   * @throws IllegalArgumentException if the model is null.
+   * @throws IllegalArgumentException the shapes are null.
+   */
   SVGView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
           LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, canvas, shapes, model);
@@ -46,7 +62,7 @@ public class SVGView extends AbstractView {
       IMotion toMotion = shape.getMotions().get(i + 1);
 
       int durInTicks = toMotion.getTick() - fromMotion.getTick();
-      int durInSeconds = durInTicks * ticksPerSecond;
+      int durInSeconds = durInTicks / ticksPerSecond;
 
       String fromRGB = formatAsRGB(fromMotion.getColor().getRed(),
               fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());

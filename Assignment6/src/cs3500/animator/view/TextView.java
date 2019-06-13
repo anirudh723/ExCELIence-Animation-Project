@@ -1,18 +1,33 @@
 package cs3500.animator.view;
 
-import cs3500.animator.model.IAnimatableShape;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IReadOnlyAnimationModel;
-
 import java.awt.Dimension;
 import java.util.LinkedHashMap;
-import java.util.List;
 
+/**
+ * Represents a textual view.
+ */
 public class TextView extends AbstractView {
 
-  TextView(Appendable in, Readable out, int ticksPerSecond, Dimension canvas,
+  /**
+   * Constructs a textual view.
+   * @param ap the Appendable.
+   * @param rd the Readable.
+   * @param ticksPerSecond ticks per second.
+   * @param canvas the canvas for the view.
+   * @param shapes the map of shapes.
+   * @param model the read only version of the model.
+   * @throws IllegalArgumentException if Appendable is null.
+   * @throws IllegalArgumentException if Readable is null.
+   * @throws IllegalArgumentException if the ticks per second is negative.
+   * @throws IllegalArgumentException if the dimension is null.
+   * @throws IllegalArgumentException if the model is null.
+   * @throws IllegalArgumentException the shapes are null.
+   */
+  TextView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
            LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
-    super(in, out, ticksPerSecond, canvas, shapes, model);
+    super(ap, rd, ticksPerSecond, canvas, shapes, model);
   }
 
   @Override

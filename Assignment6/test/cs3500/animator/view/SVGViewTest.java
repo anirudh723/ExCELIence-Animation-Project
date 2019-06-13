@@ -69,7 +69,7 @@ public class SVGViewTest {
     canvas = new Dimension(500, 500);
     readOnlyShapes = new LinkedHashMap<String, IAnimatableShapeReadOnly>();
     shapes = new LinkedHashMap<String, IAnimatableShape>();
-    ticksPerSecond = 1;
+    ticksPerSecond = 5;
 
     shape1 = new MyRectangle(new Dimension(50, 100),
              Color.red, new Point(10, 10));

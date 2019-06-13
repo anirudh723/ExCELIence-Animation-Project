@@ -7,15 +7,34 @@ import java.util.List;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
+/**
+ * Represents an abstracted version of the View.
+ */
 public abstract class AbstractView implements IView {
   protected Appendable in;
-  protected Readable out;
+  protected Readable rd;
   protected int ticksPerSecond;
   protected Dimension canvas;
   protected LinkedHashMap<String, IAnimatableShapeReadOnly> shapes;
   protected IReadOnlyAnimationModel model;
 
 
+  /**
+   * Constructs an Abstract View.
+   *
+   * @param ap the Appendable.
+   * @param rd the Readable.
+   * @param ticksPerSecond ticks per second.
+   * @param canvas the canvas for the view.
+   * @param shapes the map of shapes.
+   * @param model the read only version of the model.
+   * @throws IllegalArgumentException if Appendable is null.
+   * @throws IllegalArgumentException if Readable is null.
+   * @throws IllegalArgumentException if the ticks per second is negative.
+   * @throws IllegalArgumentException if the dimension is null.
+   * @throws IllegalArgumentException if the model is null.
+   * @throws IllegalArgumentException the shapes are null.
+   */
   AbstractView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
                LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
     if (ap == null) {
@@ -25,7 +44,10 @@ public abstract class AbstractView implements IView {
     if (rd == null) {
       throw new IllegalArgumentException("Readable is null.");
     }
-    this.out = rd;
+    this.rd = rd;
+    if (ticksPerSecond < 0) {
+      throw new IllegalArgumentException("Ticks per second cannot be negative.");
+    }
     this.ticksPerSecond = ticksPerSecond;
     if (canvas == null) {
       throw new IllegalArgumentException("Dimensions are null.");
@@ -51,7 +73,7 @@ public abstract class AbstractView implements IView {
   public abstract void render();
 
   @Override
-  public void tryAppend(String ... lines) {
+  public void tryAppend(String ... lines) throws IllegalArgumentException {
     try {
       for (String s : lines) {
         in.append(s);

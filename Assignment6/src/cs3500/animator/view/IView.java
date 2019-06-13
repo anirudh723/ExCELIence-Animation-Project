@@ -10,10 +10,18 @@ public interface IView {
    */
   void tweening();
 
-
+  /**
+   * Renders the animations into a view.
+   */
   void render();
 
-  void tryAppend(String ... lines);
+  /**
+   * Appends the given lines to the Appendable.
+   *
+   * @param lines the String's to be appended
+   * @throws IllegalArgumentException if it cannot append to the Appendable.
+   */
+  void tryAppend(String ... lines) throws IllegalArgumentException;
 
 
 
