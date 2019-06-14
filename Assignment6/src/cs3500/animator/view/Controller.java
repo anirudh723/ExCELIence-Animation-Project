@@ -1,10 +1,12 @@
 package cs3500.animator.view;
 
+import cs3500.animator.model.AnimatableShapeReadOnly;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.*;
@@ -20,18 +22,30 @@ public class Controller implements IController {
   private IReadOnlyAnimationModel model;
   private int tick;
   private IView view;
+  private int maxTick = 0;
 
 
   public Controller(IReadOnlyAnimationModel model, IView view) {
     this.view = view;
-    this.tick = 1;
+    this.tick = 0;
     this.model = model;
-    timer = new Timer(500, new ActionListener() {
+      for (IAnimatableShapeReadOnly shape : model.getShapeMap().values()) {
+        if (shape.getMotions().size() > maxTick) {
+          maxTick = shape.getMotions().get(shape.getMotions().size() - 1).getTick();
+          System.out.println(maxTick);
+        }
+      }
+    timer = new Timer(100, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        List<ArrayList<String>> shapesToRender = getShapesAtTick(tick++);
-        view.renderGUIShapes(shapesToRender);
-        System.out.println(tick);
+        if (tick < maxTick) {
+          List<ArrayList<String>> shapesToRender = getShapesAtTick(tick++);
+          view.renderGUIShapes(shapesToRender);
+          System.out.println(tick);
+        }
+        else {
+          tick = 1;
+        }
       }
     });
   }
@@ -49,6 +63,7 @@ public class Controller implements IController {
 // todo have a case if there is only one motion in list
 
     for (IAnimatableShapeReadOnly shape : model.getShapeMap().values()) {
+      System.out.println("# of shapes: " + model.getShapeMap().values().size());
       if (shape.getMotions().size() != 0) {
         if (shape.getMotions().size() == 1) {
           IMotion motion = shape.getMotions().get(0);
@@ -60,10 +75,14 @@ public class Controller implements IController {
           data.add(Integer.toString(motion.getColor().getGreen()));
           data.add(Integer.toString(motion.getColor().getBlue()));
           data.add(shape.getType());
+          shapesAtTick.add(data);
         }
         else {
           int index = relativeTickInMotions(shape.getMotions(), tick);
-          if (index == shape.getMotions().size() - 1) {
+          if (index == -1) {
+
+          }
+          else if (index == shape.getMotions().size() - 1) {
             IMotion motion = shape.getMotions().get(shape.getMotions().size() - 1);
             data.add(Integer.toString((int) motion.getPosition().getX()));
             data.add(Integer.toString((int) motion.getPosition().getY()));
@@ -73,22 +92,25 @@ public class Controller implements IController {
             data.add(Integer.toString(motion.getColor().getGreen()));
             data.add(Integer.toString(motion.getColor().getBlue()));
             data.add(shape.getType());
+            shapesAtTick.add(data);
           }
           else {
             data = tween(shape.getMotions().get(index), shape.getMotions().get(index + 1), tick);
             data.add(shape.getType());
+            shapesAtTick.add(data);
+           // System.out.println("data of the " + shape.getType() + " " + data.toString());
           }
         }
       }
     }
-    System.out.println("size : " + shapesAtTick.size());
+    System.out.println(Arrays.asList(shapesAtTick).toString());
     return shapesAtTick;
   }
 
   private ArrayList<String> tween(IMotion from, IMotion to, int tick) {
     ArrayList<String> data = new ArrayList<>();
-    double part1 = (double) ((to.getTick() - tick) / (to.getTick() - from.getTick()));
-    double part2 = (double) ((tick - from.getTick()) / (to.getTick() - from.getTick()));
+    double part1 = ((double) (to.getTick() - tick)) / (to.getTick() - from.getTick());
+    double part2 = ((double) (tick - from.getTick())) / (to.getTick() - from.getTick());
     int newX = (int) ((from.getPosition().getX() * part1) + (to.getPosition().getX() * part2));
     int newY = (int) ((from.getPosition().getY() * part1) + (to.getPosition().getY() * part2));
     int newWidth = (int) (from.getDimension().getWidth() * part1
@@ -96,17 +118,8 @@ public class Controller implements IController {
     int newHeight = (int) (from.getDimension().getHeight() * part1
         + to.getDimension().getHeight() * part2);
     int newRed = (int) (from.getColor().getRed() * part1 + to.getColor().getRed() * part2);
-//    if (colorOutOfRange(newRed)) {
-//      newRed = to.getColor().getRed();
-//    }
     int newGreen = (int) (from.getColor().getGreen() * part1 + to.getColor().getGreen() * part2);
-//    if (colorOutOfRange(newGreen)) {
-//      newGreen = to.getColor().getGreen();
-//    }
     int newBlue = (int) (from.getColor().getBlue() * part1 + to.getColor().getBlue() * part2);
-//    if (colorOutOfRange(newBlue)) {
-//      newBlue = to.getColor().getBlue();
-//    }
     data.add(Integer.toString(newX));
     data.add(Integer.toString(newY));
     data.add(Integer.toString(newWidth));
@@ -119,6 +132,9 @@ public class Controller implements IController {
 
 
   private int relativeTickInMotions(List<IMotion> motions, int tick) {
+    if (tick < motions.get(0).getTick()) {
+      return  -1;
+    }
     for (int i = 0; i < motions.size() - 1; i++) {
       if (motions.get(i).getTick() <= tick && motions.get(i + 1).getTick() > tick) {
         return i;

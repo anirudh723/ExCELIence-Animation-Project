@@ -22,9 +22,10 @@ abstract class AbstractDrawingPanel extends JPanel {
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
-    if (shapes != null) {
+    if (!shapes.isEmpty()) {
       for (ArrayList<String> data : shapes) {
         if(data.get(data.size()-1).contains("rect")){
+         // System.out.println(Integer.parseInt("rect red color: " + data.get(4)));
           g.setColor(new Color(Integer.parseInt(data.get(4)),
                   Integer.parseInt(data.get(5)),
                   Integer.parseInt(data.get(6))));
@@ -39,7 +40,8 @@ abstract class AbstractDrawingPanel extends JPanel {
         }
       }
     }
+    else {
+      g.clearRect(0, 0, 3000, 3000);
+    }
   }
-// x y w h r g b "type"
-
 }
