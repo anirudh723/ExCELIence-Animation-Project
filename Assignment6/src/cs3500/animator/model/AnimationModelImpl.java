@@ -102,10 +102,10 @@ public final class AnimationModelImpl extends AbstractAnimationModel{
       if (shapes.containsKey(name)) {
         throw new IllegalArgumentException("Trying to add a shape that already exists in map.");
       }
-      if (type.equals("rectangle")) {
+      if (type.contains("rect")) {
         shapes.put(name, new AnimatableShape(new MyRectangle(), new ArrayList<>()));
       }
-      else {
+      else if (type.contains("ellipse")){
         shapes.put(name, new AnimatableShape(new MyEllipse(), new ArrayList<>()));
       }
       return this;

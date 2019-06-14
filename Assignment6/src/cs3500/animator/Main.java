@@ -103,16 +103,16 @@ public class Main {
     motions2 = new ArrayList<>(Arrays.asList(motionE1, motionE2, motionE3, motionE4, motionE5, motionE6));
 
     ashape1 = new AnimatableShape(shape1, motions1);
-    ashape2 = new AnimatableShape(shape2, motions2);
+    //ashape2 = new AnimatableShape(shape2, motions2);
 
     readOnlyAShape1 = new AnimatableShapeReadOnly(ashape1);
-    readOnlyAShape2 = new AnimatableShapeReadOnly(ashape2);
+    //readOnlyAShape2 = new AnimatableShapeReadOnly(ashape2);
 
     //shapes.put("R", ashape1);
     //shapes.put("E", ashape2);
 
     model = AnimationModelImpl.builder().setWidth(200).setHeight(200).setX(50).setY(50).declareShape(
-            "R", "rect").declareShape("E", "ellipse").build();
+            "R", "rect").build();
 
 
     readOnlyModel = new ReadOnlyAnimationModel(model);
@@ -126,12 +126,12 @@ public class Main {
     model.addMotion("R", motionR5);
     model.addMotion("R", motionR6);
 
-    model.addMotion("E", motionE1);
-    model.addMotion("E", motionE2);
-    model.addMotion("E", motionE3);
-    model.addMotion("E", motionE4);
-    model.addMotion("E", motionE5);
-    model.addMotion("E", motionE6);
+//    model.addMotion("E", motionE1);
+//    model.addMotion("E", motionE2);
+//    model.addMotion("E", motionE3);
+//    model.addMotion("E", motionE4);
+//    model.addMotion("E", motionE5);
+//    model.addMotion("E", motionE6);
 
 
     IView view = new VisualView(new Dimension(500,500));

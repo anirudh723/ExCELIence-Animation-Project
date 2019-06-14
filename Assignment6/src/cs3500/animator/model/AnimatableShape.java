@@ -95,20 +95,22 @@ public class AnimatableShape implements IAnimatableShape {
         putShapeAtInitialMotion();
         return;
       } else {
-        throw new IllegalArgumentException("Trying to add a Motion where another Motion exists.");
+        System.out.println("trying to add a motion at the same tick");
       }
     } else {
       for (int i = 0; i < motions.size() - 1; i++) {
         if (motions.get(i).getTick() == m.getTick()) {
-          throw new IllegalArgumentException("Trying to add a Motion where another Motion exists.");
+          System.out.println("trying to add a motion at the same tick");
         }
-        if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m.getTick()) {
+        else if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m.getTick()) {
           motions.add(i + 1, m);
           putShapeAtInitialMotion();
           return;
         }
       }
-      motions.add(m);
+      if (motions.get(motions.size() - 1).getTick() < m.getTick()) {
+        motions.add(m);
+      }
     }
     putShapeAtInitialMotion();
   }

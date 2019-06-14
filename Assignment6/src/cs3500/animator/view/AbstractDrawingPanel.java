@@ -31,7 +31,6 @@ abstract class AbstractDrawingPanel extends JPanel {
           g.fillRect(Integer.parseInt(data.get(0)), Integer.parseInt(data.get(1)),
                   Integer.parseInt(data.get(2)), Integer.parseInt(data.get(3)));
         } else if (data.get(data.size()-1).contains("ellipse")) {
-          //System.out.println(Integer.parseInt(data.get(4)) + Integer.parseInt(data.get(5)) + Integer.parseInt(data.get(6)));
           g.setColor(new Color(Integer.parseInt(data.get(4)),
                   Integer.parseInt(data.get(5)),
                   Integer.parseInt(data.get(6))));
