@@ -103,10 +103,10 @@ public final class AnimationModelImpl extends AbstractAnimationModel{
         throw new IllegalArgumentException("Trying to add a shape that already exists in map.");
       }
       if (type.equals("rectangle")) {
-        shapes.put(name, new AnimatableShape(new MyRectangle(), new ArrayList<IMotion>()));
+        shapes.put(name, new AnimatableShape(new MyRectangle(), new ArrayList<>()));
       }
       else {
-        shapes.put(name, new AnimatableShape(new MyEllipse(), new ArrayList<IMotion>()));
+        shapes.put(name, new AnimatableShape(new MyEllipse(), new ArrayList<>()));
       }
       return this;
     }
@@ -115,11 +115,13 @@ public final class AnimationModelImpl extends AbstractAnimationModel{
     public AnimationBuilder<AnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
         int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2,
         int b2) {
-      IMotion m = new Motion(t1, new Point2D.Double(x1, x2), new Dimension(w1, h1), new Color(r1, g1, b1));
+      IMotion m = new Motion(t1, new Point2D.Double(x1, y1), new Dimension(w1, h1), new Color(r1, g1, b1));
+      IMotion m2 = new Motion(t2, new Point2D.Double(x2, y2), new Dimension(w2, h2), new Color(r2, g2, b2));
       if (!shapes.containsKey(name)) {
         throw new IllegalArgumentException("Trying to add a motion to a shape that doesn't exist.");
       }
       shapes.get(name).addMotionInShape(m);
+      shapes.get(name).addMotionInShape(m2);
       return this;
     }
 

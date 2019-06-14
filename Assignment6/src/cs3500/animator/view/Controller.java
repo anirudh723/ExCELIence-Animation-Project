@@ -28,7 +28,7 @@ public class Controller implements IController {
     timer = new Timer(500, new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        List<ArrayList<String>>shapesToRender = getShapesAtTick(tick++);
+        List<ArrayList<String>> shapesToRender = getShapesAtTick(tick++);
         view.renderGUIShapes(shapesToRender);
         System.out.println(tick);
       }
@@ -51,7 +51,7 @@ public class Controller implements IController {
       for (int i = 0; i < shape.getMotions().size() - 1; i++) {
         IMotion fromMotion = (shape).getMotions().get(i);
         IMotion toMotion = (shape).getMotions().get(i + 1);
-        double part1 = ((double) (fromMotion.getTick() - tick)) / (toMotion.getTick() - fromMotion.getTick());
+        double part1 = ((double) (toMotion.getTick() - tick)) / (toMotion.getTick() - fromMotion.getTick());
         double part2 = ((double) (tick - fromMotion.getTick())) / (toMotion.getTick() - fromMotion.getTick());
 
         data = new ArrayList<>();

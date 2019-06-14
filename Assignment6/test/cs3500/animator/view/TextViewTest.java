@@ -77,11 +77,15 @@ public class TextViewTest {
             "R", "rectangle").declareShape("E", "ellipse").build();
     model.addMotion("R", motion1);
     model.addMotion("R", motion2);
+    model.addMotion("R", motion3);
+    model.addMotion("R", motion4);
     readOnlyModel = new ReadOnlyAnimationModel(model);
     readOnlyShapes.put("R", readOnlyAShape);
     readOnlyShapes.put("E", readOnlyAShape2);
     model.addMotion("E", motion1);
     model.addMotion("E", motion2);
+    model.addMotion("E", motion3);
+    model.addMotion("E", motion4);
 
     textView = new TextView(ap, rd, ticksPerSecond, canvas, readOnlyShapes, readOnlyModel);
   }
