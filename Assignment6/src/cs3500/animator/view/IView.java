@@ -25,5 +25,6 @@ public interface IView {
   void tryAppend(String ... lines) throws IllegalArgumentException;
 
 
+  ViewType getViewType();
 
 }

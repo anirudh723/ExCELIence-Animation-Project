@@ -18,10 +18,12 @@ public class VisualView extends JFrame implements IView {
   private JScrollPane scrollPane;
   private Dimension canvas;
   IController controller;
+  ViewType type;
 
 
   public VisualView(Dimension canvas) {
     super();
+    type = ViewType.VISUAL;
     this.canvas = canvas;
     this.panel = new DrawingPanel();
     panel.setMinimumSize(this.canvas);//todo calculate this
@@ -49,6 +51,11 @@ public class VisualView extends JFrame implements IView {
   @Override
   public void tryAppend(String... lines) throws IllegalArgumentException {
 
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return type;
   }
 
 }

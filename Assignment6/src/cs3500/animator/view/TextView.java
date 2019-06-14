@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
  * Represents a textual view.
  */
 public class TextView extends AbstractView {
+  ViewType type;
 
   /**
    * Constructs a textual view.
@@ -28,6 +29,7 @@ public class TextView extends AbstractView {
   TextView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
            LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, canvas, shapes, model);
+    type = ViewType.TEXT;
   }
 
   @Override
@@ -43,6 +45,11 @@ public class TextView extends AbstractView {
     }
     tryAppend(str.substring(0, str.toString().length() - 1));
     System.out.println(in.toString());//todo remove
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return type;
   }
 
 }

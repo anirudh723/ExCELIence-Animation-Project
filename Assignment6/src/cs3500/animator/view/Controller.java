@@ -52,8 +52,15 @@ public class Controller implements IController {
 
   @Override
   public void run() {
-    timer.start();
-
+    if (view.getViewType() == ViewType.VISUAL) {
+      timer.start();
+    }
+    if (view.getViewType() == ViewType.SVG) {
+      view.render();
+    }
+    if (view.getViewType() == ViewType.TEXT) {
+      view.render();
+    }
   }
 
   @Override
