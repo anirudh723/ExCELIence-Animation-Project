@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.geom.Point2D;
 import java.util.List;
 
@@ -37,29 +38,26 @@ public interface IAnimatableShape {
    *
    * @return the new Position.
    */
-   Point2D getPosition();
+  Point2D getPosition();
 
   /**
    * Returns a new Dimension with the width and height elements of this dimension.
    *
    * @return the new Dimension.
    */
-   Dimension getDimension();
+  Dimension getDimension();
 
   /**
-   * Outputs the motions for a Shape.
-   *
-   * @return the String consisting of the Shape's corresponding motions.
-   */
-//  String outputMotions();
-
-  /**
-   * Adds a Motion to a Shape.
+   * Adds a Motion to a Shape. If the size is 0, it just adds it to the list. If the size is 1, it
+   * compares the given motion with the one motion in the list and decides where to put it. If the
+   * size is more than 1, it runs a loop and decides where to put it. It does one final check to see
+   * if the last motion's tick is less than the given one, so it puts it at the end. Ensures/puts
+   * the shape's initial state at the first motion's state.
    *
    * @param m the Motion to be added.
-   * @throws IllegalArgumentException if there is an existing motion at the same tick as the motion
-   *                                  trying to be added.
    * @throws IllegalArgumentException if the given motion is null.
+   * @throws IllegalArgumentException if there is an existing motion at the same tick as the motion
+   * trying to be added.
    */
   void addMotionInShape(IMotion m) throws IllegalArgumentException;
 

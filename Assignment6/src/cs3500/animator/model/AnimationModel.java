@@ -1,28 +1,21 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 /**
- * Represents the functions for an AnimationModel.
+ * Represents the functions for an AnimationModel. Can add/remove shapes, add/remove motions, and
+ * get certain types of information, which is helpful for the controller.
  */
-public interface AnimationModel{
-
-  /**
-   * Creates a text description of the animation.
-   *
-   * @return the String description of the animation.
-   */
-//  String getDescription();
+public interface AnimationModel {
 
   /**
    * Adds a Shape to the model.
    *
-   * @param name
-   * @param type
+   * @param name the name of the shape which is the key in the map.
+   * @param type the type of shape to be added.
    * @throws IllegalArgumentException if a user tries to add a shape that already exists in map.
-   * @throws IllegalArgumentException if the given Shape is null.
    */
   void addShape(String name, String type) throws IllegalArgumentException;
 
@@ -38,10 +31,10 @@ public interface AnimationModel{
    * Adds a Motion to one of the Model's shapes.
    *
    * @param shapeId the shapeId that the given Shape corresponds in the Map.
-   * @param m       the Motion to be added.
+   * @param m the Motion to be added.
    * @throws IllegalArgumentException if the given Motion is null.
    * @throws IllegalArgumentException if a user tries to add a Motion to a shape that doesn't
-   *                                  exist.
+   * exist.
    * @throws IllegalArgumentException if a user tries to add a Motion where another Motion exists.
    */
   void addMotion(String shapeId, IMotion m) throws IllegalArgumentException;
@@ -50,10 +43,10 @@ public interface AnimationModel{
    * Removes a Motion to one of the Model's shapes.
    *
    * @param shapeId the shapeId that the given Shape corresponds in the Map.
-   * @param m       the Motion to be removed.
+   * @param m the Motion to be removed.
    * @throws IllegalArgumentException if the given Motion is null.
    * @throws IllegalArgumentException if a user tries to remove a Motion to a shape that doesn't
-   *                                  exist.
+   * exist.
    * @throws IllegalArgumentException if a user tries to remove a Motion that doesn't exist
    */
   void removeMotion(String shapeId, IMotion m) throws IllegalArgumentException;
@@ -69,10 +62,24 @@ public interface AnimationModel{
 //   */
 //  List<IShape> getAllShapesAtTick(int tick) throws IllegalArgumentException;
 
+  /**
+   * Gets the map of shapes from the model.
+   *
+   * @return the LinkedHashMap of shape id's to shapes.
+   */
+  LinkedHashMap<String, IAnimatableShapeReadOnly> getShapeMap();
 
-   LinkedHashMap<String, IAnimatableShapeReadOnly> getShapeMap();
-
+  /**
+   * Gets the canvas dimensions.
+   *
+   * @return the dimension of the canvas.
+   */
   Dimension getCanvasDimension();
 
+  /**
+   * Gets the left most x and top most y.
+   *
+   * @return a Point with the x and y coordinates.
+   */
   Point getTopXY();
 }

@@ -1,12 +1,16 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents an Animatable Shape.
+ * Represents an Animatable Shape, which is a shape with a list of motions for that particular
+ * shape. These shapes are more applicable to the controller and view. We thought it was a good idea
+ * to have just a normal shape, which is the AbstractShape class, and then an Animatable shape,
+ * which is that shape but with it's motions.
  */
 public class AnimatableShape implements IAnimatableShape {
 
@@ -16,11 +20,12 @@ public class AnimatableShape implements IAnimatableShape {
   /**
    * Constructs an Animatable shape.
    *
-   * @param shape   the Shape.
+   * @param shape the Shape.
    * @param motions the list of Motions that correspond with the given Shape.
    * @throws IllegalArgumentException if the given Shape is null.
    * @throws IllegalArgumentException if the given list of Motions is null.
    * @throws IllegalArgumentException if the list of motions are not in order by tick.
+   * @throws IllegalArgumentException if motions are not in order by their tick.
    */
   public AnimatableShape(IShape shape, ArrayList<IMotion> motions) {
     if (shape == null) {
@@ -65,17 +70,6 @@ public class AnimatableShape implements IAnimatableShape {
     return this.shape.getDimension();
   }
 
-  //todo change this
-//  @Override
-//  public String outputMotions() {
-//    StringBuilder str = new StringBuilder();
-//    for (int i = 0; i < motions.size() - 1; i++) {
-//      str.append("motion " + shape.getName() + " " + motions.get(i).writeMotion() + "\t\t" + motions
-//              .get(i + 1).writeMotion() + "\n");
-//    }
-//    return str.toString();
-//  }
-
   @Override
   public void addMotionInShape(IMotion m) {
     if (m == null) {
@@ -84,8 +78,8 @@ public class AnimatableShape implements IAnimatableShape {
     if (motions.size() == 0) {
       motions.add(m);
       putShapeAtInitialMotion();
-    }
-    else if (motions.size() == 1) {
+      return;
+    } else if (motions.size() == 1) {
       if (motions.get(0).getTick() > m.getTick()) {
         motions.add(0, m);
         putShapeAtInitialMotion();
@@ -95,14 +89,14 @@ public class AnimatableShape implements IAnimatableShape {
         putShapeAtInitialMotion();
         return;
       } else {
-        System.out.println("trying to add a motion at the same tick");
+        throw new IllegalArgumentException("trying to add motion at same tick");
       }
     } else {
       for (int i = 0; i < motions.size() - 1; i++) {
         if (motions.get(i).getTick() == m.getTick()) {
-          System.out.println("trying to add a motion at the same tick");
-        }
-        else if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m.getTick()) {
+          throw new IllegalArgumentException("trying to add motion at same tick");
+        } else if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m
+            .getTick()) {
           motions.add(i + 1, m);
           putShapeAtInitialMotion();
           return;
@@ -110,14 +104,14 @@ public class AnimatableShape implements IAnimatableShape {
       }
       if (motions.get(motions.size() - 1).getTick() < m.getTick()) {
         motions.add(m);
+        putShapeAtInitialMotion();
       }
     }
-    putShapeAtInitialMotion();
   }
 
   private void putShapeAtInitialMotion() {
     this.shape.assignInitialMotion(this.motions.get(0).getDimension(),
-            this.motions.get(0).getPosition(), this.motions.get(0).getColor());
+        this.motions.get(0).getPosition(), this.motions.get(0).getColor());
   }
 
   @Override

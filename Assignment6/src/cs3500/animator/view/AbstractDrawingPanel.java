@@ -12,6 +12,7 @@ abstract class AbstractDrawingPanel extends JPanel {
 
   public AbstractDrawingPanel() {
     super();
+    this.shapes = new ArrayList<>();
   }
 
   void draw(List<ArrayList<String>> shapesToDraw) {
@@ -25,7 +26,6 @@ abstract class AbstractDrawingPanel extends JPanel {
     if (!shapes.isEmpty()) {
       for (ArrayList<String> data : shapes) {
         if(data.get(data.size()-1).contains("rect")){
-         // System.out.println(Integer.parseInt("rect red color: " + data.get(4)));
           g.setColor(new Color(Integer.parseInt(data.get(4)),
                   Integer.parseInt(data.get(5)),
                   Integer.parseInt(data.get(6))));

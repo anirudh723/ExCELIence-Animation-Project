@@ -1,13 +1,11 @@
-
 package cs3500.animator.model;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-import javax.swing.text.Position;
-
 /**
- * Represents the functions regarding Shapes.
+ * Represents the general functions regarding Shapes, including getters and a method that assigns a
+ * shape's inital state to its first motion.
  */
 public interface IShape {
 
@@ -23,14 +21,14 @@ public interface IShape {
    *
    * @return the new Position.
    */
-   Point2D getPosition();
+  Point2D getPosition();
 
   /**
    * Returns a new Dimension with the width and height elements of this dimension.
    *
    * @return the new Dimension.
    */
-   Dimension getDimension();
+  Dimension getDimension();
 
 
   /**

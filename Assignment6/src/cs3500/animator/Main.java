@@ -171,7 +171,5 @@ public class Main {
 //    IController controller = new Controller(readOnlyModel, view);
 //
 //    controller.run();
-
-
 //  }
 }
