@@ -12,15 +12,21 @@ import cs3500.animator.model.MyRectangle;
 import cs3500.animator.util.AnimationReader;
 
 import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.Scanner;
+
+import javax.swing.*;
 
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.AnimationModelImpl;
@@ -29,41 +35,111 @@ import cs3500.animator.model.ReadOnlyAnimationModel;
 import cs3500.animator.controller.Controller;
 import cs3500.animator.controller.IController;
 import cs3500.animator.view.IView;
+import cs3500.animator.view.ViewType;
 import cs3500.animator.view.VisualView;
 
-public class Main {
-  private static FileReader generateFile() {
-    try {
-      return new FileReader("/Users/hollychristensen/Documents/"
-              + "OneDrive/NEU/SUMMER 19/OOD/Assignment5/buildings.txt");
-    } catch (IOException e) {
-      System.out.print("oops");
-    }
-    return null;
-  }
+//todo
+// no -in --> popup error
+// no -view --> popup error
+// no -out --> System.out
+// no -speed --> 2
 
-  private static String readTgtFileAsString() {
-    String text = "";
-    try {
-      text = new String(Files.readAllBytes(Paths.get("/Users/hollychristensen/Documents/"
-              + "OneDrive/NEU/SUMMER 19/OOD/Assignment5/buildings.txt")));
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    return text;
-  }
+public class Main {
 
   public static void main(String[] args) {
-    FileReader file = generateFile();
-    AnimationModel model1 = AnimationReader.parseFile(file, new AnimationModelImpl.Builder());
-    IReadOnlyAnimationModel readOnlyAnimationModel = new ReadOnlyAnimationModel(model1);
 
-    IView view = new VisualView(new StringBuilder(), file, 10,
-            new Dimension(500, 500), readOnlyAnimationModel);
+    IView view;
 
-    IController model1_viewer = new Controller(readOnlyAnimationModel, view);
-    model1_viewer.run();
+    Readable inputFile = null;
+    String viewType = null;
+    Appendable outputFile = null;
+    int speed = 2;
+
+    JFrame frame = new JFrame();
+    frame.setLocationRelativeTo(null);
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
+    for (int i = 0; i < args.length - 1; i += 2) {
+      String command = args[i];
+      String data = args[i + 1];
+
+      switch (command) {
+        case "-in":
+          try {
+            inputFile = new FileReader(data);
+          } catch (FileNotFoundException e) {
+            makeErrorPane("The input file \"" + data + "\" was not found.", frame);
+          }
+          break;
+        case "-out":
+          try {
+            outputFile = new FileWriter(data);
+          } catch (IOException e) {
+            makeErrorPane("The output file \"" + data + "\" was not found.", frame);
+          }
+          break;
+        case "-view":
+          viewType = data;
+          break;
+        case "-speed":
+          speed = Integer.parseInt(data);
+          break;
+        default:
+          makeErrorPane("The command \"" + command + "\" is invalid.", frame);
+      }
+    }
+    if (viewType == null || inputFile == null) {
+      makeErrorPane("Commands -view and -in are required.", frame);
+    } else if (outputFile == null) {
+      view = new ViewFactory().create(inputFile, System.out, viewType, speed);
+    }else {
+      view = new ViewFactory().create(inputFile, outputFile, viewType, speed);
+    }
   }
+
+  private static void makeErrorPane(String message, JFrame frame){
+    JOptionPane.showMessageDialog(frame, message,
+            "Invalid Inputs", JOptionPane.ERROR_MESSAGE);
+  }
+
+
+//TODO/////////////////////////////////////////////////////////////////////////
+
+//  private static FileReader generateFile() {
+//    try {
+//      return new FileReader("/Users/hollychristensen/Documents/"
+//              + "OneDrive/NEU/SUMMER 19/OOD/Assignment5/buildings.txt");
+//    } catch (IOException e) {
+//      System.out.print("oops");
+//    }
+//    return null;
+//  }
+//
+//  private static String readTgtFileAsString() {
+//    String text = "";
+//    try {
+//      text = new String(Files.readAllBytes(Paths.get("/Users/hollychristensen/Documents/"
+//              + "OneDrive/NEU/SUMMER 19/OOD/Assignment5/buildings.txt")));
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//    return text;
+//  }
+//
+//  public static void main(String[] args) {
+//    FileReader file = generateFile();
+//    AnimationModel model1 = AnimationReader.parseFile(file, new AnimationModelImpl.Builder());
+//    IReadOnlyAnimationModel readOnlyAnimationModel = new ReadOnlyAnimationModel(model1);
+//
+//    IView view = new VisualView(new StringBuilder(), file, 10,
+//            new Dimension(500, 500), readOnlyAnimationModel);
+//
+//    IController model1_viewer = new Controller(readOnlyAnimationModel, view);
+//    model1_viewer.run();
+//  }
+
+//TODO/////////////////////////////////////////////////////////////////////////
 
 //  public static void main(String[] args) {
 //    Appendable ap;
