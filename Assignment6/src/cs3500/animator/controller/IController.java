@@ -1,4 +1,4 @@
-package cs3500.animator.view;
+package cs3500.animator.controller;
 
 import java.util.ArrayList;
 import java.util.List;

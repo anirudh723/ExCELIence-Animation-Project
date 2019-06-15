@@ -22,9 +22,11 @@ public interface IView {
    * @param lines the String's to be appended
    * @throws IllegalArgumentException if it cannot append to the Appendable.
    */
-  void tryAppend(String ... lines) throws IllegalArgumentException;
+  void tryAppend(String... lines) throws IllegalArgumentException;
 
 
   ViewType getViewType();
+
+  int getTicksPerSecond();
 
 }

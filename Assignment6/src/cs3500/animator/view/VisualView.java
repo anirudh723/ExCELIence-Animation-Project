@@ -7,34 +7,44 @@ import java.util.List;
 
 import javax.swing.*;
 
+import cs3500.animator.controller.IController;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
+import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
 /**
- * Represents a visual view.
+ * A GUI that draws and plays an animation in a window, using Java Swing.
  */
-public class VisualView extends JFrame implements IView {
+public class VisualView extends AbstractView implements IView {
   private DrawingPanel panel;
   private JScrollPane scrollPane;
-  private Dimension canvas;
-  IController controller;
   ViewType type;
 
+  JFrame delegate = new JFrame();
 
-  public VisualView(Dimension canvas) {
-    super();
+  /**
+   * Constructs a Visual View
+   * @param ap the file to append to.
+   * @param rd the file to read from.
+   * @param ticksPerSecond the ticks per second rate of the animation.
+   * @param canvas the dimensions of the animation window.
+   * @param model
+   */
+  public VisualView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
+                    IReadOnlyAnimationModel model) {
+    super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.VISUAL;
-    this.canvas = canvas;
     this.panel = new DrawingPanel();
-    panel.setMinimumSize(this.canvas);//todo calculate this
-    panel.setPreferredSize(new Dimension(2000, 2000));//todo calculate this
-    scrollPane = new JScrollPane(panel);
-    setSize(1000,1000);//todo figure this out
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setLocation(200, 200);
-    add(scrollPane);
 
-    setVisible(true);
+    panel.setMinimumSize(this.canvas);
+    panel.setPreferredSize(calculateMaxDimension());
+    scrollPane = new JScrollPane(panel);
+    delegate.setSize(this.canvas);
+    delegate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    delegate.setLocation(250, 250);
+    delegate.add(scrollPane);
+
+    delegate.setVisible(true);
   }
 
 
@@ -56,6 +66,24 @@ public class VisualView extends JFrame implements IView {
   @Override
   public ViewType getViewType() {
     return type;
+  }
+
+
+  private Dimension calculateMaxDimension() {
+    int furthestRight = 0;
+    int furthestDown = 0;
+    for (IAnimatableShapeReadOnly shape : this.model.getShapeMap().values()) {
+      for (IMotion motion : shape.getMotions()) {
+        if (motion.getPosition().getX() > furthestRight) {
+          furthestRight = (int) (motion.getPosition().getX());
+        }
+        if (motion.getPosition().getY() > furthestDown) {
+          furthestDown = (int) (motion.getPosition().getY());
+        }
+      }
+    }
+    System.out.println(furthestRight + " by " + furthestDown);
+    return new Dimension(furthestRight, furthestDown);
   }
 
 }

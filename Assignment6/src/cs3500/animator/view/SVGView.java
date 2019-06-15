@@ -2,24 +2,26 @@ package cs3500.animator.view;
 
 import java.awt.Dimension;
 import java.util.LinkedHashMap;
+
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
 /**
- * Represents an SVG view.
+ * Produces a formatted textual description of the animation that is compliant with the SVG
+ * file format. Works with a variety of output destinations.
  */
 public class SVGView extends AbstractView {
   ViewType type;
 
   /**
    * Constructs an SVG view.
-   * @param ap the Appendable.
-   * @param rd the Readable.
+   *
+   * @param ap             the Appendable.
+   * @param rd             the Readable.
    * @param ticksPerSecond ticks per second.
-   * @param canvas the canvas for the view.
-   * @param shapes the map of shapes.
-   * @param model the read only version of the model.
+   * @param canvas         the canvas for the view.
+   * @param model          the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
    * @throws IllegalArgumentException if the ticks per second is negative.
@@ -28,8 +30,8 @@ public class SVGView extends AbstractView {
    * @throws IllegalArgumentException the shapes are null.
    */
   SVGView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-          LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
-    super(ap, rd, ticksPerSecond, canvas, shapes, model);
+          IReadOnlyAnimationModel model) {
+    super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.SVG;
   }
 

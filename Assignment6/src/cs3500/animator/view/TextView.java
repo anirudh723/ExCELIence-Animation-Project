@@ -6,7 +6,9 @@ import java.awt.Dimension;
 import java.util.LinkedHashMap;
 
 /**
- * Represents a textual view.
+ * Represents an animation as a textual description of the animation that specifies shapes, colors,
+ * movement, transformations, and ticks that serve as a unitless measurement for duration.
+ * Works on a variety of output sources.
  */
 public class TextView extends AbstractView {
   ViewType type;
@@ -17,7 +19,6 @@ public class TextView extends AbstractView {
    * @param rd the Readable.
    * @param ticksPerSecond ticks per second.
    * @param canvas the canvas for the view.
-   * @param shapes the map of shapes.
    * @param model the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
@@ -27,8 +28,8 @@ public class TextView extends AbstractView {
    * @throws IllegalArgumentException the shapes are null.
    */
   TextView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-           LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
-    super(ap, rd, ticksPerSecond, canvas, shapes, model);
+           IReadOnlyAnimationModel model) {
+    super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.TEXT;
   }
 
@@ -44,7 +45,6 @@ public class TextView extends AbstractView {
       str.append(this.shapes.get(key).outputMotions(key)+"\n");
     }
     tryAppend(str.substring(0, str.toString().length() - 1));
-    System.out.println(in.toString());//todo remove
   }
 
   @Override

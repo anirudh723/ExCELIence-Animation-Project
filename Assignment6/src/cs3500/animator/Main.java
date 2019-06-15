@@ -1,38 +1,41 @@
 package cs3500.animator;
 
+import cs3500.animator.model.AnimatableShape;
+import cs3500.animator.model.AnimatableShapeReadOnly;
+import cs3500.animator.model.IAnimatableShape;
+import cs3500.animator.model.IAnimatableShapeReadOnly;
+import cs3500.animator.model.IMotion;
+import cs3500.animator.model.IShape;
+import cs3500.animator.model.Motion;
+import cs3500.animator.model.MyEllipse;
+import cs3500.animator.model.MyRectangle;
 import cs3500.animator.util.AnimationReader;
+
 import java.awt.*;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
-import cs3500.animator.model.AnimatableShape;
-import cs3500.animator.model.AnimatableShapeReadOnly;
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.AnimationModelImpl;
-import cs3500.animator.model.IAnimatableShape;
-import cs3500.animator.model.IAnimatableShapeReadOnly;
-import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
-import cs3500.animator.model.IShape;
-import cs3500.animator.model.Motion;
-import cs3500.animator.model.MyEllipse;
-import cs3500.animator.model.MyRectangle;
 import cs3500.animator.model.ReadOnlyAnimationModel;
-import cs3500.animator.view.Controller;
-import cs3500.animator.view.IController;
+import cs3500.animator.controller.Controller;
+import cs3500.animator.controller.IController;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.VisualView;
 
 public class Main {
   private static FileReader generateFile() {
     try {
-      return new FileReader("C:\\Users\\Anirudh\\IdeaProjects\\Assignments(Github)\\CS3500TeamAssignments\\ExCELIence-Animation-Project\\Assignment6\\src\\givenFile.rtf");
+      return new FileReader("/Users/hollychristensen/Documents/"
+              + "OneDrive/NEU/SUMMER 19/OOD/Assignment5/buildings.txt");
     } catch (IOException e) {
       System.out.print("oops");
     }
@@ -42,7 +45,8 @@ public class Main {
   private static String readTgtFileAsString() {
     String text = "";
     try {
-      text = new String(Files.readAllBytes(Paths.get("C:\\Users\\Anirudh\\IdeaProjects\\Assignments(Github)\\CS3500TeamAssignments\\ExCELIence-Animation-Project\\Assignment6\\src\\tgtFile.rtf")));
+      text = new String(Files.readAllBytes(Paths.get("/Users/hollychristensen/Documents/"
+              + "OneDrive/NEU/SUMMER 19/OOD/Assignment5/buildings.txt")));
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -50,10 +54,13 @@ public class Main {
   }
 
   public static void main(String[] args) {
-     FileReader file = generateFile();
-     AnimationModel model1 = AnimationReader.parseFile(file, new AnimationModelImpl.Builder());
+    FileReader file = generateFile();
+    AnimationModel model1 = AnimationReader.parseFile(file, new AnimationModelImpl.Builder());
     IReadOnlyAnimationModel readOnlyAnimationModel = new ReadOnlyAnimationModel(model1);
-    IView view = new VisualView(new Dimension(500, 500));
+
+    IView view = new VisualView(new StringBuilder(), file, 10,
+            new Dimension(500, 500), readOnlyAnimationModel);
+
     IController model1_viewer = new Controller(readOnlyAnimationModel, view);
     model1_viewer.run();
   }
@@ -132,8 +139,8 @@ public class Main {
 //    motionE6 = new Motion(55, new Point(300, 300),
 //            new Dimension(60, 60), Color.green);
 //
-//    motions1 = new ArrayList<>(Arrays.asList(motionR1, motionR2, motionR3, motionR4, motionR5, motionR6));
-//    motions2 = new ArrayList<>(Arrays.asList(motionE1, motionE2, motionE3, motionE4, motionE5, motionE6));
+//    motions1 = new ArrayList<IMotion>(Arrays.asList(motionR1, motionR2, motionR3, motionR4, motionR5, motionR6));
+//    motions2 = new ArrayList<IMotion>(Arrays.asList(motionE1, motionE2, motionE3, motionE4, motionE5, motionE6));
 //
 //    ashape1 = new AnimatableShape(shape1, motions1);
 //    ashape2 = new AnimatableShape(shape2, motions2);

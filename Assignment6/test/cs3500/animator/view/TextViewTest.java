@@ -87,7 +87,7 @@ public class TextViewTest {
     model.addMotion("E", motion3);
     model.addMotion("E", motion4);
 
-    textView = new TextView(ap, rd, ticksPerSecond, canvas, readOnlyShapes, readOnlyModel);
+    textView = new TextView(ap, rd, ticksPerSecond, canvas, readOnlyModel);
   }
 
 

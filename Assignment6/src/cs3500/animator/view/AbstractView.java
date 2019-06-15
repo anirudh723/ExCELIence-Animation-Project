@@ -27,7 +27,7 @@ public abstract class AbstractView implements IView {
    * @param rd the Readable.
    * @param ticksPerSecond ticks per second.
    * @param canvas the canvas for the view.
-   * @param shapes the map of shapes.
+//   * @param shapes the map of shapes.
    * @param model the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
@@ -37,7 +37,7 @@ public abstract class AbstractView implements IView {
    * @throws IllegalArgumentException the shapes are null.
    */
   AbstractView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-               LinkedHashMap<String, IAnimatableShapeReadOnly> shapes, IReadOnlyAnimationModel model) {
+               IReadOnlyAnimationModel model) {
     if (ap == null) {
       throw new IllegalArgumentException("Appendable is null.");
     }
@@ -58,10 +58,6 @@ public abstract class AbstractView implements IView {
       throw new IllegalArgumentException("Model is null");
     }
     this.model = model;
-    if (shapes == null) {
-      throw new IllegalArgumentException("Map of shapes is null");
-    }
-    this.shapes = shapes;
     this.shapes = model.getShapeMap();
   }
 
@@ -83,6 +79,11 @@ public abstract class AbstractView implements IView {
 
   @Override
   public void renderGUIShapes(List<ArrayList<String>> shapesToRender){
-    throw new UnsupportedOperationException("Cannot render GUI shapes in this IView implementation.");
+    throw new UnsupportedOperationException("Cannot render GUI shapes in this IView.");
+  }
+
+  @Override
+  public int getTicksPerSecond() {
+    return ticksPerSecond;
   }
 }

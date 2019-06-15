@@ -138,7 +138,7 @@ public class SVGViewTest {
     model.addMotion("E", motionE5);
     model.addMotion("E", motionE6);
 
-    svgView = new SVGView(ap, rd, ticksPerSecond, canvas, readOnlyShapes, readOnlyModel);
+    svgView = new SVGView(ap, rd, ticksPerSecond, canvas, readOnlyModel);
   }
 
   @Test

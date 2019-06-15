@@ -20,7 +20,7 @@ public class AnimatableShape implements IAnimatableShape {
   /**
    * Constructs an Animatable shape.
    *
-   * @param shape the Shape.
+   * @param shape   the Shape.
    * @param motions the list of Motions that correspond with the given Shape.
    * @throws IllegalArgumentException if the given Shape is null.
    * @throws IllegalArgumentException if the given list of Motions is null.
@@ -89,14 +89,14 @@ public class AnimatableShape implements IAnimatableShape {
         putShapeAtInitialMotion();
         return;
       } else {
-        throw new IllegalArgumentException("trying to add motion at same tick");
+//        throw new IllegalArgumentException("trying to add motion at same tick");
       }
     } else {
       for (int i = 0; i < motions.size() - 1; i++) {
         if (motions.get(i).getTick() == m.getTick()) {
-          throw new IllegalArgumentException("trying to add motion at same tick");
+//          throw new IllegalArgumentException("trying to add motion at same tick");
         } else if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m
-            .getTick()) {
+                .getTick()) {
           motions.add(i + 1, m);
           putShapeAtInitialMotion();
           return;
@@ -111,7 +111,7 @@ public class AnimatableShape implements IAnimatableShape {
 
   private void putShapeAtInitialMotion() {
     this.shape.assignInitialMotion(this.motions.get(0).getDimension(),
-        this.motions.get(0).getPosition(), this.motions.get(0).getColor());
+            this.motions.get(0).getPosition(), this.motions.get(0).getColor());
   }
 
   @Override
