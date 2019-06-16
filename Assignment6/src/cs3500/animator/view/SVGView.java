@@ -125,7 +125,7 @@ public class SVGView extends AbstractView {
 
     if (dur > 0) {
       tryAppend(" <animate "
-              + "xlink:href=\"#"+name+"\" "
+              + "xlink:href=\"#" + name + "\" "
               + "attributeType=\"xml\" "
               + "begin=\"" + begin + "ms\" "
               + "dur=\"" + dur + "ms\" "
@@ -141,7 +141,7 @@ public class SVGView extends AbstractView {
 
     if (dur != 0) {
       tryAppend(" <animate "
-              + "xlink:href=\"#"+name+"\" "
+              + "xlink:href=\"#" + name + "\" "
               + "attributeType=\"xml\" "
               + "begin=\"" + begin + "ms\" "
               + "dur=\"" + dur + "ms\" "

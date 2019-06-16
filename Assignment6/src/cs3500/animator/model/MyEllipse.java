@@ -27,7 +27,9 @@ public class MyEllipse extends AbstractShape {
    * the model.
    */
   public MyEllipse() {
+//    super(new Dimension(100, 100), new Color(0, 0, 0), new Point2D.Double(0, 0));
     super(new Dimension(100, 100), new Color(0, 0, 0), new Point2D.Double(0, 0));
+
   }
 
   @Override

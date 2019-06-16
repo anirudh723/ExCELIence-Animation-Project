@@ -32,7 +32,6 @@ public abstract class AbstractView implements IView {
    * @throws IllegalArgumentException if Readable is null.
    * @throws IllegalArgumentException if the ticks per second is negative.
    * @throws IllegalArgumentException if the dimension is null.
-   * @throws IllegalArgumentException if either dimension is negative.
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
@@ -50,16 +49,21 @@ public abstract class AbstractView implements IView {
       throw new IllegalArgumentException("Ticks per second cannot be negative.");
     }
     this.ticksPerSecond = ticksPerSecond;
-    if (canvas == null) {
-      throw new IllegalArgumentException("Dimensions are null.");
-    } else if (canvas.height < 0 || canvas.width < 0) {
-      throw new IllegalArgumentException("Dimension is negative.");
-    }
-    this.canvas = canvas;
+
     if (model == null) {
       throw new IllegalArgumentException("Model is null");
     }
     this.model = model;
+    if (canvas == null) {
+      throw new IllegalArgumentException("Dimensions are null.");
+    }
+//    this.canvas = canvas;
+    this.canvas = new Dimension(
+            (int)(this.model.getCanvasDimension().getWidth()
+            + this.model.getTopXY().getX()),
+            (int)(this.model.getCanvasDimension().getHeight()
+            + this.model.getTopXY().getY()));
+
     this.shapes = model.getShapeMap();
   }
 

@@ -33,10 +33,6 @@ public class SVGViewTest {
   LinkedHashMap<String, IAnimatableShapeReadOnly> readOnlyShapes;
   LinkedHashMap<String, IAnimatableShape> shapes;
   int ticksPerSecond;
-//  IMotion motion1;
-//  IMotion motion2;
-//  IMotion motion3;
-//  IMotion motion4;
 
   IMotion motionR1;
   IMotion motionR2;
@@ -62,6 +58,8 @@ public class SVGViewTest {
   IAnimatableShapeReadOnly readOnlyAShape2;
   AnimationModel model;
   IReadOnlyAnimationModel readOnlyModel;
+
+  String outputString;
 
   void reset() {
     ap = new StringBuilder();
@@ -139,15 +137,79 @@ public class SVGViewTest {
     model.addMotion("E", motionE6);
 
     svgView = new SVGView(ap, rd, ticksPerSecond, canvas, readOnlyModel);
+
+
+    outputString = "<svg width=\"500\" height= \"500\" version=\"1.1\"\n" +
+            "     xmlns=\"http://www.w3.org/2000/svg\"  xmlns:xlink=\"http://www.w3.org/1999/xlink\" >\n" +
+            "<rect id=\"R\" x=\"200\" y=\"200\" width=\"50\" height=\"100\" fill=\"rgb(255,200,0)\" visibility=\"visible\" />\n" +
+            "<ellipse id=\"E\" cx=\"300\" cy=\"300\" rx=\"30\" ry=\"30\" fill=\"rgb(255,200,0)\" visibility=\"visible\" />\n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"x\" from=\"200\" to=\"200\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"y\" from=\"200\" to=\"200\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"width\" from=\"50\" to=\"50\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"fill\" values=\"rgb(255,200,0);rgb(255,200,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"x\" from=\"200\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"y\" from=\"200\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"50\" to=\"50\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(255,200,0);rgb(255,200,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"x\" from=\"300\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"y\" from=\"300\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"50\" to=\"50\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(255,200,0);rgb(255,0,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"x\" from=\"300\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"y\" from=\"300\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"50\" to=\"25\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"100\" to=\"100\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(255,0,0);rgb(255,200,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"x\" from=\"300\" to=\"200\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"y\" from=\"300\" to=\"200\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"25\" to=\"25\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"100\" to=\"80\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#R\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(255,200,0);rgb(255,200,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"cx\" from=\"300\" to=\"200\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"cy\" from=\"300\" to=\"200\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"width\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"height\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"200ms\" dur=\"1800ms\" attributeName=\"fill\" values=\"rgb(255,200,0);rgb(255,0,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"cx\" from=\"200\" to=\"400\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"cy\" from=\"200\" to=\"400\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"2000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(255,0,0);rgb(0,0,255)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"cx\" from=\"400\" to=\"500\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"cy\" from=\"400\" to=\"500\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"4000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(0,0,255);rgb(0,0,255)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"cx\" from=\"500\" to=\"400\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"cy\" from=\"500\" to=\"400\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"6000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(0,0,255);rgb(0,255,0)\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"cx\" from=\"400\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"cy\" from=\"400\" to=\"300\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"width\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"height\" from=\"60\" to=\"60\" fill=\"freeze\" /> \n" +
+            " <animate xlink:href=\"#E\" attributeType=\"xml\" begin=\"8000ms\" dur=\"2000ms\" attributeName=\"fill\" values=\"rgb(0,255,0);rgb(0,255,0)\" fill=\"freeze\" /> \n" +
+            "</svg>";
   }
 
   @Test
   public void render() {
     reset();
-    assertEquals("", svgView.getOutputAsString());
+    assertEquals(outputString, svgView.getOutputAsString());
   }
 
   @Test
   public void getOutputAsString() {
+    assertEquals(outputString, svgView.getOutputAsString());
+  }
+
+
+  @Test
+  public void getViewType() {
+    assertEquals(ViewType.SVG, svgView.getViewType());
   }
 }

@@ -22,7 +22,7 @@ public abstract class AbstractShape implements IShape {
    * @param color the color of the Shape.
    * @param position the position of the Shape.
    * @throws IllegalArgumentException if Dimension is null.
-   * @throws IllegalArgumentException if the width or height of a shape is negative or 0.
+   * @throws IllegalArgumentException if the width or height of a shape is negative.
    * @throws IllegalArgumentException if Position is null.
    */
   protected AbstractShape(Dimension dimension, Color color, Point2D position) {
@@ -30,8 +30,8 @@ public abstract class AbstractShape implements IShape {
     if (dimension == null) {
       throw new IllegalArgumentException("Dimension is null.");
     }
-    if (dimension.getWidth() <= 0 || dimension.getHeight() <= 0) {
-      throw new IllegalArgumentException("Width or Height of a shape cannot be negative or 0.");
+    if (dimension.getWidth() < 0 || dimension.getHeight() < 0) {
+      throw new IllegalArgumentException("Width or Height of a shape cannot be negative.");
     }
     this.dimension = dimension;
     this.color = color;

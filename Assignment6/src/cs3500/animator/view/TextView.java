@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
  * Works on a variety of output sources.
  */
 public class TextView extends AbstractView {
-  private ViewType type;
+  ViewType type;
 
   /**
    * Constructs a textual view.
@@ -37,10 +37,10 @@ public class TextView extends AbstractView {
   public void render() {
     StringBuilder str = new StringBuilder();
     str.append("canvas "
-            + (int)this.model.getCanvasDimension().getWidth() + " "
-            + (int)this.model.getCanvasDimension().getHeight() + " "
             + (int)this.model.getTopXY().getX() + " "
-            + (int)this.model.getTopXY().getY() + "\n");
+            + (int)this.model.getTopXY().getY() + " "
+            + (int)this.model.getCanvasDimension().getWidth() + " "
+            + (int)this.model.getCanvasDimension().getHeight() + "\n");
     for(String key : shapes.keySet()) {
       str.append("shape " + key);
       str.append(" " + this.shapes.get(key).getType() + "\n");

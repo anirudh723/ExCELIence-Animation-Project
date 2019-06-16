@@ -28,6 +28,7 @@ public class MyRectangle extends AbstractShape {
    */
   public MyRectangle() {
     super(new Dimension(100, 100), new Color(0, 0, 0), new Point2D.Double(0, 0));
+
   }
 
   @Override
