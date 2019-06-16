@@ -4,10 +4,13 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +57,33 @@ public class TextViewTest {
   IAnimatableShapeReadOnly readOnlyAShape2;
   AnimationModel model;
   IReadOnlyAnimationModel readOnlyModel;
+
+  FileWriter closedWriter;
+  FileWriter openWriter;
+  FileReader readable;
+
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final PrintStream originalOut = System.out;
+
+  private void setFiles() {
+    try {
+      closedWriter = new FileWriter("test2.txt", true);
+      closedWriter.close();
+      openWriter = new FileWriter("test2.txt", true);
+      readable = new FileReader("givenFile.txt");
+    } catch (IOException e) {
+      System.out.println("setFiles errror!");
+    }
+  }
+
+  private void setUpStreams() {
+    System.setOut(new PrintStream(outContent));
+  }
+
+  private void restoreStreams() {
+    System.setOut(originalOut);
+  }
+
 
   void reset() {
     ap = new StringBuilder();
@@ -113,19 +143,35 @@ public class TextViewTest {
     7. null IReadOnlyModel model
     */
     reset();
-    IView nullAp = new TextView(null, rd, 1, new Dimension(1, 1), readOnlyModel);
-    IView nullRd = new TextView(ap, null, 1, new Dimension(1, 1), readOnlyModel);
-    IView negativeTick = new TextView(ap, rd, -10, new Dimension(1, 1), readOnlyModel);
-    IView nullDimension = new TextView(ap, rd, 1, null, readOnlyModel);
-    IView negativeWidth = new TextView(ap, rd, 1, new Dimension(-3, 1), readOnlyModel);
-    IView negativeHeight = new TextView(ap, rd, 1, new Dimension(1, -22), readOnlyModel);
-    IView nullModel = new TextView(ap, rd, 1, new Dimension(1, 1), null);
+    setFiles();
+    IView nullAp = new TextView(null, readable, 1, new Dimension(1, 1), readOnlyModel);
+    IView nullRd = new TextView(openWriter, null, 1, new Dimension(1, 1), readOnlyModel);
+    IView negativeTick = new TextView(openWriter, readable, -10, new Dimension(1, 1), readOnlyModel);
+    IView nullDimension = new TextView(openWriter, readable, 1, null, readOnlyModel);
+    IView negativeWidth = new TextView(openWriter, readable, 1, new Dimension(-3, 1), readOnlyModel);
+    IView negativeHeight = new TextView(openWriter, readable, 1, new Dimension(1, -22), readOnlyModel);
+    IView nullModel = new TextView(openWriter, readable, 1, new Dimension(1, 1), null);
   }
 
+  /**
+   * Ensures TextView tryAppend(...) throws error when FileWriter is closed.
+   */
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalAppend() {
-    reset();
+    setFiles();
+    IView appendError = new TextView(closedWriter, readable, 1, new Dimension(1, 1), readOnlyModel);
+    appendError.tryAppend("this", "throws", "an", "error");
+  }
 
+  @Test
+  public void testTryAppend() {
+    setFiles();
+    setUpStreams();
+    IReadOnlyAnimationModel r = new ReadOnlyAnimationModel(AnimationReader.parseFile(readable, new AnimationModelImpl.Builder()));
+    IView successAppend = new TextView(System.out, readable, 1, new Dimension(1, 1), r);
+    successAppend.tryAppend("test1, ", "test2, ", "& test3");
+    Assert.assertEquals("test1, test2, & test3", outContent.toString());
+    restoreStreams();
   }
 
   @Test
