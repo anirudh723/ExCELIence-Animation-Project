@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fe3d4bcf-4f16-4d52-8dc9-2448e0c16dd1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimatableShapeReadOnly.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimatableShapeReadOnly.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -39,11 +36,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="202" column="138" selection-start-line="202" selection-start-column="138" selection-end-line="202" selection-end-column="138" />
+            <state relative-caret-position="462">
+              <caret line="211" column="1" lean-forward="true" selection-start-line="211" selection-start-column="1" selection-end-line="211" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,7 +66,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="518">
@@ -156,9 +153,9 @@
         <option value="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractView.java" />
         <option value="$PROJECT_DIR$/Assignment6/TTempty.txt" />
         <option value="$PROJECT_DIR$/Assignment6/TTemptyShapes.txt" />
-        <option value="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" />
         <option value="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimatableShapeReadOnly.java" />
         <option value="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java" />
+        <option value="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" />
       </list>
     </option>
   </component>
@@ -338,8 +335,23 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560715932683</updated>
-      <workItem from="1560715935193" duration="9624000" />
+      <workItem from="1560715935193" duration="9754000" />
     </task>
+    <task id="LOCAL-00001" summary="TextView updates">
+      <created>1560725842387</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1560725842387</updated>
+    </task>
+    <task id="LOCAL-00002" summary="TextView updates">
+      <created>1560725890625</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1560725890625</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -375,7 +387,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9624000" />
+    <option name="totallyTimeSpent" value="9754000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="25" y="23" width="1655" height="1027" extended-state="0" />
@@ -394,10 +406,10 @@
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Messages" weight="0.32941177" />
+      <window_info active="true" anchor="bottom" id="Messages" visible="true" weight="0.32941177" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32941177" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -415,6 +427,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="TextView updates" />
+    <option name="LAST_COMMIT_MESSAGE" value="TextView updates" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationBuilder.java">
@@ -542,16 +558,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="202" column="138" selection-start-line="202" selection-start-column="138" selection-end-line="202" selection-end-column="138" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/IAnimatableShapeReadOnly.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -572,6 +578,16 @@
           <caret line="72" column="3" lean-forward="true" selection-start-line="72" selection-start-column="3" selection-end-line="72" selection-end-column="3" />
           <folding>
             <element signature="e#3376#3377#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="211" column="1" lean-forward="true" selection-start-line="211" selection-start-column="1" selection-end-line="211" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
