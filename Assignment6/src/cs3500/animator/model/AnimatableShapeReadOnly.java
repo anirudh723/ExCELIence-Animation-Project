@@ -56,12 +56,13 @@ public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
   @Override
   public String outputMotions(String name) {
     StringBuilder str = new StringBuilder();
+    str.append(System.lineSeparator());
     if (this.delegate.getMotions().size() == 1) {
       str.append("motion " + name + " " + this.delegate.getMotions().get(0).writeMotion());
     } else {
       for (int i = 0; i < this.delegate.getMotions().size() - 1; i++) {
         str.append("motion " + name + " " + this.delegate.getMotions().get(i).writeMotion()
-            + "\t\t" + this.delegate.getMotions().get(i + 1).writeMotion() + "\n");
+            + this.delegate.getMotions().get(i + 1).writeMotion());
       }
     }
     return str.toString();

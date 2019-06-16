@@ -8,15 +8,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.io.StringReader;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-
-import javax.swing.*;
 
 import cs3500.animator.model.AnimatableShape;
 import cs3500.animator.model.AnimatableShapeReadOnly;
@@ -32,8 +31,6 @@ import cs3500.animator.model.MyEllipse;
 import cs3500.animator.model.MyRectangle;
 import cs3500.animator.model.ReadOnlyAnimationModel;
 import cs3500.animator.util.AnimationReader;
-
-import static org.junit.Assert.*;
 
 public class TextViewTest {
 
@@ -60,7 +57,9 @@ public class TextViewTest {
 
   FileWriter closedWriter;
   FileWriter openWriter;
-  FileReader readable;
+  FileReader emptyCanvas;
+  FileReader emptyShapes;
+  FileReader givenReadable;
 
   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
   private final PrintStream originalOut = System.out;
@@ -70,18 +69,23 @@ public class TextViewTest {
       closedWriter = new FileWriter("test2.txt", true);
       closedWriter.close();
       openWriter = new FileWriter("test2.txt", true);
-      readable = new FileReader("givenFile.txt");
+      emptyCanvas = new FileReader("TTemptyCanvas.txt");
+      emptyShapes = new FileReader("TTemptyShapes.txt");
+      givenReadable = new FileReader("givenFile.txt");
     } catch (IOException e) {
       System.out.println("setFiles errror!");
     }
   }
 
-  private void setUpStreams() {
-    System.setOut(new PrintStream(outContent));
-  }
-
-  private void restoreStreams() {
-    System.setOut(originalOut);
+  static String readFile(String path, Charset encoding){
+    String result = "";
+    try {
+      byte[] encoded = Files.readAllBytes(Paths.get(path));
+      result = new String(encoded, encoding);
+    } catch (IOException e) {
+      System.out.println("read file error!");
+    }
+    return result;
   }
 
 
@@ -144,13 +148,13 @@ public class TextViewTest {
     */
     reset();
     setFiles();
-    IView nullAp = new TextView(null, readable, 1, new Dimension(1, 1), readOnlyModel);
+    IView nullAp = new TextView(null, givenReadable, 1, new Dimension(1, 1), readOnlyModel);
     IView nullRd = new TextView(openWriter, null, 1, new Dimension(1, 1), readOnlyModel);
-    IView negativeTick = new TextView(openWriter, readable, -10, new Dimension(1, 1), readOnlyModel);
-    IView nullDimension = new TextView(openWriter, readable, 1, null, readOnlyModel);
-    IView negativeWidth = new TextView(openWriter, readable, 1, new Dimension(-3, 1), readOnlyModel);
-    IView negativeHeight = new TextView(openWriter, readable, 1, new Dimension(1, -22), readOnlyModel);
-    IView nullModel = new TextView(openWriter, readable, 1, new Dimension(1, 1), null);
+    IView negativeTick = new TextView(openWriter, givenReadable, -10, new Dimension(1, 1), readOnlyModel);
+    IView nullDimension = new TextView(openWriter, givenReadable, 1, null, readOnlyModel);
+    IView negativeWidth = new TextView(openWriter, givenReadable, 1, new Dimension(-3, 1), readOnlyModel);
+    IView negativeHeight = new TextView(openWriter, givenReadable, 1, new Dimension(1, -22), readOnlyModel);
+    IView nullModel = new TextView(openWriter, givenReadable, 1, new Dimension(1, 1), null);
   }
 
   /**
@@ -159,25 +163,53 @@ public class TextViewTest {
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalAppend() {
     setFiles();
-    IView appendError = new TextView(closedWriter, readable, 1, new Dimension(1, 1), readOnlyModel);
+    IView appendError = new TextView(closedWriter, givenReadable, 1, new Dimension(1, 1), readOnlyModel);
     appendError.tryAppend("this", "throws", "an", "error");
   }
 
+  /**
+   * Ensures TextView tryAppend(...) functions properly.
+   */
   @Test
   public void testTryAppend() {
     setFiles();
-    setUpStreams();
-    IReadOnlyAnimationModel r = new ReadOnlyAnimationModel(AnimationReader.parseFile(readable, new AnimationModelImpl.Builder()));
-    IView successAppend = new TextView(System.out, readable, 1, new Dimension(1, 1), r);
+
+    StringBuilder out = new StringBuilder();
+    IReadOnlyAnimationModel r = new ReadOnlyAnimationModel(AnimationReader.parseFile(givenReadable, new AnimationModelImpl.Builder()));
+    IView successAppend = new TextView(out, givenReadable, 1, new Dimension(1, 1), r);
     successAppend.tryAppend("test1, ", "test2, ", "& test3");
-    Assert.assertEquals("test1, test2, & test3", outContent.toString());
-    restoreStreams();
+    Assert.assertEquals("test1, test2, & test3", out.toString());
+
   }
 
+  /**
+   * Ensures TextView render() functionality for all edge cases.
+   */
   @Test
   public void render() {
     reset();
-    assertEquals(true, true);
-    textView.render();
+    setFiles();
+
+    StringBuilder emptyCanvasOut = new StringBuilder();
+    IReadOnlyAnimationModel emptyCanvas = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.emptyCanvas, new AnimationModelImpl.Builder()));
+    IView emptyRender = new TextView(emptyCanvasOut, this.emptyCanvas, 1, new Dimension(1, 1), emptyCanvas);
+    emptyRender.render();
+    Assert.assertEquals("canvas 200 70 360 360", emptyCanvasOut.toString());
+
+    StringBuilder emptyShapesOut = new StringBuilder();
+    IReadOnlyAnimationModel emptyShapes = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.emptyShapes, new AnimationModelImpl.Builder()));
+    IView emptyShapesRender = new TextView(emptyShapesOut, this.emptyShapes, 1, new Dimension(1, 1), emptyShapes);
+    emptyShapesRender.render();
+    Assert.assertEquals("canvas 200 70 360 360" + System.lineSeparator()+ "shape R rectangle" + System.lineSeparator() + "shape C ellipse", emptyShapesOut.toString());
+
+    StringBuilder givenOut = new StringBuilder();
+    IReadOnlyAnimationModel givenModel = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable, new AnimationModelImpl.Builder()));
+    IView givenView = new TextView(givenOut, this.givenReadable, 1, new Dimension(1, 1), givenModel);
+    givenView.render();
+    try {
+      Assert.assertEquals(readFile("givenFile.txt",Charset.defaultCharset()), givenOut.toString());
+    } catch (IOException e) {
+      System.out.println("file read error");
+    }
   }
 }
