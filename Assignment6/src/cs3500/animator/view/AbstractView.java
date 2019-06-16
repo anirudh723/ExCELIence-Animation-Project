@@ -74,7 +74,6 @@ public abstract class AbstractView implements IView {
     } catch (Exception e) {
       throw new IllegalArgumentException("Cannot append to Appendable.");
     }
-
   }
 
   @Override

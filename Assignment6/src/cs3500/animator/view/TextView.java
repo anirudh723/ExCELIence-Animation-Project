@@ -27,7 +27,7 @@ public class TextView extends AbstractView {
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
-  TextView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
+  public TextView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
            IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.TEXT;

@@ -29,7 +29,7 @@ public class SVGView extends AbstractView {
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
-  SVGView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
+  public SVGView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
           IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.SVG;

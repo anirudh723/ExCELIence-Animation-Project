@@ -1,42 +1,94 @@
 package cs3500.animator;
 
-import cs3500.animator.model.AnimatableShape;
-import cs3500.animator.model.AnimatableShapeReadOnly;
-import cs3500.animator.model.IAnimatableShape;
-import cs3500.animator.model.IAnimatableShapeReadOnly;
-import cs3500.animator.model.IMotion;
-import cs3500.animator.model.IShape;
-import cs3500.animator.model.Motion;
-import cs3500.animator.model.MyEllipse;
-import cs3500.animator.model.MyRectangle;
-import cs3500.animator.util.AnimationReader;
-
-import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.StringReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Scanner;
-
-import javax.swing.*;
-
-import cs3500.animator.model.AnimationModel;
+import cs3500.animator.controller.Controller;
+import cs3500.animator.controller.IController;
 import cs3500.animator.model.AnimationModelImpl;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 import cs3500.animator.model.ReadOnlyAnimationModel;
-import cs3500.animator.controller.Controller;
-import cs3500.animator.controller.IController;
+import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.IView;
-import cs3500.animator.view.ViewType;
-import cs3500.animator.view.VisualView;
+import java.io.*;
+import java.util.*;
+import javax.swing.*;
+
+public class Excellence {
+
+  //TODO
+  // MAIN POST BRIAN EDITS
+
+  public static void main(String[] args) {
+
+    // HashMap to accumulate inputs
+    HashMap<String, String> config = new HashMap<>(4);
+    // ArrayList to more easily identify valid prefixes
+    ArrayList<String> validPrefix = new ArrayList<>(Arrays.asList("-in", "-view", "-out", "-speed"));
+
+    // Parse command line, extracting specified inputs
+    for (int i = 0; i < args.length - 1; i += 2) {
+      String curString = args[i];
+      String nextString = args[i + 1];
+
+      // catches command line invalid prefixes and inputs, and ordering
+      if (!validPrefix.contains(curString)) {
+        JOptionPane.showMessageDialog(new JFrame(), curString + " is an invalid prefix!", "Invalid inputs!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+      } else if (config.containsKey(curString)) {
+        JOptionPane.showMessageDialog(new JFrame(), curString + " was already set!", "Invalid inputs!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+      } else if (validPrefix.contains(nextString)) {
+        JOptionPane.showMessageDialog(new JFrame(), curString + " cannot be immediately followed by prefix " + nextString + "!", "Invalid inputs!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+      } else {
+        config.put(curString, nextString);
+      }
+    }
+
+    // Validate command line input values, ...
+    if (!config.containsKey("-in")) {
+      JOptionPane.showMessageDialog(new JFrame(), "-in is required!", "Invalid inputs!", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+    } else if (!config.containsKey("-view")) {
+      JOptionPane.showMessageDialog(new JFrame(), "-view is required!", "Invalid inputs!", JOptionPane.ERROR_MESSAGE);
+      System.exit(1);
+    } else {
+
+      // ... instantiate AnimationModel, ReadOnlyAnimationModel and Controller; runs animation
+      try {
+
+        Readable input = new FileReader(config.get("-in"));
+        IReadOnlyAnimationModel readModel = new ReadOnlyAnimationModel(AnimationReader.parseFile(input, new AnimationModelImpl.Builder()));
+
+        int ticksPerSec = Integer.parseInt(config.getOrDefault("-speed", "1"));
+        String filePath = config.get("-out");
+        if (filePath == null) {
+          IView view = new ViewFactory().create(System.out, input, config.get("-view"), ticksPerSec, readModel);
+          IController controller = new Controller(readModel, view);
+          controller.run();
+        } else {
+          FileWriter output = new FileWriter(config.get("-out"), true);
+          IView view = new ViewFactory().create(output, input, config.get("-view"), ticksPerSec, readModel);
+          IController controller = new Controller(readModel, view);
+          controller.run();
+          output.close();
+        }
+
+        // catches non-int speed, invalid input and output files, and any possible AnimationModel, ReadOnlyAnimationModel, IView, Controller initialization errors
+      } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(new JFrame(), "-speed value must be an int!", "Initialization error!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+      } catch (IOException e) {
+        JOptionPane.showMessageDialog(new JFrame(), "File error: " + e.getMessage(), "IOException!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+      } catch (Exception e) {
+        JOptionPane.showMessageDialog(new JFrame(), e.getMessage(), "Error!", JOptionPane.ERROR_MESSAGE);
+        System.exit(1);
+      }
+    }
+  }
+}
+
+//TODO/////////////////////////////////////////////////////////////////////////
+// MAIN PRE BRIAN EDITS
 
 //todo
 // no -in --> popup error
@@ -44,64 +96,61 @@ import cs3500.animator.view.VisualView;
 // no -out --> System.out
 // no -speed --> 2
 
-public class Main {
 
-  public static void main(String[] args) {
-
-    IView view;
-
-    Readable inputFile = null;
-    String viewType = null;
-    Appendable outputFile = null;
-    int speed = 2;
-
-    JFrame frame = new JFrame();
-    frame.setLocationRelativeTo(null);
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-
-    for (int i = 0; i < args.length - 1; i += 2) {
-      String command = args[i];
-      String data = args[i + 1];
-
-      switch (command) {
-        case "-in":
-          try {
-            inputFile = new FileReader(data);
-          } catch (FileNotFoundException e) {
-            makeErrorPane("The input file \"" + data + "\" was not found.", frame);
-          }
-          break;
-        case "-out":
-          try {
-            outputFile = new FileWriter(data);
-          } catch (IOException e) {
-            makeErrorPane("The output file \"" + data + "\" was not found.", frame);
-          }
-          break;
-        case "-view":
-          viewType = data;
-          break;
-        case "-speed":
-          speed = Integer.parseInt(data);
-          break;
-        default:
-          makeErrorPane("The command \"" + command + "\" is invalid.", frame);
-      }
-    }
-    if (viewType == null || inputFile == null) {
-      makeErrorPane("Commands -view and -in are required.", frame);
-    } else if (outputFile == null) {
-      view = new ViewFactory().create(inputFile, System.out, viewType, speed);
-    }else {
-      view = new ViewFactory().create(inputFile, outputFile, viewType, speed);
-    }
-  }
-
-  private static void makeErrorPane(String message, JFrame frame){
-    JOptionPane.showMessageDialog(frame, message,
-            "Invalid Inputs", JOptionPane.ERROR_MESSAGE);
-  }
+//    IView view;
+//
+//    Readable inputFile = null;
+//    String viewType = null;
+//    Appendable outputFile = null;
+//    int speed = 1;
+//
+//    JFrame frame = new JFrame();
+//    frame.setLocationRelativeTo(null);
+//    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//
+//
+//    for (int i = 0; i < args.length - 1; i += 2) {
+//      String command = args[i];
+//      String data = args[i + 1];
+//
+//      switch (command) {
+//        case "-in":
+//          try {
+//            inputFile = new FileReader(data);
+//          } catch (FileNotFoundException e) {
+//            makeErrorPane("The input file \"" + data + "\" was not found.", frame);
+//          }
+//          break;
+//        case "-out":
+//          try {
+//            outputFile = new FileWriter(data);
+//          } catch (IOException e) {
+//            makeErrorPane("The output file \"" + data + "\" was not found.", frame);
+//          }
+//          break;
+//        case "-view":
+//          viewType = data;
+//          break;
+//        case "-speed":
+//          speed = Integer.parseInt(data);
+//          break;
+//        default:
+//          makeErrorPane("The command \"" + command + "\" is invalid.", frame);
+//      }
+//    }
+//    if (viewType == null || inputFile == null) {
+//      makeErrorPane("Commands -view and -in are required.", frame);
+//    } else if (outputFile == null) {
+//      view = new ViewFactory().create(inputFile, System.out, viewType, speed);
+//    } else {
+//      view = new ViewFactory().create(inputFile, outputFile, viewType, speed);
+//    }
+//  }
+//
+//  private static void makeErrorPane(String message, JFrame frame){
+//    JOptionPane.showMessageDialog(frame, message,
+//            "Invalid Inputs", JOptionPane.ERROR_MESSAGE);
+//  }
 
 
 //TODO/////////////////////////////////////////////////////////////////////////
@@ -255,4 +304,3 @@ public class Main {
 //
 //    controller.run();
 //  }
-}
