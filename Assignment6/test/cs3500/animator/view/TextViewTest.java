@@ -206,10 +206,7 @@ public class TextViewTest {
     IReadOnlyAnimationModel givenModel = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable, new AnimationModelImpl.Builder()));
     IView givenView = new TextView(givenOut, this.givenReadable, 1, new Dimension(1, 1), givenModel);
     givenView.render();
-    try {
       Assert.assertEquals(readFile("givenFile.txt",Charset.defaultCharset()), givenOut.toString());
-    } catch (IOException e) {
       System.out.println("file read error");
-    }
   }
 }
