@@ -1,10 +1,5 @@
 package cs3500.animator.view;
 
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-
-import cs3500.animator.model.IAnimatableShape;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
@@ -22,7 +17,6 @@ public class SVGView extends AbstractView {
    * @param ap             the Appendable.
    * @param rd             the Readable.
    * @param ticksPerSecond ticks per second.
-   * @param canvas         the canvas for the view.
    * @param model          the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
@@ -31,17 +25,14 @@ public class SVGView extends AbstractView {
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
-  public SVGView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-                 IReadOnlyAnimationModel model) {
-    super(ap, rd, ticksPerSecond, canvas, model);
+  public SVGView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
+    super(ap, rd, ticksPerSecond, model);
     type = ViewType.SVG;
   }
 
   @Override
   public void render() {
     writeSVGTag();
-
-    //write all shapes
     for (IAnimatableShapeReadOnly shape : this.shapes.values()) {
       String shapeType = handleType(shape.getType());
       String shapeColor = formatAsRGB(shape.getColor().getRed(),
@@ -51,26 +42,18 @@ public class SVGView extends AbstractView {
       int shapeHeight = (int) shape.getDimension().getHeight();
       int shapeX = (int) shape.getPosition().getX();
       int shapeY = (int) shape.getPosition().getY();
-
       writeShapeSVG(shapeType, shapeColor, shapeName, shapeX, shapeY, shapeWidth, shapeHeight);
     }
 
-    //write all animations
     for (IAnimatableShapeReadOnly shape : this.shapes.values()) {
       writeMotionSVG(shape);
     }
-
     tryAppend("</svg>");
   }
 
-
   private void writeMotionSVG(IAnimatableShapeReadOnly shape) {
-    if (shape.getMotions().size() < 1) {
-      System.out.println("oops");//todo do i need this
-    } else {
-
+    if (!(shape.getMotions().size() < 1)) {
       for (int i = 0; i < shape.getMotions().size() - 1; i++) {
-
         IMotion fromMotion = shape.getMotions().get(i);
         IMotion toMotion = shape.getMotions().get(i + 1);
 
@@ -78,9 +61,9 @@ public class SVGView extends AbstractView {
         int durInMS = ticksToMiliseconds(durInTicks);
 
         String fromRGB = formatAsRGB(fromMotion.getColor().getRed(),
-                fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());
+            fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());
         String toRGB = formatAsRGB(toMotion.getColor().getRed(),
-                toMotion.getColor().getGreen(), toMotion.getColor().getBlue());
+            toMotion.getColor().getGreen(), toMotion.getColor().getBlue());
 
         int fromWidth = (int) fromMotion.getDimension().getWidth();
         int toWidth = (int) toMotion.getDimension().getWidth();
@@ -95,10 +78,6 @@ public class SVGView extends AbstractView {
         int toY = (int) toMotion.getPosition().getY();
 
         String name = getShapeName(shape);
-        //todo maybe it's  a problem with getshapename?
-
-
-        //animate motion
         if (shape.getType().contains("ellipse")) {
           animate(fromMotion.getTick(), durInMS, "cx", fromX, toX, "freeze", name);
           animate(fromMotion.getTick(), durInMS, "cy", fromY, toY, "freeze", name);
@@ -106,14 +85,11 @@ public class SVGView extends AbstractView {
           animate(fromMotion.getTick(), durInMS, "x", fromX, toX, "freeze", name);
           animate(fromMotion.getTick(), durInMS, "y", fromY, toY, "freeze", name);
         }
-
-        //animate transform
-        animate(fromMotion.getTick(), durInMS, "width", fromWidth, toWidth, "freeze", name);
-        animate(fromMotion.getTick(), durInMS, "height", fromHeight, toHeight, "freeze", name);
-
-        //animate color
+        animate(fromMotion.getTick(), durInMS, "width",
+            fromWidth, toWidth, "freeze", name);
+        animate(fromMotion.getTick(), durInMS, "height",
+            fromHeight, toHeight, "freeze", name);
         animateColor(fromMotion.getTick(), durInMS, fromRGB, toRGB, "freeze", name);
-
       }
     }
   }
@@ -177,7 +153,6 @@ public class SVGView extends AbstractView {
     }
   }
 
-
   private void writeSVGTag() {
     tryAppend("<svg width=\"" + (int) canvas.getWidth() + "\" height= \""
             + (int) canvas.getHeight() + "\" version=\"1.1\"\n" +
@@ -201,7 +176,6 @@ public class SVGView extends AbstractView {
     } else throw new IllegalArgumentException("Illegal shape type.");
   }
 
-
   private String formatAsRGB(int r, int g, int b) {
     return "rgb(" + r + "," + g + "," + b + ")";
   }
@@ -217,9 +191,14 @@ public class SVGView extends AbstractView {
     return durInMS;
   }
 
+  /**
+   * Renders the shapes and their motions in svg form and returns a String.
+   *
+   * @return the output String of the shapes and motions in svg form.
+   */
   public String getOutputAsString() {
     render();
-    return in.toString();
+    return this.ap.toString();
   }
 
   @Override

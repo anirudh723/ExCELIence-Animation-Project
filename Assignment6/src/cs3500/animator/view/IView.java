@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents the functionality of a View.
+ * Represents the functionality of any type of View. These functions include rendering it in their
+ * specific way, a helper to append to appendable, some getters, etc.
  */
 public interface IView {
 
@@ -13,7 +14,10 @@ public interface IView {
    */
   void render();
 
-
+  /**
+   * Renders the GUI shapes
+   * @param shapesToRender
+   */
   void renderGUIShapes(List<ArrayList<String>> shapesToRender);
 
   /**

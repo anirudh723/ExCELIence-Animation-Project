@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 /**
- * Represents an abstract Animation Model. It contains a map of shape id's to shapes. Also has four
- * coordinates which can be used to set the bounds when building this model.
+ * Represents an abstract Animation Model. It contains a map of shape id's to shapes.
+ * A new change to this model is having four coordinates which can be used to set the
+ * bounds when building this model.
  */
 public abstract class AbstractAnimationModel implements AnimationModel {
 
@@ -52,9 +53,9 @@ public abstract class AbstractAnimationModel implements AnimationModel {
     if (shapes.containsKey(name)) {
       throw new IllegalArgumentException("Trying to add a shape that already exists in map.");
     }
-    if (name.contains("rect")) {
+    if (type.contains("rect")) {
       shapes.put(name, new AnimatableShape(new MyRectangle(), new ArrayList<>()));
-    } else if (name.contains("ellipse")) {
+    } else if (type.contains("ellipse")) {
       shapes.put(name, new AnimatableShape(new MyEllipse(), new ArrayList<>()));
     }
   }

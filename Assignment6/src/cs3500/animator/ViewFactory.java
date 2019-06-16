@@ -1,7 +1,5 @@
 package cs3500.animator;
 
-import java.awt.*;
-
 import cs3500.animator.model.IReadOnlyAnimationModel;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.SVGView;
@@ -27,14 +25,13 @@ final class ViewFactory {
    */
   final IView create(Appendable output, Readable input, String viewType, int speed,
                      IReadOnlyAnimationModel model) throws IllegalArgumentException {
-
     switch (viewType) {
       case "text":
-        return new TextView(output, input, speed, model.getCanvasDimension(), model);
+        return new TextView(output, input, speed, model);
       case "svg":
-        return new SVGView(output, input, speed, model.getCanvasDimension(), model);
+        return new SVGView(output, input, speed, model);
       case "visual":
-        return new VisualView(output, input, speed, model.getCanvasDimension(), model);
+        return new VisualView(output, input, speed, model);
       default:
         throw new IllegalArgumentException("Invalid view type");
     }

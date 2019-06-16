@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
@@ -12,7 +11,7 @@ import cs3500.animator.model.IReadOnlyAnimationModel;
  * Represents an abstracted version of the View.
  */
 public abstract class AbstractView implements IView {
-  protected Appendable in;
+  protected Appendable ap;
   protected Readable rd;
   protected int ticksPerSecond;
   protected Dimension canvas;
@@ -26,7 +25,6 @@ public abstract class AbstractView implements IView {
    * @param ap the Appendable.
    * @param rd the Readable.
    * @param ticksPerSecond ticks per second.
-   * @param canvas the canvas for the view.
    * @param model the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
@@ -35,12 +33,11 @@ public abstract class AbstractView implements IView {
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
-  AbstractView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-               IReadOnlyAnimationModel model) {
+  AbstractView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
     if (ap == null) {
       throw new IllegalArgumentException("Appendable is null.");
     }
-    this.in = ap;
+    this.ap = ap;
     if (rd == null) {
       throw new IllegalArgumentException("Readable is null.");
     }
@@ -54,10 +51,6 @@ public abstract class AbstractView implements IView {
       throw new IllegalArgumentException("Model is null");
     }
     this.model = model;
-    if (canvas == null) {
-      throw new IllegalArgumentException("Dimensions are null.");
-    }
-//    this.canvas = canvas;
     this.canvas = new Dimension(
             (int)(this.model.getCanvasDimension().getWidth()
             + this.model.getTopXY().getX()),
@@ -75,7 +68,7 @@ public abstract class AbstractView implements IView {
   public void tryAppend(String ... lines) throws IllegalArgumentException {
     try {
       for (String s : lines) {
-        in.append(s);
+        this.ap.append(s);
       }
     } catch (Exception e) {
       throw new IllegalArgumentException("Cannot append to Appendable.");

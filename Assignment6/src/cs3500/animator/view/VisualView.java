@@ -2,37 +2,39 @@ package cs3500.animator.view;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-
-import javax.swing.*;
-
-import cs3500.animator.controller.IController;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 /**
  * A GUI that draws and plays an animation in a window, using Java Swing.
  */
 public class VisualView extends AbstractView implements IView {
+
   private DrawingPanel panel;
   private JScrollPane scrollPane;
   ViewType type;
-
   JFrame delegate = new JFrame();
 
   /**
-   * Constructs a Visual View
+   * Constructs a Visual View. Sets the sizes of the frame and other specifications.
+   *
    * @param ap the file to append to.
    * @param rd the file to read from.
    * @param ticksPerSecond the ticks per second rate of the animation.
-   * @param canvas the dimensions of the animation window.
-   * @param model
+   * @param model the read only version of the model.
+   * @throws IllegalArgumentException if Appendable is null.
+   * @throws IllegalArgumentException if Readable is null.
+   * @throws IllegalArgumentException if the ticks per second is negative.
+   * @throws IllegalArgumentException if the dimension is null.
+   * @throws IllegalArgumentException if the model is null.
+   * @throws IllegalArgumentException the shapes are null.
    */
-  public VisualView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-                    IReadOnlyAnimationModel model) {
-    super(ap, rd, ticksPerSecond, canvas, model);
+  public VisualView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
+    super(ap, rd, ticksPerSecond, model);
     type = ViewType.VISUAL;
     this.panel = new DrawingPanel();
 
@@ -47,7 +49,7 @@ public class VisualView extends AbstractView implements IView {
     delegate.setVisible(true);
   }
 
-
+  @Override
   public void renderGUIShapes(List<ArrayList<String>> shapesToDraw) {
     panel.draw(shapesToDraw);
 
@@ -68,7 +70,6 @@ public class VisualView extends AbstractView implements IView {
     return type;
   }
 
-
   private Dimension calculateMaxDimension() {
     int furthestRight = 0;
     int furthestDown = 0;
@@ -85,5 +86,4 @@ public class VisualView extends AbstractView implements IView {
     System.out.println(furthestRight + " by " + furthestDown);
     return new Dimension(furthestRight, furthestDown);
   }
-
 }

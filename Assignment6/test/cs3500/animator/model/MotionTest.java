@@ -131,15 +131,6 @@ public class MotionTest {
   }
 
   /**
-   * Tests constructing a motion with a negative Point. Expect IllegalArgumentException.
-   */
-  @Test(expected = IllegalArgumentException.class)
-  public void testConstructMotionNegativePoint() {
-    motion2 = new Motion(10, new Point(-200, -200),
-            new Dimension(25, 100), Color.RED);
-  }
-
-  /**
    * Tests constructing a motion with a negative Dimension. Expect IllegalArgumentException.
    */
   @Test(expected = IllegalArgumentException.class)
