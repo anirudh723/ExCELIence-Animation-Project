@@ -47,7 +47,7 @@ abstract class AbstractDrawingPanel extends JPanel {
         }
       }
     } else {
-      g.clearRect(0, 0, 2000, 2000);
+      g.clearRect(0, 0, 2560, 2560);
     }
   }
 }
