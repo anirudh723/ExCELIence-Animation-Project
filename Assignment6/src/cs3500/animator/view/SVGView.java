@@ -8,8 +8,8 @@ import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
 /**
- * Produces a formatted textual description of the animation that is compliant with the SVG
- * file format. Works with a variety of output destinations.
+ * Produces a formatted textual description of the animation that is compliant with the SVG file
+ * format. Works with a variety of output destinations.
  */
 public class SVGView extends AbstractView {
   ViewType type;
@@ -30,7 +30,7 @@ public class SVGView extends AbstractView {
    * @throws IllegalArgumentException the shapes are null.
    */
   public SVGView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-          IReadOnlyAnimationModel model) {
+                 IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.SVG;
   }
@@ -60,72 +60,87 @@ public class SVGView extends AbstractView {
 
 
   private void writeMotionSVG(IAnimatableShapeReadOnly shape) {
-    for (int i = 0; i < shape.getMotions().size() - 1; i++) {
+    if (!(shape.getMotions().size() <= 1)) {
 
-      IMotion fromMotion = shape.getMotions().get(i);
-      IMotion toMotion = shape.getMotions().get(i + 1);
+      for (int i = 0; i < shape.getMotions().size() - 1; i++) {
 
-      int durInTicks = toMotion.getTick() - fromMotion.getTick();
-      int durInSeconds = durInTicks / ticksPerSecond;
+        IMotion fromMotion = shape.getMotions().get(i);
+        IMotion toMotion = shape.getMotions().get(i + 1);
 
-      String fromRGB = formatAsRGB(fromMotion.getColor().getRed(),
-              fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());
-      String toRGB = formatAsRGB(toMotion.getColor().getRed(),
-              toMotion.getColor().getGreen(), toMotion.getColor().getBlue());
-
-      int fromWidth = (int) fromMotion.getDimension().getWidth();
-      int toWidth = (int) toMotion.getDimension().getWidth();
-
-      int fromHeight = (int) fromMotion.getDimension().getHeight();
-      int toHeight = (int) toMotion.getDimension().getHeight();
-
-      int fromX = (int) fromMotion.getPosition().getX();
-      int toX = (int) toMotion.getPosition().getY();
-
-      int fromY = (int) fromMotion.getPosition().getX();
-      int toY = (int) toMotion.getPosition().getY();
+        double durInTicks = toMotion.getTick() - fromMotion.getTick();
+        int durInMS = ticksToMiliseconds(durInTicks);
+        //double durInSeconds = (durInTicks)/((double)ticksPerSecond);
+        //int durInMS = (int)Math.round(durInSeconds * 1000);
 
 
-      //animate motion
-      if (shape.getType() == "ellipse") {
-        animate(fromMotion.getTick(), durInSeconds, "cx", fromX, toX, "freeze");
-        animate(fromMotion.getTick(), durInSeconds, "cy", fromY, toY, "freeze");
-      } else {
-        animate(fromMotion.getTick(), durInSeconds, "x", fromX, toX, "freeze");
-        animate(fromMotion.getTick(), durInSeconds, "y", fromY, toY, "freeze");
+        double beginAsTick = 10;
+        double beginAsSecond = beginAsTick / ticksPerSecond;
+        double beginAsMS = beginAsSecond * 1000;
+
+        String fromRGB = formatAsRGB(fromMotion.getColor().getRed(),
+                fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());
+        String toRGB = formatAsRGB(toMotion.getColor().getRed(),
+                toMotion.getColor().getGreen(), toMotion.getColor().getBlue());
+
+        int fromWidth = (int) fromMotion.getDimension().getWidth();
+        int toWidth = (int) toMotion.getDimension().getWidth();
+
+        int fromHeight = (int) fromMotion.getDimension().getHeight();
+        int toHeight = (int) toMotion.getDimension().getHeight();
+
+        int fromX = (int) fromMotion.getPosition().getX();
+        int toX = (int) toMotion.getPosition().getX();
+
+        int fromY = (int) fromMotion.getPosition().getY();
+        int toY = (int) toMotion.getPosition().getY();
+
+
+        //animate motion
+        if (shape.getType() == "ellipse") {
+          animate(fromMotion.getTick(), durInMS, "cx", fromX, toX, "freeze");
+          animate(fromMotion.getTick(), durInMS, "cy", fromY, toY, "freeze");
+        } else {
+          animate(fromMotion.getTick(), durInMS, "x", fromX, toX, "freeze");
+          animate(fromMotion.getTick(), durInMS, "y", fromY, toY, "freeze");
+        }
+
+        //animate transform
+        animate(fromMotion.getTick(), durInMS, "width", fromWidth, toWidth, "freeze");
+        animate(fromMotion.getTick(), durInMS, "height", fromHeight, toHeight, "freeze");
+
+        //animate color
+        animateColor(fromMotion.getTick(), durInMS, fromRGB, toRGB, "freeze");
+
       }
-
-      //animate transform
-      animate(fromMotion.getTick(), durInSeconds, "width", fromWidth, toWidth, "freeze");
-      animate(fromMotion.getTick(), durInSeconds, "height", fromHeight, toHeight, "freeze");
-
-      //animate color
-      animateColor(fromMotion.getTick(), durInSeconds, fromRGB, toRGB, "freeze");
-
     }
   }
 
 
   private void animate(int begin, int dur, String attributeName,
                        int from, int to, String fill) {
-    if (dur != 0) {
-      tryAppend(" <animate attributeType=\"xml\" begin=\""
-              + begin + "s\" dur=\""
-              + dur + "s\" attributeName=\""
-              + attributeName + "\" from=\""
-              + from + "\" to=\""
-              + to + "\" fill=\""
-              + fill + "\" /> \n");
+    begin = ticksToMiliseconds((double) begin);
+
+    if (dur > 0) {
+      tryAppend(" <animate "
+              + "attributeType=\"xml\" "
+              + "begin=\"" + begin + "ms\" "
+              + "dur=\"" + dur + "ms\" "
+              + "attributeName=\"fill\" "
+              + "from=\"" + from + "\" "
+              + "to=\"" + from + "\" "
+              + "fill=\"" + fill + "\" /> \n");
     }
   }
 
   private void animateColor(int begin, int dur,
                             String from, String to, String fill) {
+    begin = ticksToMiliseconds((double) begin);
+
     if (dur != 0) {
       tryAppend(" <animate "
               + "attributeType=\"xml\" "
-              + "begin=\"" + begin + "s\" "
-              + "dur=\"" + dur + "s\" "
+              + "begin=\"" + begin + "ms\" "
+              + "dur=\"" + dur + "ms\" "
               + "attributeName=\"fill\" "
               + "values=\"" + from + ";" + to + "\" "
               + "fill=\"" + fill + "\" /> \n");
@@ -191,8 +206,10 @@ public class SVGView extends AbstractView {
    * Given a tick, converts to the time in miliseconds. NOTE: once this works, change the "begin"
    * attribute in the animate and animateColor methods and replace with this function
    */
-  private int ticksToMiliseconds(int ticks) {
-    return 0;//todo figure this out
+  private int ticksToMiliseconds(double ticks) {
+    double durInSeconds = (ticks) / ((double) ticksPerSecond);
+    int durInMS = (int) Math.round(durInSeconds * 1000);
+    return durInMS;
   }
 
   public String getOutputAsString() {

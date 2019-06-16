@@ -27,8 +27,8 @@ public class TextView extends AbstractView {
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
-  public TextView(Appendable ap, Readable rd, int ticksPerSecond, Dimension canvas,
-           IReadOnlyAnimationModel model) {
+  public TextView(Appendable ap, Readable rd, int ticksPerSecond,
+                  Dimension canvas, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, canvas, model);
     type = ViewType.TEXT;
   }
@@ -36,9 +36,11 @@ public class TextView extends AbstractView {
   @Override
   public void render() {
     StringBuilder str = new StringBuilder();
-    str.append("canvas " + this.model.getCanvasDimension().getWidth()
-            + " "+ this.model.getCanvasDimension().getHeight() +
-            this.model.getTopXY().getX() + " " + this.model.getTopXY().getY() + "\n");
+    str.append("canvas "
+            + (int)this.model.getCanvasDimension().getWidth() + " "
+            + (int)this.model.getCanvasDimension().getHeight() + " "
+            + (int)this.model.getTopXY().getX() + " "
+            + (int)this.model.getTopXY().getY() + "\n");
     for(String key : shapes.keySet()) {
       str.append("shape " + key);
       str.append(" " + this.shapes.get(key).getType() + "\n");
