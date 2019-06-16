@@ -1,14 +1,22 @@
 package cs3500.animator.view;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+
+import javax.swing.*;
 
 import cs3500.animator.model.AnimatableShape;
 import cs3500.animator.model.AnimatableShapeReadOnly;
@@ -23,10 +31,12 @@ import cs3500.animator.model.Motion;
 import cs3500.animator.model.MyEllipse;
 import cs3500.animator.model.MyRectangle;
 import cs3500.animator.model.ReadOnlyAnimationModel;
+import cs3500.animator.util.AnimationReader;
 
 import static org.junit.Assert.*;
 
 public class TextViewTest {
+
   IView textView;
   Appendable ap;
   Readable rd;
@@ -48,7 +58,34 @@ public class TextViewTest {
   AnimationModel model;
   IReadOnlyAnimationModel readOnlyModel;
 
-  void reset(){
+  FileWriter closedWriter;
+  FileWriter openWriter;
+  FileReader readable;
+
+  private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+  private final PrintStream originalOut = System.out;
+
+  private void setFiles() {
+    try {
+      closedWriter = new FileWriter("test2.txt", true);
+      closedWriter.close();
+      openWriter = new FileWriter("test2.txt", true);
+      readable = new FileReader("givenFile.txt");
+    } catch (IOException e) {
+      System.out.println("setFiles errror!");
+    }
+  }
+
+  private void setUpStreams() {
+    System.setOut(new PrintStream(outContent));
+  }
+
+  private void restoreStreams() {
+    System.setOut(originalOut);
+  }
+
+
+  void reset() {
     ap = new StringBuilder();
     rd = new InputStreamReader(System.in);
     canvas = new Dimension(500, 500);
@@ -90,6 +127,52 @@ public class TextViewTest {
     textView = new TextView(ap, rd, ticksPerSecond, canvas, readOnlyModel);
   }
 
+  /**
+   * Ensures TextView constructor throws errors for all possible illegal arguments.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testTextViewConstructorExceptions() {
+    /*
+    ILLEGAL ARGUMENTS:
+    1. null Appendable ap
+    2. null Readable rd
+    3. negative int ticksPerSecond
+    4. null Dimension dimension
+    5. negative Dimension dimension.width()
+    6. negative Dimension dimension.height()
+    7. null IReadOnlyModel model
+    */
+    reset();
+    setFiles();
+    IView nullAp = new TextView(null, readable, 1, new Dimension(1, 1), readOnlyModel);
+    IView nullRd = new TextView(openWriter, null, 1, new Dimension(1, 1), readOnlyModel);
+    IView negativeTick = new TextView(openWriter, readable, -10, new Dimension(1, 1), readOnlyModel);
+    IView nullDimension = new TextView(openWriter, readable, 1, null, readOnlyModel);
+    IView negativeWidth = new TextView(openWriter, readable, 1, new Dimension(-3, 1), readOnlyModel);
+    IView negativeHeight = new TextView(openWriter, readable, 1, new Dimension(1, -22), readOnlyModel);
+    IView nullModel = new TextView(openWriter, readable, 1, new Dimension(1, 1), null);
+  }
+
+  /**
+   * Ensures TextView tryAppend(...) throws error when FileWriter is closed.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalAppend() {
+    setFiles();
+    IView appendError = new TextView(closedWriter, readable, 1, new Dimension(1, 1), readOnlyModel);
+    appendError.tryAppend("this", "throws", "an", "error");
+  }
+
+  @Test
+  public void testTryAppend() {
+    setFiles();
+    setUpStreams();
+    IReadOnlyAnimationModel r = new ReadOnlyAnimationModel(AnimationReader.parseFile(readable, new AnimationModelImpl.Builder()));
+    IView successAppend = new TextView(System.out, readable, 1, new Dimension(1, 1), r);
+    successAppend.tryAppend("test1, ", "test2, ", "& test3");
+    Assert.assertEquals("test1, test2, & test3", outContent.toString());
+    restoreStreams();
+  }
 
   @Test
   public void render() {
