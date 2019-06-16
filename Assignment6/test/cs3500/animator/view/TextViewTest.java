@@ -1,14 +1,19 @@
 package cs3500.animator.view;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.awt.*;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+
+import javax.swing.*;
 
 import cs3500.animator.model.AnimatableShape;
 import cs3500.animator.model.AnimatableShapeReadOnly;
@@ -23,10 +28,12 @@ import cs3500.animator.model.Motion;
 import cs3500.animator.model.MyEllipse;
 import cs3500.animator.model.MyRectangle;
 import cs3500.animator.model.ReadOnlyAnimationModel;
+import cs3500.animator.util.AnimationReader;
 
 import static org.junit.Assert.*;
 
 public class TextViewTest {
+
   IView textView;
   Appendable ap;
   Readable rd;
@@ -48,7 +55,7 @@ public class TextViewTest {
   AnimationModel model;
   IReadOnlyAnimationModel readOnlyModel;
 
-  void reset(){
+  void reset() {
     ap = new StringBuilder();
     rd = new InputStreamReader(System.in);
     canvas = new Dimension(500, 500);
@@ -90,6 +97,36 @@ public class TextViewTest {
     textView = new TextView(ap, rd, ticksPerSecond, canvas, readOnlyModel);
   }
 
+  /**
+   * Ensures TextView constructor throws errors for all possible illegal arguments.
+   */
+  @Test(expected = IllegalArgumentException.class)
+  public void testTextViewConstructorExceptions() {
+    /*
+    ILLEGAL ARGUMENTS:
+    1. null Appendable ap
+    2. null Readable rd
+    3. negative int ticksPerSecond
+    4. null Dimension dimension
+    5. negative Dimension dimension.width()
+    6. negative Dimension dimension.height()
+    7. null IReadOnlyModel model
+    */
+    reset();
+    IView nullAp = new TextView(null, rd, 1, new Dimension(1, 1), readOnlyModel);
+    IView nullRd = new TextView(ap, null, 1, new Dimension(1, 1), readOnlyModel);
+    IView negativeTick = new TextView(ap, rd, -10, new Dimension(1, 1), readOnlyModel);
+    IView nullDimension = new TextView(ap, rd, 1, null, readOnlyModel);
+    IView negativeWidth = new TextView(ap, rd, 1, new Dimension(-3, 1), readOnlyModel);
+    IView negativeHeight = new TextView(ap, rd, 1, new Dimension(1, -22), readOnlyModel);
+    IView nullModel = new TextView(ap, rd, 1, new Dimension(1, 1), null);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testIllegalAppend() {
+    reset();
+
+  }
 
   @Test
   public void render() {

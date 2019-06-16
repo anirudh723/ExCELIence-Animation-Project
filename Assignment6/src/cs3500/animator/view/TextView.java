@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
  * Works on a variety of output sources.
  */
 public class TextView extends AbstractView {
-  ViewType type;
+  private ViewType type;
 
   /**
    * Constructs a textual view.

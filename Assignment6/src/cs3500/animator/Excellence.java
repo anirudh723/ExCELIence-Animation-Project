@@ -13,9 +13,16 @@ import java.util.*;
 
 import javax.swing.*;
 
+/**
+ * Class housing the entry point for the Animation program.
+ */
 public class Excellence {
 
-
+  /**
+   * Entry point for the Animation program.
+   *
+   * @param args command line arguments used to configure animation.
+   */
   public static void main(String[] args) {
 
     // HashMap to accumulate inputs
@@ -61,10 +68,12 @@ public class Excellence {
         int ticksPerSec = Integer.parseInt(config.getOrDefault("-speed", "1"));
         String filePath = config.get("-out");
         if (filePath == null) {
+          // Runs the controller, printing the result
           IView view = new ViewFactory().create(System.out, input, config.get("-view"), ticksPerSec, readModel);
           IController controller = new Controller(readModel, view);
           controller.run();
         } else {
+          // Creates an appendable FileWriter, runs the controller, closes the FileWriter, writing the result to the target output file
           FileWriter output = new FileWriter(config.get("-out"), true);
           IView view = new ViewFactory().create(output, input, config.get("-view"), ticksPerSec, readModel);
           IController controller = new Controller(readModel, view);
@@ -72,7 +81,7 @@ public class Excellence {
           output.close();
         }
 
-        // catches non-int speed, invalid input and output files, and any possible AnimationModel, ReadOnlyAnimationModel, IView, Controller initialization errors
+        // catches non-int speed, invalid input and output files, and any possible AnimationModel, ReadOnlyAnimationModel, IView, Controller initialization or run errors
       } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(new JFrame(), "-speed value must be an int!", "Initialization error!", JOptionPane.ERROR_MESSAGE);
         System.exit(1);
@@ -86,4 +95,3 @@ public class Excellence {
     }
   }
 }
-

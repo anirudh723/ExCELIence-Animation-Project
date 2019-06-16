@@ -27,12 +27,12 @@ public abstract class AbstractView implements IView {
    * @param rd the Readable.
    * @param ticksPerSecond ticks per second.
    * @param canvas the canvas for the view.
-//   * @param shapes the map of shapes.
    * @param model the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
    * @throws IllegalArgumentException if the ticks per second is negative.
    * @throws IllegalArgumentException if the dimension is null.
+   * @throws IllegalArgumentException if either dimension is negative.
    * @throws IllegalArgumentException if the model is null.
    * @throws IllegalArgumentException the shapes are null.
    */
@@ -52,6 +52,8 @@ public abstract class AbstractView implements IView {
     this.ticksPerSecond = ticksPerSecond;
     if (canvas == null) {
       throw new IllegalArgumentException("Dimensions are null.");
+    } else if (canvas.height < 0 || canvas.width < 0) {
+      throw new IllegalArgumentException("Dimension is negative.");
     }
     this.canvas = canvas;
     if (model == null) {
