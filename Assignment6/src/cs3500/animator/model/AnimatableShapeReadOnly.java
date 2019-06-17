@@ -61,7 +61,7 @@ public class AnimatableShapeReadOnly implements IAnimatableShapeReadOnly {
     } else {
       for (int i = 0; i < this.delegate.getMotions().size() - 1; i++) {
         str.append("motion " + name + " " + this.delegate.getMotions().get(i).writeMotion()
-            + "\t\t" + this.delegate.getMotions().get(i + 1).writeMotion() + "\n");
+            + " " + this.delegate.getMotions().get(i + 1).writeMotion()+"\n");
       }
     }
     return str.toString();
