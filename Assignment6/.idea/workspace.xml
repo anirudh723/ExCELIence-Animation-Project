@@ -2,42 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4f4d599e-b5eb-4874-914b-19361ba3fa2e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/AbstractAnimationModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/AbstractAnimationModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/AbstractShape.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/AbstractShape.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/MyEllipse.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/MyEllipse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/MyRectangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/model/MyRectangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/AbstractDrawingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/AbstractDrawingPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/AbstractView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/AbstractView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/DrawingPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/DrawingPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/IView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/IView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/SVGView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/SVGView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/TextView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/TextView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/ViewType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/ViewType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/VisualView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment6/cs3500/animator/view/VisualView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Assignment6/cs3500/animator/model/MotionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Assignment6/cs3500/animator/model/MotionTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Assignment6/cs3500/animator/view/SVGViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Assignment6/cs3500/animator/view/SVGViewTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/test/Assignment6/cs3500/animator/view/TextViewTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Assignment6/cs3500/animator/view/TextViewTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/ViewFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/ViewFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/AbstractDrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/AbstractDrawingPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/AbstractView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/AbstractView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/DrawingPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/DrawingPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/IView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/IView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/TextView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/TextView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/ViewType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/ViewType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cs3500/animator/view/VisualView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/cs3500/animator/view/VisualView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/controller/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/controller/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/model/AbstractAnimationModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/model/AbstractAnimationModelTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/model/AbstractShapeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/model/AbstractShapeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/model/AnimatableShapeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/model/AnimatableShapeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/model/AnimationModelImplTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/model/MotionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/model/MotionTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/cs3500/animator/view/VisualViewTest.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +26,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+            <state relative-caret-position="85">
+              <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,13 +36,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/VisualView.java">
+        <entry file="file://$PROJECT_DIR$/test/cs3500/animator/model/AbstractAnimationModelTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="71" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="3740">
+              <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="35" column="44" selection-end-line="227" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="271" column="55" selection-start-line="271" selection-start-column="55" selection-end-line="271" selection-end-column="55" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/AppData/Local/Temp/TextView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="41" column="47" lean-forward="true" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -79,17 +89,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/TextView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="43" column="43" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="43" />
+            <state relative-caret-position="17">
+              <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimatableShape.java">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-561">
-              <caret line="10" column="78" selection-start-line="10" selection-start-column="78" selection-end-line="10" selection-end-column="78" />
+            <state relative-caret-position="133">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,67 +108,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimatableShapeReadOnly.java">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/AbstractView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="66" column="22" selection-start-line="66" selection-start-column="22" selection-end-line="66" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AbstractShape.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="66" column="3" selection-start-line="66" selection-start-column="3" selection-end-line="66" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/cs3500/animator/model/AnimatableShapeTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="97" column="3" selection-start-line="97" selection-start-column="3" selection-end-line="97" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2878#2879#0" expanded="true" />
-                <element signature="e#2944#2945#0" expanded="true" />
-                <element signature="e#3043#3044#0" expanded="true" />
-                <element signature="e#3105#3106#0" expanded="true" />
-                <element signature="e#8034#8042#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/cs3500/animator/model/AbstractShapeTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="3" selection-start-line="27" selection-start-column="3" selection-end-line="27" selection-end-column="3" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1147#1148#0" expanded="true" />
-                <element signature="e#1203#1204#0" expanded="true" />
-                <element signature="e#1291#1292#0" expanded="true" />
-                <element signature="e#1343#1344#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/cs3500/animator/model/AbstractAnimationModelTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="163" selection-start-line="163" selection-start-column="2" selection-end-line="166" selection-end-column="83" />
+            <state relative-caret-position="578">
+              <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimationModelImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -216,26 +169,26 @@
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimationModel.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatableShapeReadOnly.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AnimatableShape.java" />
-        <option value="$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java" />
         <option value="$PROJECT_DIR$/test/cs3500/animator/view/VisualViewTest.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/DrawingPanel.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/ViewType.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/view/TextView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/VisualView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/IView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/AbstractDrawingPanel.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/ViewFactory.java" />
         <option value="$PROJECT_DIR$/test/cs3500/animator/controller/ControllerTest.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/view/AbstractView.java" />
-        <option value="$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java" />
         <option value="$PROJECT_DIR$/test/cs3500/animator/model/MotionTest.java" />
         <option value="$PROJECT_DIR$/src/cs3500/animator/model/AbstractShape.java" />
         <option value="$PROJECT_DIR$/test/cs3500/animator/model/AnimatableShapeTest.java" />
         <option value="$PROJECT_DIR$/test/cs3500/animator/model/AbstractShapeTest.java" />
-        <option value="$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java" />
         <option value="$PROJECT_DIR$/test/cs3500/animator/model/AbstractAnimationModelTest.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/Excellence.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/animator/view/TextView.java" />
+        <option value="$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java" />
+        <option value="$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java" />
       </list>
     </option>
   </component>
@@ -337,7 +290,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -351,34 +304,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.cs3500.animator.view in Assignment6">
-    <configuration name="AbstractAnimationModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.All in Assignment6 (1)">
+    <configuration name="All in Assignment6 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment6" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cs3500.animator.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cs3500.animator.model" />
-      <option name="MAIN_CLASS_NAME" value="cs3500.animator.model.AbstractAnimationModelTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AbstractAnimationModelTest.testAddMotionAtFront" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in Assignment6" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Assignment6" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="cs3500.animator.model.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="cs3500.animator.model" />
-      <option name="MAIN_CLASS_NAME" value="cs3500.animator.model.AbstractAnimationModelTest" />
-      <option name="METHOD_NAME" value="testAddMotionAtFront" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -426,19 +364,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.AbstractAnimationModelTest" />
-      <item itemvalue="JUnit.AbstractAnimationModelTest.testAddMotionAtFront" />
       <item itemvalue="JUnit.cs3500.animator.model in Assignment6" />
       <item itemvalue="JUnit.cs3500.animator.controller in Assignment6" />
       <item itemvalue="JUnit.cs3500.animator.view in Assignment6" />
+      <item itemvalue="JUnit.All in Assignment6" />
+      <item itemvalue="JUnit.All in Assignment6 (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in Assignment6 (1)" />
+        <item itemvalue="JUnit.All in Assignment6" />
         <item itemvalue="JUnit.cs3500.animator.view in Assignment6" />
         <item itemvalue="JUnit.cs3500.animator.controller in Assignment6" />
         <item itemvalue="JUnit.cs3500.animator.model in Assignment6" />
-        <item itemvalue="JUnit.AbstractAnimationModelTest" />
-        <item itemvalue="JUnit.AbstractAnimationModelTest.testAddMotionAtFront" />
       </list>
     </recent_temporary>
   </component>
@@ -456,24 +394,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AbstractAnimationModelTest_testAddMotionAtEnd - 2019.06.16 at 19h 12m 33s.xml">
-      <configuration name="AbstractAnimationModelTest.testAddMotionAtEnd" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AbstractAnimationModelTest_testAddMotionAtEnd - 2019.06.16 at 19h 13m 25s.xml">
-      <configuration name="AbstractAnimationModelTest.testAddMotionAtEnd" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AbstractAnimationModelTest_testAddShape - 2019.06.16 at 19h 15m 02s.xml">
-      <configuration name="AbstractAnimationModelTest.testAddShape" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AbstractAnimationModelTest_testAddShape - 2019.06.16 at 19h 15m 21s.xml">
-      <configuration name="AbstractAnimationModelTest.testAddShape" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AbstractAnimationModelTest_testAddShape - 2019.06.16 at 19h 15m 33s.xml">
-      <configuration name="AbstractAnimationModelTest.testAddShape" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AbstractAnimationModelTest_testAddShape - 2019.06.16 at 19h 15m 54s.xml">
-      <configuration name="AbstractAnimationModelTest.testAddShape" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AbstractAnimationModelTest_testAddShape - 2019.06.16 at 19h 16m 53s.xml">
       <configuration name="AbstractAnimationModelTest.testAddShape" configurationId="JUnit" />
     </history-entry>
@@ -486,6 +406,24 @@
     <history-entry file="AbstractAnimationModelTest - 2019.06.16 at 19h 19m 01s.xml">
       <configuration name="AbstractAnimationModelTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AbstractAnimationModelTest_testAddMotionAtEnd - 2019.06.16 at 19h 21m 28s.xml">
+      <configuration name="AbstractAnimationModelTest.testAddMotionAtEnd" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AbstractAnimationModelTest_testAddMotionAtFront - 2019.06.16 at 19h 22m 22s.xml">
+      <configuration name="AbstractAnimationModelTest.testAddMotionAtFront" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AbstractAnimationModelTest - 2019.06.16 at 19h 23m 20s.xml">
+      <configuration name="AbstractAnimationModelTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="cs3500_animator_model_in_Assignment6 - 2019.06.16 at 19h 23m 31s.xml">
+      <configuration name="cs3500.animator.model in Assignment6" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="cs3500_animator_controller_in_Assignment6 - 2019.06.16 at 19h 23m 36s.xml">
+      <configuration name="cs3500.animator.controller in Assignment6" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="cs3500_animator_view_in_Assignment6 - 2019.06.16 at 19h 23m 41s.xml">
+      <configuration name="cs3500.animator.view in Assignment6" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -496,7 +434,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.24583964" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.24583964" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="0" />
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
@@ -504,7 +442,7 @@
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" weight="0.12602292" />
-      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.2618658" />
+      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.2618658" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
@@ -667,16 +605,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/ViewFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -694,16 +622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/AbstractDrawingPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -711,23 +629,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3972">
-          <caret line="247" column="11" selection-start-line="247" selection-start-column="11" selection-end-line="247" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1105">
-          <caret line="89" column="52" selection-start-line="89" selection-start-column="52" selection-end-line="89" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -762,16 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/AbstractView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/VisualView.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
@@ -779,13 +670,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/TextView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="43" column="43" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -848,33 +732,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimationModelImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="57" column="42" lean-forward="true" selection-start-line="57" selection-start-column="42" selection-end-line="57" selection-end-column="42" />
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AnimationModelImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/model/AbstractAnimationModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="85">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/AbstractAnimationModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="111" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/cs3500/animator/model/AbstractAnimationModelTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="163" selection-start-line="163" selection-start-column="2" selection-end-line="166" selection-end-column="83" />
+        <state relative-caret-position="3740">
+          <caret line="220" column="31" selection-start-line="220" selection-start-column="31" selection-end-line="220" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Excellence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="96" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/TextViewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="211" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/Excellence.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TTemptyCanvas.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TTemptyShapes.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="41" column="47" lean-forward="true" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/AbstractView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="54" column="25" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/SVGView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/animator/view/TextView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="23" column="44" selection-start-line="23" selection-start-column="44" selection-end-line="23" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cs3500/animator/view/SVGViewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="271" column="55" selection-start-line="271" selection-start-column="55" selection-end-line="271" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/cs3500/animator/view/TextViewTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="35" column="44" selection-end-line="227" selection-end-column="1" />
         </state>
       </provider>
     </entry>

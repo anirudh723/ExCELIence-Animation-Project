@@ -1,16 +1,12 @@
 package cs3500.animator.view;
 
 import static org.junit.Assert.assertEquals;
-
-import org.junit.Before;
 import org.junit.Test;
-
 import java.awt.*;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-
 import cs3500.animator.model.AnimatableShape;
 import cs3500.animator.model.AnimatableShapeReadOnly;
 import cs3500.animator.model.AnimationModel;
@@ -25,50 +21,55 @@ import cs3500.animator.model.MyEllipse;
 import cs3500.animator.model.MyRectangle;
 import cs3500.animator.model.ReadOnlyAnimationModel;
 
-
+/**
+ * Represents the tests for the SVG view.
+ */
 public class SVGViewTest {
 
-  SVGView svgView;
-  Appendable ap;
-  Readable rd;
-  Dimension canvas;
-  LinkedHashMap<String, IAnimatableShapeReadOnly> readOnlyShapes;
-  LinkedHashMap<String, IAnimatableShape> shapes;
-  int ticksPerSecond;
+  private SVGView svgView;
+  private Appendable ap;
+  private Readable rd;
+  private Dimension canvas;
+  private LinkedHashMap<String, IAnimatableShapeReadOnly> readOnlyShapes;
+  private LinkedHashMap<String, IAnimatableShape> shapes;
+  private int ticksPerSecond;
 
-  IMotion motionR1;
-  IMotion motionR2;
-  IMotion motionR3;
-  IMotion motionR4;
-  IMotion motionR5;
-  IMotion motionR6;
+  private IMotion motionR1;
+  private IMotion motionR2;
+  private IMotion motionR3;
+  private IMotion motionR4;
+  private IMotion motionR5;
+  private IMotion motionR6;
 
-  IMotion motionE1;
-  IMotion motionE2;
-  IMotion motionE3;
-  IMotion motionE4;
-  IMotion motionE5;
-  IMotion motionE6;
+  private IMotion motionE1;
+  private IMotion motionE2;
+  private IMotion motionE3;
+  private IMotion motionE4;
+  private IMotion motionE5;
+  private IMotion motionE6;
 
-  IShape shape1;
-  IShape shape2;
-  ArrayList<IMotion> motions1;
-  ArrayList<IMotion> motions2;
-  IAnimatableShape ashape1;
-  IAnimatableShape ashape2;
-  IAnimatableShapeReadOnly readOnlyAShape1;
-  IAnimatableShapeReadOnly readOnlyAShape2;
-  AnimationModel model;
-  IReadOnlyAnimationModel readOnlyModel;
+  private IShape shape1;
+  private IShape shape2;
+  private ArrayList<IMotion> motions1;
+  private ArrayList<IMotion> motions2;
+  private IAnimatableShape ashape1;
+  private IAnimatableShape ashape2;
+  private IAnimatableShapeReadOnly readOnlyAShape1;
+  private IAnimatableShapeReadOnly readOnlyAShape2;
+  private AnimationModel model;
+  private IReadOnlyAnimationModel readOnlyModel;
 
-  String outputString;
+  private String outputString;
 
+  /**
+   * Resets the data to test specific methods.
+   */
   void reset() {
     ap = new StringBuilder();
     rd = new InputStreamReader(System.in);
     canvas = new Dimension(500, 500);
-    readOnlyShapes = new LinkedHashMap<String, IAnimatableShapeReadOnly>();
-    shapes = new LinkedHashMap<String, IAnimatableShape>();
+    readOnlyShapes = new LinkedHashMap<>();
+    shapes = new LinkedHashMap<>();
     ticksPerSecond = 5;
 
     shape1 = new MyRectangle(new Dimension(50, 100),
@@ -249,19 +250,27 @@ public class SVGViewTest {
         + "</svg>";
   }
 
+  /**
+   * Tests the render method.
+   */
   @Test
   public void render() {
     reset();
     assertEquals(outputString, svgView.getOutputAsString());
   }
 
+  /**
+   * Tests getting the right output string.
+   */
   @Test
   public void getOutputAsString() {
     reset();
     assertEquals(outputString, svgView.getOutputAsString());
   }
 
-
+  /**
+   * Tests getting the correct enum type for this view.
+   */
   @Test
   public void getViewType() {
     reset();
