@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.geom.Point2D;
 
 /**
@@ -39,7 +40,7 @@ public interface IShape {
   Color getColor();
 
   /**
-   * Assigns the shape to its initial motion
+   * Assigns the shape to its initial motion.
    */
   void assignInitialMotion(Dimension d, Point2D p, Color c);
 }

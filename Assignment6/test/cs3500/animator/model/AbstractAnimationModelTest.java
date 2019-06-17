@@ -1,14 +1,15 @@
 package cs3500.animator.model;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
 import org.junit.Test;
+
 /**
  * Represents the tests for an abstract Animation Model.
  */
@@ -24,7 +25,6 @@ public class AbstractAnimationModelTest {
   private IShape ellipse;
 
   private IAnimatableShape animatableRect;
-  private IAnimatableShape animatableEllipse;
 
   private IMotion motion1;
   private IMotion motion2;
@@ -94,11 +94,11 @@ public class AbstractAnimationModelTest {
     ellipseMotions.add(motion6);
 
     ellipse = new MyEllipse(new Dimension(120, 60),
-        Color.BLUE, new Point(440, 70));
-    animatableEllipse = new AnimatableShape(ellipse, ellipseMotions);
+            Color.BLUE, new Point(440, 70));
+    IAnimatableShape animatableEllipse = new AnimatableShape(ellipse, ellipseMotions);
 
     shapes = new LinkedHashMap<>();
-    shapes.put("E", this.animatableEllipse);
+    shapes.put("E", animatableEllipse);
 
     model = AnimationModelImpl.builder().setShapes(this.shapes).build();
   }
@@ -109,7 +109,7 @@ public class AbstractAnimationModelTest {
   @Test
   public void createEmptyAnimation() {
     shapes = new LinkedHashMap<>();
-    model =  AnimationModelImpl.builder().setShapes(shapes).build();
+    model = AnimationModelImpl.builder().setShapes(shapes).build();
     assertEquals(shapes.size(), 0);
   }
 

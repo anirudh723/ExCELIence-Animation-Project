@@ -18,10 +18,10 @@ public class Motion implements IMotion {
   /**
    * Constructs a Motion.
    *
-   * @param tick the starting tick of the Motion.
-   * @param position the starting position of the Motion.
+   * @param tick      the starting tick of the Motion.
+   * @param position  the starting position of the Motion.
    * @param dimension the starting width and height of the Motion.
-   * @param color the starting color of the Motion.
+   * @param color     the starting color of the Motion.
    * @throws IllegalArgumentException if start tick is negative.
    * @throws IllegalArgumentException if start width or height is negative or 0.
    */
@@ -62,13 +62,13 @@ public class Motion implements IMotion {
   public String writeMotion() {
     StringBuilder str = new StringBuilder();
     str.append(tick + " "
-        + (int) position.getX() + " "
-        + (int) position.getY() + " "
-        + (int) dimension.getWidth() + " "
-        + (int) dimension.getHeight() + " "
-        + color.getRed() + " "
-        + color.getGreen() + " "
-        + color.getBlue());
+            + (int) position.getX() + " "
+            + (int) position.getY() + " "
+            + (int) dimension.getWidth() + " "
+            + (int) dimension.getHeight() + " "
+            + color.getRed() + " "
+            + color.getGreen() + " "
+            + color.getBlue());
 
     return str.toString();
   }

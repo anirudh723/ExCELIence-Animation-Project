@@ -52,7 +52,7 @@ public class SVGView extends AbstractView {
   }
 
   private void writeMotionSVG(IAnimatableShapeReadOnly shape) {
-    if (!(shape.getMotions().size() < 1)) {
+    if (shape.getMotions().size() >= 1) {
       for (int i = 0; i < shape.getMotions().size() - 1; i++) {
         IMotion fromMotion = shape.getMotions().get(i);
         IMotion toMotion = shape.getMotions().get(i + 1);
@@ -61,9 +61,9 @@ public class SVGView extends AbstractView {
         int durInMS = ticksToMiliseconds(durInTicks);
 
         String fromRGB = formatAsRGB(fromMotion.getColor().getRed(),
-            fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());
+                fromMotion.getColor().getGreen(), fromMotion.getColor().getBlue());
         String toRGB = formatAsRGB(toMotion.getColor().getRed(),
-            toMotion.getColor().getGreen(), toMotion.getColor().getBlue());
+                toMotion.getColor().getGreen(), toMotion.getColor().getBlue());
 
         int fromWidth = (int) fromMotion.getDimension().getWidth();
         int toWidth = (int) toMotion.getDimension().getWidth();
@@ -86,9 +86,9 @@ public class SVGView extends AbstractView {
           animate(fromMotion.getTick(), durInMS, "y", fromY, toY, "freeze", name);
         }
         animate(fromMotion.getTick(), durInMS, "width",
-            fromWidth, toWidth, "freeze", name);
+                fromWidth, toWidth, "freeze", name);
         animate(fromMotion.getTick(), durInMS, "height",
-            fromHeight, toHeight, "freeze", name);
+                fromHeight, toHeight, "freeze", name);
         animateColor(fromMotion.getTick(), durInMS, fromRGB, toRGB, "freeze", name);
       }
     }
@@ -130,7 +130,7 @@ public class SVGView extends AbstractView {
 
   private void writeShapeSVG(String shapeType, String shapeColor, String shapeName,
                              int shapeX, int shapeY, int shapeWidth, int shapeHeight) {
-    if (shapeType == "ellipse") {
+    if (shapeType.equals("ellipse")) {
       tryAppend("<" + shapeType
               + " id=\"" + shapeName
               + "\" cx=\"" + shapeX
@@ -173,7 +173,9 @@ public class SVGView extends AbstractView {
       return "rect";
     } else if (type.contains("ellipse")) {
       return "ellipse";
-    } else throw new IllegalArgumentException("Illegal shape type.");
+    } else {
+      throw new IllegalArgumentException("Illegal shape type.");
+    }
   }
 
   private String formatAsRGB(int r, int g, int b) {

@@ -20,17 +20,17 @@ public abstract class AbstractAnimationModel implements AnimationModel {
   /**
    * Constructs an AbstractAnimationModel.
    *
-   * @param shapes the LinkedHashMap of shapes.
+   * @param shapes    the LinkedHashMap of shapes.
    * @param leftMostX left most x coordinate value.
-   * @param topMostY top most y coordinate value.
-   * @param width the width of the bounding box.
-   * @param height the height of the bounding box.
+   * @param topMostY  top most y coordinate value.
+   * @param width     the width of the bounding box.
+   * @param height    the height of the bounding box.
    * @throws IllegalArgumentException if the LinkedHashMap of shapes is null.
    * @throws IllegalArgumentException if the width is negative or 0.
    * @throws IllegalArgumentException if the height is negative or 0.
    */
   public AbstractAnimationModel(LinkedHashMap<String, IAnimatableShape> shapes, int leftMostX,
-      int topMostY, int width, int height) throws IllegalArgumentException {
+                                int topMostY, int width, int height) throws IllegalArgumentException {
     if (shapes == null) {
       throw new IllegalArgumentException("Map of shapes is null");
     }
@@ -85,7 +85,7 @@ public abstract class AbstractAnimationModel implements AnimationModel {
     }
     if (!shapes.containsKey(shapeId)) {
       throw new IllegalArgumentException(
-          "Trying to remove a motion to a shape that doesn't exist.");
+              "Trying to remove a motion to a shape that doesn't exist.");
     }
     shapes.get(shapeId).removeMotionInShape(m);
   }

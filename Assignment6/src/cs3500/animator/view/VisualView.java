@@ -3,9 +3,11 @@ package cs3500.animator.view;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
+
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
@@ -15,17 +17,16 @@ import javax.swing.JScrollPane;
 public class VisualView extends AbstractView implements IView {
 
   private DrawingPanel panel;
-  private JScrollPane scrollPane;
   ViewType type;
   JFrame delegate = new JFrame();
 
   /**
    * Constructs a Visual View. Sets the sizes of the frame and other specifications.
    *
-   * @param ap the file to append to.
-   * @param rd the file to read from.
+   * @param ap             the file to append to.
+   * @param rd             the file to read from.
    * @param ticksPerSecond the ticks per second rate of the animation.
-   * @param model the read only version of the model.
+   * @param model          the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
    * @throws IllegalArgumentException if the ticks per second is negative.
@@ -40,7 +41,7 @@ public class VisualView extends AbstractView implements IView {
 
     panel.setMinimumSize(this.canvas);
     panel.setPreferredSize(calculateMaxDimension());
-    scrollPane = new JScrollPane(panel);
+    JScrollPane scrollPane = new JScrollPane(panel);
     delegate.setSize(this.canvas);
     delegate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     delegate.setLocation(250, 250);
@@ -61,11 +62,6 @@ public class VisualView extends AbstractView implements IView {
   }
 
   @Override
-  public void tryAppend(String... lines) throws IllegalArgumentException {
-
-  }
-
-  @Override
   public ViewType getViewType() {
     return type;
   }
@@ -83,7 +79,6 @@ public class VisualView extends AbstractView implements IView {
         }
       }
     }
-    System.out.println(furthestRight + " by " + furthestDown);
     return new Dimension(furthestRight, furthestDown);
   }
 }

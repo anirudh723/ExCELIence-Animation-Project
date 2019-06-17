@@ -31,10 +31,10 @@ public interface AnimationModel {
    * Adds a Motion to one of the Model's shapes.
    *
    * @param shapeId the shapeId that the given Shape corresponds in the Map.
-   * @param m the Motion to be added.
+   * @param m       the Motion to be added.
    * @throws IllegalArgumentException if the given Motion is null.
    * @throws IllegalArgumentException if a user tries to add a Motion to a shape that doesn't
-   * exist.
+   *                                  exist.
    * @throws IllegalArgumentException if a user tries to add a Motion where another Motion exists.
    */
   void addMotion(String shapeId, IMotion m) throws IllegalArgumentException;
@@ -43,10 +43,10 @@ public interface AnimationModel {
    * Removes a Motion to one of the Model's shapes.
    *
    * @param shapeId the shapeId that the given Shape corresponds in the Map.
-   * @param m the Motion to be removed.
+   * @param m       the Motion to be removed.
    * @throws IllegalArgumentException if the given Motion is null.
    * @throws IllegalArgumentException if a user tries to remove a Motion to a shape that doesn't
-   * exist.
+   *                                  exist.
    * @throws IllegalArgumentException if a user tries to remove a Motion that doesn't exist
    */
   void removeMotion(String shapeId, IMotion m) throws IllegalArgumentException;

@@ -11,7 +11,7 @@ public class DrawingPanel extends AbstractDrawingPanel {
   /**
    * Constructs the drawing panel.
    */
-  public DrawingPanel(){
+  public DrawingPanel() {
     super();
   }
 }

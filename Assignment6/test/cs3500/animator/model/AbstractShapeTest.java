@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+
 import org.junit.Before;
 import org.junit.Test;
 

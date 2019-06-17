@@ -15,15 +15,14 @@ public interface IView {
   void render();
 
   /**
-   * Renders the GUI shapes
-   * @param shapesToRender
+   * Renders the GUI shapes.
    */
   void renderGUIShapes(List<ArrayList<String>> shapesToRender);
 
   /**
    * Appends the given lines to the Appendable.
    *
-   * @param lines the String's to be appended
+   * @param lines the String's to be appended.
    * @throws IllegalArgumentException if it cannot append to the Appendable.
    */
   void tryAppend(String... lines) throws IllegalArgumentException;

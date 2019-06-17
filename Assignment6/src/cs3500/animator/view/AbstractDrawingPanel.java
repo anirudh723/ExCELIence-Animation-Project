@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JPanel;
 
 /**
- * Represents a drawing panel, which will extend the functionality of the JPanel.
- * Consists of the 2D list of information about the shapes at all the ticks, so it can be used
- * to draw the animation of the shapes.
+ * Represents a drawing panel, which will extend the functionality of the JPanel. Consists of the 2D
+ * list of information about the shapes at all the ticks, so it can be used to draw the animation of
+ * the shapes.
  */
 public abstract class AbstractDrawingPanel extends JPanel {
 
@@ -27,7 +28,7 @@ public abstract class AbstractDrawingPanel extends JPanel {
    * and paint the components again.
    *
    * @param shapesToDraw the 2D list of shape information, used to make the real shapes in the
-   *     animation.
+   *                     animation.
    */
   void draw(List<ArrayList<String>> shapesToDraw) {
     this.shapes = shapesToDraw;

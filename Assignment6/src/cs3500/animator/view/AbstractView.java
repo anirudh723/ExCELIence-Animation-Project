@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
@@ -22,10 +23,10 @@ public abstract class AbstractView implements IView {
   /**
    * Constructs an Abstract View.
    *
-   * @param ap the Appendable.
-   * @param rd the Readable.
+   * @param ap             the Appendable.
+   * @param rd             the Readable.
    * @param ticksPerSecond ticks per second.
-   * @param model the read only version of the model.
+   * @param model          the read only version of the model.
    * @throws IllegalArgumentException if Appendable is null.
    * @throws IllegalArgumentException if Readable is null.
    * @throws IllegalArgumentException if the ticks per second is negative.
@@ -52,10 +53,10 @@ public abstract class AbstractView implements IView {
     }
     this.model = model;
     this.canvas = new Dimension(
-            (int)(this.model.getCanvasDimension().getWidth()
-            + this.model.getTopXY().getX()),
-            (int)(this.model.getCanvasDimension().getHeight()
-            + this.model.getTopXY().getY()));
+            (int) (this.model.getCanvasDimension().getWidth()
+                    + this.model.getTopXY().getX()),
+            (int) (this.model.getCanvasDimension().getHeight()
+                    + this.model.getTopXY().getY()));
 
     this.shapes = model.getShapeMap();
   }
@@ -65,7 +66,7 @@ public abstract class AbstractView implements IView {
   public abstract void render();
 
   @Override
-  public void tryAppend(String ... lines) throws IllegalArgumentException {
+  public void tryAppend(String... lines) throws IllegalArgumentException {
     try {
       for (String s : lines) {
         this.ap.append(s);
@@ -76,7 +77,7 @@ public abstract class AbstractView implements IView {
   }
 
   @Override
-  public void renderGUIShapes(List<ArrayList<String>> shapesToRender){
+  public void renderGUIShapes(List<ArrayList<String>> shapesToRender) {
     throw new UnsupportedOperationException("Cannot render GUI shapes in this IView.");
   }
 

@@ -14,7 +14,9 @@ import cs3500.animator.model.IReadOnlyAnimationModel;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.ViewType;
 
-
+/**
+ * Controls the Animation program, creating the a  model, view and timer.
+ */
 public class Controller implements IController {
 
   private Timer timer;
@@ -23,7 +25,12 @@ public class Controller implements IController {
   private IView view;
   private int maxTick;
 
-
+  /**
+   * Constructs controller from the given model and view.
+   *
+   * @param model model being controlled.
+   * @param view  view being controlled.
+   */
   public Controller(IReadOnlyAnimationModel model, IView view) {
     this.view = view;
     this.tick = 0;
@@ -32,7 +39,6 @@ public class Controller implements IController {
     for (IAnimatableShapeReadOnly shape : model.getShapeMap().values()) {
       if (shape.getMotions().size() > maxTick) {
         maxTick = shape.getMotions().get(shape.getMotions().size() - 1).getTick();
-        System.out.println(maxTick);
       }
     }
 
@@ -70,7 +76,6 @@ public class Controller implements IController {
     ArrayList<String> data = new ArrayList<>();
 
     for (IAnimatableShapeReadOnly shape : model.getShapeMap().values()) {
-//      System.out.println("# of shapes: " + model.getShapeMap().values().size());
       if (shape.getMotions().size() != 0) {
         if (shape.getMotions().size() == 1) {
           IMotion motion = shape.getMotions().get(0);
@@ -82,9 +87,7 @@ public class Controller implements IController {
           shapesAtTick.add(data);
         } else {
           int index = relativeTickInMotions(shape.getMotions(), tick);
-          if (index == -1) {
-
-          } else if (index == shape.getMotions().size() - 1) {
+          if (index == shape.getMotions().size() - 1) {
             IMotion motion = shape.getMotions().get(shape.getMotions().size() - 1);
             data = formatData(motion.getPosition().getX(), motion.getPosition().getY(),
                     motion.getDimension().getWidth(), motion.getDimension().getHeight(),
@@ -104,8 +107,8 @@ public class Controller implements IController {
   }
 
   private ArrayList<String> tween(IMotion from, IMotion to, int tick) {
-    double p1 = ((double) (to.getTick() - tick)) / ((double)(to.getTick() - from.getTick()));
-    double p2 = ((double) (tick - from.getTick())) / ((double)(to.getTick() - from.getTick()));
+    double p1 = ((double) (to.getTick() - tick)) / ((double) (to.getTick() - from.getTick()));
+    double p2 = ((double) (tick - from.getTick())) / ((double) (to.getTick() - from.getTick()));
 
     double newX = calcNew(from.getPosition().getX(), to.getPosition().getX(), p1, p2);
     double newY = calcNew(from.getPosition().getY(), to.getPosition().getY(), p1, p2);

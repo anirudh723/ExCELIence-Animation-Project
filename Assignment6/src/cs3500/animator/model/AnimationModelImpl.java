@@ -1,6 +1,7 @@
 package cs3500.animator.model;
 
 import cs3500.animator.util.AnimationBuilder;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.geom.Point2D;
@@ -16,17 +17,17 @@ public final class AnimationModelImpl extends AbstractAnimationModel {
   /**
    * Constructs an implementation of an Animation Model.
    *
-   * @param shapes the map of shapes of the model.
+   * @param shapes    the map of shapes of the model.
    * @param leftMostX left most x coordinate value.
-   * @param topMostY top most y coordinate value.
-   * @param width the width of the bounding box.
-   * @param height the height of the bounding box.
+   * @param topMostY  top most y coordinate value.
+   * @param width     the width of the bounding box.
+   * @param height    the height of the bounding box.
    * @throws IllegalArgumentException if the LinkedHashMap of shapes is null.
    * @throws IllegalArgumentException if the width is negative or 0.
    * @throws IllegalArgumentException if the height is negative or 0.
    */
   private AnimationModelImpl(LinkedHashMap<String, IAnimatableShape> shapes, int leftMostX,
-      int topMostY, int width, int height) {
+                             int topMostY, int width, int height) {
     super(shapes, leftMostX, topMostY, width, height);
   }
 
@@ -142,12 +143,12 @@ public final class AnimationModelImpl extends AbstractAnimationModel {
 
     @Override
     public AnimationBuilder<AnimationModel> addMotion(String name, int t1, int x1, int y1, int w1,
-        int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2,
-        int b2) {
+                                                      int h1, int r1, int g1, int b1, int t2, int x2, int y2, int w2, int h2, int r2, int g2,
+                                                      int b2) {
       IMotion m = new Motion(t1, new Point2D.Double(x1, y1), new Dimension(w1, h1),
-          new Color(r1, g1, b1));
+              new Color(r1, g1, b1));
       IMotion m2 = new Motion(t2, new Point2D.Double(x2, y2), new Dimension(w2, h2),
-          new Color(r2, g2, b2));
+              new Color(r2, g2, b2));
       if (!shapes.containsKey(name)) {
         throw new IllegalArgumentException("Trying to add a motion to a shape that doesn't exist.");
       }
@@ -158,7 +159,7 @@ public final class AnimationModelImpl extends AbstractAnimationModel {
 
     @Override
     public AnimationBuilder<AnimationModel> addKeyframe(String name, int t, int x, int y, int w,
-        int h, int r, int g, int b) {
+                                                        int h, int r, int g, int b) {
       IMotion m = new Motion(t, new Point2D.Double(x, y), new Dimension(w, h), new Color(r, g, b));
       if (!shapes.containsKey(name)) {
         throw new IllegalArgumentException("Trying to add a motion to a shape that doesn't exist.");
@@ -175,7 +176,7 @@ public final class AnimationModelImpl extends AbstractAnimationModel {
      */
     public AnimationModel build() {
       return new AnimationModelImpl(this.shapes, this.leftMostX, this.topMostY, this.width,
-          this.height);
+              this.height);
     }
   }
 }

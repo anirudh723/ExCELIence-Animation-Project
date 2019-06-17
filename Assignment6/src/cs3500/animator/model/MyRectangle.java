@@ -13,8 +13,8 @@ public class MyRectangle extends AbstractShape {
    * Constructs a MyRectangle.
    *
    * @param dimension the dimension of the Rectangle.
-   * @param color the color of the Rectangle.
-   * @param position the position of the Rectangle.
+   * @param color     the color of the Rectangle.
+   * @param position  the position of the Rectangle.
    * @throws IllegalArgumentException if the width or height of this Rectangle is negative.
    * @throws IllegalArgumentException if the position coordinates of this Rectangle are negative.
    */

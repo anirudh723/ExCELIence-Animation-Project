@@ -5,8 +5,10 @@ import static org.junit.Assert.assertEquals;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -77,8 +79,8 @@ public class AnimatableShapeTest {
 
     animatableRectangle = new AnimatableShape(rectangle, new ArrayList<>());
     animatableEllipse = new AnimatableShape(ellipse, new ArrayList<>());
-     iAnimatableShapeReadOnly = new AnimatableShapeReadOnly(animatableRectangle);
-     iAnimatableShapeReadOnly2 = new AnimatableShapeReadOnly(animatableEllipse);
+    iAnimatableShapeReadOnly = new AnimatableShapeReadOnly(animatableRectangle);
+    iAnimatableShapeReadOnly2 = new AnimatableShapeReadOnly(animatableEllipse);
   }
 
   /**

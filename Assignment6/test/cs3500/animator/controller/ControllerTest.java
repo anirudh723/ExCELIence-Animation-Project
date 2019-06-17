@@ -3,11 +3,15 @@ package cs3500.animator.controller;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import java.awt.*;
+
+import java.awt.Point;
+import java.awt.Dimension;
+import java.awt.Color;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.AnimationModelImpl;
 import cs3500.animator.model.IReadOnlyAnimationModel;
@@ -32,9 +36,10 @@ public class ControllerTest {
   /**
    * Initializes the data to test specific methods.
    */
-  public void init(){
-    model = AnimationModelImpl.builder().setWidth(200).setHeight(200).setX(10).setY(10).declareShape(
-            "R", "rectangle").declareShape("E", "ellipse").build();
+  public void init() {
+    model = AnimationModelImpl.builder()
+            .setWidth(200).setHeight(200).setX(10).setY(10).declareShape(
+                    "R", "rectangle").declareShape("E", "ellipse").build();
     model.addMotion("R", new Motion(10, new Point(10, 10),
             new Dimension(20, 20), Color.red));
     model.addMotion("R", new Motion(12, new Point(12, 12),
@@ -47,21 +52,21 @@ public class ControllerTest {
 
     shapesAt10 = new ArrayList<>();
     shapesAt10.add(new ArrayList<>(Arrays.asList("10.0", "10.0",
-        "20.0", "20.0", "255", "0", "0", "rectangle")));
+            "20.0", "20.0", "255", "0", "0", "rectangle")));
     shapesAt10.add(new ArrayList<>(Arrays.asList("10.0", "10.0",
-        "20.0", "20.0", "0", "255", "0", "ellipse")));
+            "20.0", "20.0", "0", "255", "0", "ellipse")));
 
     shapesAt11 = new ArrayList<>();
     shapesAt11.add(new ArrayList<>(Arrays.asList("11.0", "11.0",
-        "20.0", "20.0", "255", "0", "0", "rectangle")));
+            "20.0", "20.0", "255", "0", "0", "rectangle")));
     shapesAt11.add(new ArrayList<>(Arrays.asList("10.0", "10.0",
-        "21.0", "21.0", "0", "255", "0", "ellipse")));
+            "21.0", "21.0", "0", "255", "0", "ellipse")));
 
     shapesAt12 = new ArrayList<>();
     shapesAt12.add(new ArrayList<>(Arrays.asList("12.0", "12.0",
-        "20.0", "20.0", "255", "0", "0", "rectangle")));
+            "20.0", "20.0", "255", "0", "0", "rectangle")));
     shapesAt12.add(new ArrayList<>(Arrays.asList("10.0", "10.0",
-        "22.0", "22.0", "0", "255", "0", "ellipse")));
+            "22.0", "22.0", "0", "255", "0", "ellipse")));
 
     readModel = new ReadOnlyAnimationModel(model);
     view = new SVGView(new StringBuilder(), new InputStreamReader(System.in),

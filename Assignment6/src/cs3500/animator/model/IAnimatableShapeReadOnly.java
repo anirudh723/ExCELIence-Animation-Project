@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 import java.util.List;
 
 /**
- * Represents a read only version
+ * Represents a read only version.
  */
 public interface IAnimatableShapeReadOnly {
 

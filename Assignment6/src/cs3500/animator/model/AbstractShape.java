@@ -19,8 +19,8 @@ public abstract class AbstractShape implements IShape {
    * Constructs an abstract Shape.
    *
    * @param dimension the width and height of the Shape.
-   * @param color the color of the Shape.
-   * @param position the position of the Shape.
+   * @param color     the color of the Shape.
+   * @param position  the position of the Shape.
    * @throws IllegalArgumentException if Dimension is null.
    * @throws IllegalArgumentException if the width or height of a shape is negative.
    * @throws IllegalArgumentException if Position is null.
