@@ -1,18 +1,16 @@
 package cs3500.animator.view;
 
-import com.intellij.openapi.ui.ComboBox;
-import com.intellij.ui.components.JBList;
-import cs3500.animator.controller.Controller;
 import cs3500.animator.controller.Features;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
-import gherkin.formatter.model.Feature;
+
+
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
+
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -45,6 +43,7 @@ public class EditorView extends AbstractView {
   private JTextField redField;
   private JTextField greenField;
   private JTextField blueField;
+  private JTextField tickField;
 
   private JButton addShapeButton;
   private JButton removeShapeButton;
@@ -67,7 +66,7 @@ public class EditorView extends AbstractView {
    * @throws UnsupportedOperationException if the given view to build on is not a visual view.
    */
   public EditorView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model,
-      IView visualView, Features features) {
+                    IView visualView, Features features) {
     super(ap, rd, ticksPerSecond, model);
     if (visualView.getViewType() != ViewType.VISUAL) {
       throw new UnsupportedOperationException("Editor View only supports Visual Views");
@@ -80,9 +79,9 @@ public class EditorView extends AbstractView {
     shapeNames = getShapeNames().toArray(new String[0]);
 
     shapeName = new JTextField("Shape Name");
-    shapeType = new ComboBox<String>(new String[]{"rectangle", "ellipse"});
-    shapesDropdown = new ComboBox<>(shapeNames);
-    keyframesDropdown = new JBList<String>();
+    shapeType = new JComboBox<String>(new String[]{"rectangle", "ellipse"});
+    shapesDropdown = new JComboBox<>(shapeNames);
+    keyframesDropdown = new JList<String>();
     keyframesDropdown.setFixedCellWidth(100);
 
     addShapeButton = new JButton("Add Shape");
@@ -90,6 +89,16 @@ public class EditorView extends AbstractView {
     addKeyframeButton = new JButton("Add KeyFrame");
     removeKeyframeButton = new JButton("Remove KeyFrame");
     editKeyframeButton = new JButton("Edit KeyFrame");
+
+
+    dimensionWidthField = new JTextField("width");
+    dimensionHeightField = new JTextField("height");
+    positionXField = new JTextField("x");
+    positionYField = new JTextField("y");
+    redField = new JTextField("r");
+    greenField = new JTextField("g");
+    blueField = new JTextField("b");
+    tickField = new JTextField("tick");
 
     shapesPanel = new DrawingPanel();
     shapesPanel.add(shapesDropdown);
@@ -99,6 +108,18 @@ public class EditorView extends AbstractView {
     shapesPanel.add(removeKeyframeButton);
     shapesPanel.add(editKeyframeButton);
     shapesPanel.add(keyframesDropdown);
+
+
+    shapesPanel.add(positionXField);
+    shapesPanel.add(positionYField);
+    shapesPanel.add(dimensionWidthField);
+    shapesPanel.add(dimensionHeightField);
+    shapesPanel.add(dimensionWidthField);
+    shapesPanel.add(redField);
+    shapesPanel.add(greenField);
+    shapesPanel.add(blueField);
+    shapesPanel.add(tickField);
+
 
     //keyframesPanel = new DrawingPanel();
 
@@ -120,12 +141,28 @@ public class EditorView extends AbstractView {
     decreaseSpeedButton.addActionListener(event -> features.decreaseSpeed());
 
     shapesDropdown.addActionListener(event ->
-        keyframesDropdown.setListData(features.showKeyframes(shapesDropdown
-            .getItemAt(shapesDropdown.getSelectedIndex())).toArray(new String[0])));
-    addShapeButton.addActionListener(event -> features.addShape(shapesDropdown.getSelectedItem()));
-    removeShapeButton.addActionListener(event -> features.removeShape());
-    addKeyframeButton.addActionListener(event -> features.addKeyFrame());
-    removeKeyframeButton.addActionListener(event -> features.removeKeyFrame());
+            keyframesDropdown.setListData(features
+                    .showKeyframes(shapesDropdown.getItemAt(shapesDropdown
+                            .getSelectedIndex())).toArray(new String[0])));
+    addShapeButton.addActionListener(event -> features
+            .addShape(shapesDropdown.getSelectedItem().toString(), shapeName.getText()));
+    removeShapeButton.addActionListener(event -> features
+            .removeShape(shapesDropdown.getSelectedItem().toString().split(" ")[0]));
+
+    addKeyframeButton.addActionListener(event -> features
+            .addKeyFrame(shapesDropdown.getSelectedItem().toString().split(" ")[0]
+                    , Integer.parseInt(tickField.getText())
+                    , Integer.parseInt(positionXField.getText())
+                    , Integer.parseInt(positionYField.getText())
+                    , Integer.parseInt(dimensionWidthField.getText())
+                    , Integer.parseInt(dimensionWidthField.getText())
+                    , Integer.parseInt(redField.getText())
+                    , Integer.parseInt(greenField.getText())
+                    , Integer.parseInt(blueField.getText())));
+
+    removeKeyframeButton.addActionListener(event -> features
+            .removeKeyFrame(shapesDropdown.getSelectedItem().toString(),
+                    keyframesDropdown.getSelectedValue()));
 
     this.editorPanel.add(startButton);
     this.editorPanel.add(restartButton);
@@ -160,7 +197,7 @@ public class EditorView extends AbstractView {
 
   private ArrayList<String> getShapeNames() {
     ArrayList<String> shapeNames = new ArrayList<>();
-    for(String shapeName : model.getShapeMap().keySet()) {
+    for (String shapeName : model.getShapeMap().keySet()) {
       shapeNames.add(shapeName + " " + model.getShapeMap().get(shapeName).getType());
     }
     return shapeNames;
@@ -168,7 +205,7 @@ public class EditorView extends AbstractView {
 
   private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
     ArrayList<String> keyFramesInfo = new ArrayList<>();
-    for(IMotion motion : shape.getMotions()) {
+    for (IMotion motion : shape.getMotions()) {
       keyFramesInfo.add(motion.writeMotion());
     }
     return keyFramesInfo;
