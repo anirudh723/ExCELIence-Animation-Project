@@ -1,5 +1,6 @@
 package cs3500.animator;
 
+import cs3500.animator.model.AnimationModel;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -76,25 +77,25 @@ public class Excellence {
       try {
 
         Readable input = new FileReader(config.get("-in"));
-        IReadOnlyAnimationModel readModel
-                = new ReadOnlyAnimationModel(AnimationReader.parseFile(input,
-                new AnimationModelImpl.Builder()));
+        AnimationModel model = AnimationReader.parseFile(input,
+            new AnimationModelImpl.Builder());
+        IReadOnlyAnimationModel readModel = new ReadOnlyAnimationModel(model);
 
         int ticksPerSec = Integer.parseInt(config.getOrDefault("-speed", "1"));
         String filePath = config.get("-out");
         if (filePath == null) {
           // Runs the controller, printing the result
           IView view = new ViewFactory().create(System.out, input, config.get("-view"),
-                  ticksPerSec, readModel);
-          IController controller = new Controller(readModel, view);
+                  ticksPerSec, model);
+          IController controller = new Controller(model, view);
           controller.run();
         } else {
           // Creates an appendable FileWriter, runs the controller, closes the FileWriter,
           // writing the result to the target output file
           FileWriter output = new FileWriter(config.get("-out"), true);
           IView view = new ViewFactory().create(output, input, config.get("-view"),
-                  ticksPerSec, readModel);
-          IController controller = new Controller(readModel, view);
+                  ticksPerSec, model);
+          IController controller = new Controller(model, view);
           controller.run();
           output.close();
         }

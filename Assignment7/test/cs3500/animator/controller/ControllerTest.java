@@ -71,7 +71,7 @@ public class ControllerTest {
     readModel = new ReadOnlyAnimationModel(model);
     view = new SVGView(new StringBuilder(), new InputStreamReader(System.in),
             1, readModel);
-    controller = new Controller(readModel, view);
+    controller = new Controller(model, view);
   }
 
   @Test

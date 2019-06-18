@@ -3,10 +3,7 @@ package cs3500.animator.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public interface ICommand extends ActionListener {
+public interface ICommand extends Features {
 
-  @Override
-  void actionPerformed(ActionEvent e);
-
-  int go(int tick);
+ // int go(int tick);
 }

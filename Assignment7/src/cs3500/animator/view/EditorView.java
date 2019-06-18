@@ -1,31 +1,64 @@
 package cs3500.animator.view;
 
-import cs3500.animator.controller.ICommand;
-import cs3500.animator.controller.LoopCommand;
-import cs3500.animator.controller.PauseCommand;
-import cs3500.animator.controller.RestartCommand;
-import cs3500.animator.controller.ResumeCommand;
-import cs3500.animator.controller.RewindCommand;
-import cs3500.animator.controller.SpeedCommand;
-import cs3500.animator.controller.StartCommand;
+import com.intellij.openapi.ui.ComboBox;
+import com.intellij.ui.components.JBList;
+import cs3500.animator.controller.Controller;
+import cs3500.animator.controller.Features;
+import cs3500.animator.model.IAnimatableShapeReadOnly;
+import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
+import gherkin.formatter.model.Feature;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JList;
+import javax.swing.JTextField;
 
 public class EditorView extends AbstractView {
+  private JFrame delegate;
   private IView visualView;
+  private Features features;
+
   private DrawingPanel visualPanel;
   private DrawingPanel editorPanel;
+  private DrawingPanel shapesPanel;
+  private DrawingPanel keyframesPanel;
+
+  String[] shapeNames;
+
+  private JComboBox<String> shapesDropdown;
+  private JList<String> keyframesDropdown;
+
+  private JTextField shapeName;
+  private JComboBox<String> shapeType;
+
+
+  private JTextField dimensionWidthField;
+  private JTextField dimensionHeightField;
+  private JTextField positionXField;
+  private JTextField positionYField;
+  private JTextField redField;
+  private JTextField greenField;
+  private JTextField blueField;
+
+  private JButton addShapeButton;
+  private JButton removeShapeButton;
+  private JButton addKeyframeButton;
+  private JButton removeKeyframeButton;
+  private JButton editKeyframeButton;
   private JButton startButton;
   private JButton restartButton;
   private JButton pauseButton;
   private JButton resumeButton;
   private JButton loopButton;
-  private JButton speedButton;
-  private JFrame delegate;
+  private JButton increaseSpeedButton;
+  private JButton decreaseSpeedButton;
+
 
   /**
    * Constructs an Editor View.
@@ -34,47 +67,78 @@ public class EditorView extends AbstractView {
    * @throws UnsupportedOperationException if the given view to build on is not a visual view.
    */
   public EditorView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model,
-      IView visualView) {
+      IView visualView, Features features) {
     super(ap, rd, ticksPerSecond, model);
     if (visualView.getViewType() != ViewType.VISUAL) {
       throw new UnsupportedOperationException("Editor View only supports Visual Views");
     }
     this.visualView = visualView;
+    this.features = features;
     delegate = this.visualView.getFrame();
-
     this.editorPanel = new DrawingPanel();
+
+    shapeNames = getShapeNames().toArray(new String[0]);
+
+    shapeName = new JTextField("Shape Name");
+    shapeType = new ComboBox<String>(new String[]{"rectangle", "ellipse"});
+    shapesDropdown = new ComboBox<>(shapeNames);
+    keyframesDropdown = new JBList<String>();
+    keyframesDropdown.setFixedCellWidth(100);
+
+    addShapeButton = new JButton("Add Shape");
+    removeShapeButton = new JButton("Remove Shape");
+    addKeyframeButton = new JButton("Add KeyFrame");
+    removeKeyframeButton = new JButton("Remove KeyFrame");
+    editKeyframeButton = new JButton("Edit KeyFrame");
+
+    shapesPanel = new DrawingPanel();
+    shapesPanel.add(shapesDropdown);
+    shapesPanel.add(addShapeButton);
+    shapesPanel.add(removeShapeButton);
+    shapesPanel.add(addKeyframeButton);
+    shapesPanel.add(removeKeyframeButton);
+    shapesPanel.add(editKeyframeButton);
+    shapesPanel.add(keyframesDropdown);
+
+    //keyframesPanel = new DrawingPanel();
+
 
     startButton = new JButton("Start");
     restartButton = new JButton("Restart");
     pauseButton = new JButton("Pause");
     resumeButton = new JButton("Resume");
     loopButton = new JButton("Loop");
-    speedButton = new JButton("Speed");
+    increaseSpeedButton = new JButton("Increase Speed");
+    decreaseSpeedButton = new JButton("Decrease Speed");
 
-    ICommand startCommand = new StartCommand();
-    ICommand restartCommand = new RestartCommand();
-    ICommand pauseCommand = new PauseCommand();
-    ICommand resumeCommand = new ResumeCommand();
-    ICommand loopCommand = new LoopCommand();
-    ICommand speedCommand = new SpeedCommand();
+    startButton.addActionListener(event -> features.start());
+    restartButton.addActionListener(event -> features.restart());
+    pauseButton.addActionListener(event -> features.pause());
+    resumeButton.addActionListener(event -> features.resume());
+    loopButton.addActionListener(event -> features.loop());
+    increaseSpeedButton.addActionListener(event -> features.increaseSpeed());
+    decreaseSpeedButton.addActionListener(event -> features.decreaseSpeed());
 
-    startButton.addActionListener(startCommand);
-    restartButton.addActionListener(restartCommand);
-    pauseButton.addActionListener(pauseCommand);
-    resumeButton.addActionListener(resumeCommand);
-    loopButton.addActionListener(loopCommand);
-    speedButton.addActionListener(speedCommand);
+    shapesDropdown.addActionListener(event ->
+        keyframesDropdown.setListData(features.showKeyframes(shapesDropdown
+            .getItemAt(shapesDropdown.getSelectedIndex())).toArray(new String[0])));
+    addShapeButton.addActionListener(event -> features.addShape(shapesDropdown.getSelectedItem()));
+    removeShapeButton.addActionListener(event -> features.removeShape());
+    addKeyframeButton.addActionListener(event -> features.addKeyFrame());
+    removeKeyframeButton.addActionListener(event -> features.removeKeyFrame());
 
     this.editorPanel.add(startButton);
     this.editorPanel.add(restartButton);
     this.editorPanel.add(pauseButton);
     this.editorPanel.add(resumeButton);
     this.editorPanel.add(loopButton);
-    this.editorPanel.add(speedButton);
+    this.editorPanel.add(increaseSpeedButton);
+    this.editorPanel.add(decreaseSpeedButton);
 
     this.visualPanel = this.visualView.getPanel();
-    this.delegate.add(this.visualPanel, BorderLayout.CENTER);
-    this.delegate.add(editorPanel, BorderLayout.SOUTH);
+    this.delegate.add(this.visualPanel, BorderLayout.EAST);
+    this.delegate.add(this.editorPanel, BorderLayout.SOUTH);
+    this.delegate.add(this.shapesPanel, BorderLayout.WEST);
     this.delegate.pack();
     this.delegate.setVisible(true);
   }
@@ -92,5 +156,21 @@ public class EditorView extends AbstractView {
   @Override
   public ViewType getViewType() {
     return ViewType.EDITOR;
+  }
+
+  private ArrayList<String> getShapeNames() {
+    ArrayList<String> shapeNames = new ArrayList<>();
+    for(String shapeName : model.getShapeMap().keySet()) {
+      shapeNames.add(shapeName + " " + model.getShapeMap().get(shapeName).getType());
+    }
+    return shapeNames;
+  }
+
+  private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
+    ArrayList<String> keyFramesInfo = new ArrayList<>();
+    for(IMotion motion : shape.getMotions()) {
+      keyFramesInfo.add(motion.writeMotion());
+    }
+    return keyFramesInfo;
   }
 }

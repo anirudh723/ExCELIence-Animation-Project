@@ -1,6 +1,9 @@
 package cs3500.animator;
 
+import cs3500.animator.controller.Controller;
+import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.IReadOnlyAnimationModel;
+import cs3500.animator.model.ReadOnlyAnimationModel;
 import cs3500.animator.view.EditorView;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.SVGView;
@@ -25,17 +28,18 @@ final class ViewFactory {
    *                                  implementation.
    */
   final IView create(Appendable output, Readable input, String viewType, int speed,
-                     IReadOnlyAnimationModel model) throws IllegalArgumentException {
+                     AnimationModel model) throws IllegalArgumentException {
+    IView visualView = new VisualView(output, input, speed, new ReadOnlyAnimationModel(model));
     switch (viewType) {
       case "text":
-        return new TextView(output, input, speed, model);
+        return new TextView(output, input, speed, new ReadOnlyAnimationModel(model));
       case "svg":
-        return new SVGView(output, input, speed, model);
+        return new SVGView(output, input, speed, new ReadOnlyAnimationModel(model));
       case "visual":
-        return new VisualView(output, input, speed, model);
-      case "editor":
-        return new EditorView(output, input, speed, model, new VisualView(output, input, speed,
-            model));
+        return visualView;
+      case "edit":
+        return new EditorView(output, input, speed, new ReadOnlyAnimationModel(model), visualView,
+            new Controller(model, visualView));
       default:
         throw new IllegalArgumentException("Invalid view type");
     }

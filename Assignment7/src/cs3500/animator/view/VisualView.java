@@ -54,7 +54,6 @@ public class VisualView extends AbstractView implements IView {
     delegate.add(scrollPane);
     delegate.pack();
     delegate.setVisible(true);
-
   }
 
   @Override
