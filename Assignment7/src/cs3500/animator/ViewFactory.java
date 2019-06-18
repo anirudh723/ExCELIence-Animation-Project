@@ -1,6 +1,7 @@
 package cs3500.animator;
 
 import cs3500.animator.model.IReadOnlyAnimationModel;
+import cs3500.animator.view.EditorView;
 import cs3500.animator.view.IView;
 import cs3500.animator.view.SVGView;
 import cs3500.animator.view.TextView;
@@ -32,6 +33,9 @@ final class ViewFactory {
         return new SVGView(output, input, speed, model);
       case "visual":
         return new VisualView(output, input, speed, model);
+      case "editor":
+        return new EditorView(output, input, speed, model, new VisualView(output, input, speed,
+            model));
       default:
         throw new IllegalArgumentException("Invalid view type");
     }

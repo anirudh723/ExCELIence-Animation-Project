@@ -1,5 +1,8 @@
 package cs3500.animator.view;
 
+import com.intellij.ui.components.JBScrollPane;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +11,9 @@ import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
@@ -17,8 +22,8 @@ import javax.swing.JScrollPane;
 public class VisualView extends AbstractView implements IView {
 
   private DrawingPanel panel;
-  ViewType type;
-  JFrame delegate = new JFrame();
+  private JPanel emptyPanel;
+  private JFrame delegate = new JFrame();
 
   /**
    * Constructs a Visual View. Sets the sizes of the frame and other specifications.
@@ -38,16 +43,20 @@ public class VisualView extends AbstractView implements IView {
     super(ap, rd, ticksPerSecond, model);
     type = ViewType.VISUAL;
     this.panel = new DrawingPanel();
-
-    panel.setMinimumSize(this.canvas);
-    panel.setPreferredSize(calculateMaxDimension());
-    JScrollPane scrollPane = new JScrollPane(panel);
-    delegate.setSize(this.canvas);
+    this.emptyPanel = new JPanel();
+    emptyPanel.setMinimumSize(new Dimension(50, 50));
+    //panel.setMinimumSize(calculateMaxDimension());
+    //panel.setPreferredSize(calculateMaxDimension());
+    JScrollPane scrollPane = new JBScrollPane(panel);
+    scrollPane.setSize(calculateMaxDimension());
+    delegate.setLayout(new BorderLayout());
+    delegate.setSize(calculateMaxDimension());
     delegate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    delegate.setLocation(250, 250);
+    delegate.setLocation(150, 150);
+    delegate.add(emptyPanel, BorderLayout.NORTH);
     delegate.add(scrollPane);
-
     delegate.setVisible(true);
+
   }
 
   @Override
@@ -61,24 +70,41 @@ public class VisualView extends AbstractView implements IView {
     throw new UnsupportedOperationException("Can not render in this IView implementation");
   }
 
-  @Override
-  public ViewType getViewType() {
-    return type;
-  }
-
   private Dimension calculateMaxDimension() {
-    int furthestRight = 0;
-    int furthestDown = 0;
+    int furthestX = 0;
+    int furthestY = 0;
+    int furthestWidth = 0;
+    int furthestHeight = 0;
     for (IAnimatableShapeReadOnly shape : this.model.getShapeMap().values()) {
       for (IMotion motion : shape.getMotions()) {
-        if (motion.getPosition().getX() > furthestRight) {
-          furthestRight = (int) (motion.getPosition().getX());
+        if (motion.getPosition().getX() > furthestX) {
+          furthestX = (int) ((motion.getPosition().getX()));
         }
-        if (motion.getPosition().getY() > furthestDown) {
-          furthestDown = (int) (motion.getPosition().getY());
+        if (motion.getPosition().getY() > furthestY) {
+          furthestY = (int) ((motion.getPosition().getY()));
+        }
+        if (motion.getDimension().getWidth() > furthestWidth) {
+          furthestWidth = (int) motion.getDimension().getWidth();
+        }
+        if (motion.getDimension().getHeight() > furthestHeight) {
+          furthestHeight = (int) motion.getDimension().getHeight();
         }
       }
     }
-    return new Dimension(furthestRight, furthestDown);
+    return new Dimension(furthestX + furthestWidth, furthestY + furthestHeight + 100);
+  }
+
+  @Override
+  public JFrame getFrame() {
+    return this.delegate;
+  }
+
+  @Override
+  public DrawingPanel getPanel() {
+    return this.panel;
+  }
+
+  public IReadOnlyAnimationModel getModel() {
+    return this.model;
   }
 }

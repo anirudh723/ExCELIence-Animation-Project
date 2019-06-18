@@ -202,9 +202,4 @@ public class SVGView extends AbstractView {
     render();
     return this.ap.toString();
   }
-
-  @Override
-  public ViewType getViewType() {
-    return type;
-  }
 }

@@ -7,6 +7,8 @@ import java.util.List;
 
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IReadOnlyAnimationModel;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Represents an abstracted version of the View.
@@ -18,6 +20,7 @@ public abstract class AbstractView implements IView {
   protected Dimension canvas;
   protected LinkedHashMap<String, IAnimatableShapeReadOnly> shapes;
   protected IReadOnlyAnimationModel model;
+  protected ViewType type = ViewType.EDITOR;
 
 
   /**
@@ -84,5 +87,20 @@ public abstract class AbstractView implements IView {
   @Override
   public int getTicksPerSecond() {
     return ticksPerSecond;
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return this.type;
+  }
+
+  @Override
+  public DrawingPanel getPanel() throws UnsupportedOperationException {
+    throw new UnsupportedOperationException("Cannot return a panel here.");
+  }
+
+  @Override
+  public JFrame getFrame() throws UnsupportedOperationException {
+    throw new UnsupportedOperationException("Cannot return a panel here.");
   }
 }

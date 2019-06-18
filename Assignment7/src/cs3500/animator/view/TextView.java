@@ -44,10 +44,4 @@ public class TextView extends AbstractView {
     }
     tryAppend(str.substring(0, str.toString().length() - 1));
   }
-
-  @Override
-  public ViewType getViewType() {
-    return type;
-  }
-
 }

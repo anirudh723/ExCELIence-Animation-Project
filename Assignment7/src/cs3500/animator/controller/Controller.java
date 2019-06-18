@@ -68,13 +68,15 @@ public class Controller implements IController {
     if (view.getViewType() == ViewType.TEXT) {
       view.render();
     }
+    if (view.getViewType() == ViewType.EDITOR) {
+      timer.start();
+    }
   }
 
   @Override
   public List<ArrayList<String>> getShapesAtTick(int tick) {
     List<ArrayList<String>> shapesAtTick = new ArrayList<>();
     ArrayList<String> data = new ArrayList<>();
-
     for (IAnimatableShapeReadOnly shape : model.getShapeMap().values()) {
       if (shape.getMotions().size() != 0) {
         if (shape.getMotions().size() == 1) {
@@ -87,18 +89,20 @@ public class Controller implements IController {
           shapesAtTick.add(data);
         } else {
           int index = relativeTickInMotions(shape.getMotions(), tick);
-          if (index == shape.getMotions().size() - 1) {
-            IMotion motion = shape.getMotions().get(shape.getMotions().size() - 1);
-            data = formatData(motion.getPosition().getX(), motion.getPosition().getY(),
-                    motion.getDimension().getWidth(), motion.getDimension().getHeight(),
-                    motion.getColor().getRed(), motion.getColor().getGreen(),
-                    motion.getColor().getBlue());
-            data.add(shape.getType());
-            shapesAtTick.add(data);
-          } else {
-            data = tween(shape.getMotions().get(index), shape.getMotions().get(index + 1), tick);
-            data.add(shape.getType());
-            shapesAtTick.add(data);
+          if (index != -1) {
+            if (index == shape.getMotions().size() - 1) {
+              IMotion motion = shape.getMotions().get(shape.getMotions().size() - 1);
+              data = formatData(motion.getPosition().getX(), motion.getPosition().getY(),
+                  motion.getDimension().getWidth(), motion.getDimension().getHeight(),
+                  motion.getColor().getRed(), motion.getColor().getGreen(),
+                  motion.getColor().getBlue());
+              data.add(shape.getType());
+              shapesAtTick.add(data);
+            } else {
+              data = tween(shape.getMotions().get(index), shape.getMotions().get(index + 1), tick);
+              data.add(shape.getType());
+              shapesAtTick.add(data);
+            }
           }
         }
       }

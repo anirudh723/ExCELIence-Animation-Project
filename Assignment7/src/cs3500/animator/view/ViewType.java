@@ -5,5 +5,5 @@ package cs3500.animator.view;
  * correct type of view.
  */
 public enum ViewType {
-  TEXT, VISUAL, SVG
+  TEXT, VISUAL, SVG, EDITOR;
 }
