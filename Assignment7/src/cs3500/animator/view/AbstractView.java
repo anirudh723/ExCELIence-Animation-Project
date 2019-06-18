@@ -20,7 +20,7 @@ public abstract class AbstractView implements IView {
   protected Dimension canvas;
   protected LinkedHashMap<String, IAnimatableShapeReadOnly> shapes;
   protected IReadOnlyAnimationModel model;
-  protected ViewType type = ViewType.EDITOR;
+  protected ViewType type;
 
 
   /**
@@ -90,9 +90,7 @@ public abstract class AbstractView implements IView {
   }
 
   @Override
-  public ViewType getViewType() {
-    return this.type;
-  }
+  public abstract ViewType getViewType();
 
   @Override
   public DrawingPanel getPanel() throws UnsupportedOperationException {

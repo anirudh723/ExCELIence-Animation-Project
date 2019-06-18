@@ -110,6 +110,23 @@ public class Controller implements IController {
     return shapesAtTick;
   }
 
+  @Override
+  public int getTick() {
+    return this.tick;
+  }
+
+  public int getMaxTick() {
+    return this.maxTick;
+  }
+
+  public int getTicksPerMilli() {
+    return this.tick;
+  }
+
+  public Timer getTimer() {
+    return this.timer;
+  }
+
   private ArrayList<String> tween(IMotion from, IMotion to, int tick) {
     double p1 = ((double) (to.getTick() - tick)) / ((double) (to.getTick() - from.getTick()));
     double p2 = ((double) (tick - from.getTick())) / ((double) (to.getTick() - from.getTick()));
@@ -147,5 +164,6 @@ public class Controller implements IController {
     }
     return motions.size() - 1;
   }
+
 
 }

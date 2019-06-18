@@ -1,29 +1,30 @@
 package cs3500.animator.view;
 
 import cs3500.animator.controller.ICommand;
+import cs3500.animator.controller.LoopCommand;
+import cs3500.animator.controller.PauseCommand;
+import cs3500.animator.controller.RestartCommand;
+import cs3500.animator.controller.ResumeCommand;
 import cs3500.animator.controller.RewindCommand;
+import cs3500.animator.controller.SpeedCommand;
 import cs3500.animator.controller.StartCommand;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 public class EditorView extends AbstractView {
-  IView visualView;
-  ViewType type;
-  DrawingPanel visualPanel;
-  DrawingPanel editorPanel;
-  JButton startButton;
-  JButton rewindButton;
-  JButton pauseButton;
-  JButton resumeButton;
-  JButton loopButton;
-  JButton speedButton;
+  private IView visualView;
+  private DrawingPanel visualPanel;
+  private DrawingPanel editorPanel;
+  private JButton startButton;
+  private JButton restartButton;
+  private JButton pauseButton;
+  private JButton resumeButton;
+  private JButton loopButton;
+  private JButton speedButton;
   private JFrame delegate;
 
   /**
@@ -35,44 +36,43 @@ public class EditorView extends AbstractView {
   public EditorView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model,
       IView visualView) {
     super(ap, rd, ticksPerSecond, model);
-    type = ViewType.EDITOR;
     if (visualView.getViewType() != ViewType.VISUAL) {
       throw new UnsupportedOperationException("Editor View only supports Visual Views");
     }
     this.visualView = visualView;
     delegate = this.visualView.getFrame();
-//    delegate.setLayout(new BorderLayout());
-//    delegate.setPreferredSize(new Dimension(1000, 1000));
-//    delegate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//    delegate.setBackground(Color.red);
 
     this.editorPanel = new DrawingPanel();
-    this.editorPanel.setBackground(Color.yellow);
-    //this.editorPanel.setMinimumSize(new Dimension(500, 500));
-   // this.editorPanel.setPreferredSize(new Dimension(500, 500));
-
-
-    ICommand startCommand = new StartCommand();
-    ICommand rewindCommand = new RewindCommand();
 
     startButton = new JButton("Start");
-    rewindButton = new JButton("Rewind");
+    restartButton = new JButton("Restart");
     pauseButton = new JButton("Pause");
     resumeButton = new JButton("Resume");
     loopButton = new JButton("Loop");
     speedButton = new JButton("Speed");
 
+    ICommand startCommand = new StartCommand();
+    ICommand restartCommand = new RestartCommand();
+    ICommand pauseCommand = new PauseCommand();
+    ICommand resumeCommand = new ResumeCommand();
+    ICommand loopCommand = new LoopCommand();
+    ICommand speedCommand = new SpeedCommand();
+
     startButton.addActionListener(startCommand);
-    rewindButton.addActionListener(rewindCommand);
+    restartButton.addActionListener(restartCommand);
+    pauseButton.addActionListener(pauseCommand);
+    resumeButton.addActionListener(resumeCommand);
+    loopButton.addActionListener(loopCommand);
+    speedButton.addActionListener(speedCommand);
 
     this.editorPanel.add(startButton);
-    this.editorPanel.add(rewindButton);
+    this.editorPanel.add(restartButton);
     this.editorPanel.add(pauseButton);
     this.editorPanel.add(resumeButton);
     this.editorPanel.add(loopButton);
     this.editorPanel.add(speedButton);
+
     this.visualPanel = this.visualView.getPanel();
-    this.visualPanel.setBorder(BorderFactory.createLineBorder(Color.black));
     this.delegate.add(this.visualPanel, BorderLayout.CENTER);
     this.delegate.add(editorPanel, BorderLayout.SOUTH);
     this.delegate.pack();
@@ -87,5 +87,10 @@ public class EditorView extends AbstractView {
   @Override
   public void renderGUIShapes(List<ArrayList<String>> shapesToRender) {
     this.visualView.renderGUIShapes(shapesToRender);
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return ViewType.EDITOR;
   }
 }

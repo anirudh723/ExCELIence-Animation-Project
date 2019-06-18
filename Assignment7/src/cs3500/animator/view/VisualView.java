@@ -4,6 +4,7 @@ import com.intellij.ui.components.JBScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,7 +24,6 @@ import javax.swing.JScrollPane;
 public class VisualView extends AbstractView implements IView {
 
   private DrawingPanel panel;
-  private JPanel emptyPanel;
   private JFrame delegate = new JFrame();
 
   /**
@@ -41,20 +42,17 @@ public class VisualView extends AbstractView implements IView {
    */
   public VisualView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, model);
-    type = ViewType.VISUAL;
     this.panel = new DrawingPanel();
-    this.emptyPanel = new JPanel();
-    emptyPanel.setMinimumSize(new Dimension(50, 50));
-    //panel.setMinimumSize(calculateMaxDimension());
-    //panel.setPreferredSize(calculateMaxDimension());
+    panel.setMinimumSize(calculateMaxDimension());
+    panel.setPreferredSize(calculateMaxDimension());
     JScrollPane scrollPane = new JBScrollPane(panel);
     scrollPane.setSize(calculateMaxDimension());
     delegate.setLayout(new BorderLayout());
-    delegate.setSize(calculateMaxDimension());
+    delegate.setSize(scrollPane.getWidth(), scrollPane.getHeight());
     delegate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    delegate.setLocation(150, 150);
-    delegate.add(emptyPanel, BorderLayout.NORTH);
+    delegate.setLocationRelativeTo(null);
     delegate.add(scrollPane);
+    delegate.pack();
     delegate.setVisible(true);
 
   }
@@ -91,7 +89,12 @@ public class VisualView extends AbstractView implements IView {
         }
       }
     }
-    return new Dimension(furthestX + furthestWidth, furthestY + furthestHeight + 100);
+    return new Dimension(furthestX + furthestWidth, furthestY + furthestHeight);
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return ViewType.VISUAL;
   }
 
   @Override

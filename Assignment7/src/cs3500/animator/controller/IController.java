@@ -8,4 +8,6 @@ public interface IController {
   void run();
 
   List<ArrayList<String>> getShapesAtTick(int tick);
+
+  int getTick();
 }

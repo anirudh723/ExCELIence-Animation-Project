@@ -2,14 +2,19 @@ package cs3500.animator.controller;
 
 import java.awt.event.ActionEvent;
 
-public class RewindCommand implements ICommand {
+public class SpeedCommand implements ICommand{
 
-  public RewindCommand() {
+  public SpeedCommand() {
 
   }
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println("Rewind button is clicked");
+
+  }
+
+  @Override
+  public int go(int tick) {
+    return 0;
   }
 }

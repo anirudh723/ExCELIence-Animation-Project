@@ -7,4 +7,6 @@ public interface ICommand extends ActionListener {
 
   @Override
   void actionPerformed(ActionEvent e);
+
+  int go(int tick);
 }

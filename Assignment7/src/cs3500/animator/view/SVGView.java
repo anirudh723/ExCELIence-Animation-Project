@@ -9,7 +9,6 @@ import cs3500.animator.model.IReadOnlyAnimationModel;
  * format. Works with a variety of output destinations.
  */
 public class SVGView extends AbstractView {
-  ViewType type;
 
   /**
    * Constructs an SVG view.
@@ -27,7 +26,6 @@ public class SVGView extends AbstractView {
    */
   public SVGView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, model);
-    type = ViewType.SVG;
   }
 
   @Override
@@ -201,5 +199,10 @@ public class SVGView extends AbstractView {
   public String getOutputAsString() {
     render();
     return this.ap.toString();
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return ViewType.SVG;
   }
 }

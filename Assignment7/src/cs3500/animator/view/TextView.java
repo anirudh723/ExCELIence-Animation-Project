@@ -9,7 +9,6 @@ import cs3500.animator.model.IReadOnlyAnimationModel;
  * a variety of output sources.
  */
 public class TextView extends AbstractView {
-  private ViewType type;
 
   /**
    * Constructs a textual view.
@@ -27,7 +26,6 @@ public class TextView extends AbstractView {
    */
   public TextView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, model);
-    type = ViewType.TEXT;
   }
 
   @Override
@@ -43,5 +41,10 @@ public class TextView extends AbstractView {
       str.append(this.shapes.get(key).outputMotions(key));
     }
     tryAppend(str.substring(0, str.toString().length() - 1));
+  }
+
+  @Override
+  public ViewType getViewType() {
+    return ViewType.TEXT;
   }
 }
