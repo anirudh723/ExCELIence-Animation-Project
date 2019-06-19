@@ -31,4 +31,6 @@ public interface Features {
 
   void editKeyFrame(String keyFrameInfo);
 
+  int getCurrentTick();
+
 }

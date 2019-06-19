@@ -281,10 +281,17 @@ public class Controller implements IController, Features {
 
   }
 
+  @Override
+  public int getCurrentTick() {
+    return this.tick;
+  }
+
   private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
     ArrayList<String> keyFramesInfo = new ArrayList<>();
-    for(IMotion motion : shape.getMotions()) {
-      keyFramesInfo.add(motion.writeMotion());
+    if(keyFramesInfo.size() > 0) {
+      for (IMotion motion : shape.getMotions()) {
+        keyFramesInfo.add(motion.writeMotion());
+      }
     }
     return keyFramesInfo;
   }
