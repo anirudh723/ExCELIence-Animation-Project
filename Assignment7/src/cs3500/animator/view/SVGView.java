@@ -83,10 +83,20 @@ public class SVGView extends AbstractView {
           animate(fromMotion.getTick(), durInMS, "x", fromX, toX, "freeze", name);
           animate(fromMotion.getTick(), durInMS, "y", fromY, toY, "freeze", name);
         }
-        animate(fromMotion.getTick(), durInMS, "width",
-                fromWidth, toWidth, "freeze", name);
-        animate(fromMotion.getTick(), durInMS, "height",
-                fromHeight, toHeight, "freeze", name);
+
+
+        if (shape.getType().contains("ellipse")) {
+          animate(fromMotion.getTick(), durInMS, "rx",
+                  fromWidth, toWidth, "freeze", name);
+          animate(fromMotion.getTick(), durInMS, "ry",
+                  fromWidth, toWidth, "freeze", name);
+        } else {
+          animate(fromMotion.getTick(), durInMS, "width",
+                  fromWidth, toWidth, "freeze", name);
+          animate(fromMotion.getTick(), durInMS, "height",
+                  fromHeight, toHeight, "freeze", name);
+        }
+
         animateColor(fromMotion.getTick(), durInMS, fromRGB, toRGB, "freeze", name);
       }
     }
@@ -98,15 +108,27 @@ public class SVGView extends AbstractView {
     begin = ticksToMiliseconds((double) begin);
 
     if (dur > 0) {
-      tryAppend(" <animate "
-              + "xlink:href=\"#" + name + "\" "
-              + "attributeType=\"xml\" "
-              + "begin=\"" + begin + "ms\" "
-              + "dur=\"" + dur + "ms\" "
-              + "attributeName=\"" + attributeName + "\" "
-              + "from=\"" + from + "\" "
-              + "to=\"" + to + "\" "
-              + "fill=\"" + fill + "\" /> \n");
+      if(attributeName.equals("rx")|| attributeName.equals("ry")){
+        tryAppend(" <animate "
+                + "xlink:href=\"#" + name + "\" "
+                + "attributeType=\"xml\" "
+                + "begin=\"" + begin + "ms\" "
+                + "dur=\"" + dur + "ms\" "
+                + "attributeName=\"" + attributeName + "\" "
+                + "from=\"" + from / 2 + "\" "
+                + "to=\"" + to / 2  + "\" "
+                + "fill=\"" + fill + "\" /> \n");
+      } else {
+        tryAppend(" <animate "
+                + "xlink:href=\"#" + name + "\" "
+                + "attributeType=\"xml\" "
+                + "begin=\"" + begin + "ms\" "
+                + "dur=\"" + dur + "ms\" "
+                + "attributeName=\"" + attributeName + "\" "
+                + "from=\"" + from + "\" "
+                + "to=\"" + to + "\" "
+                + "fill=\"" + fill + "\" /> \n");
+      }
     }
   }
 

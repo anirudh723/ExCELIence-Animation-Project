@@ -7,7 +7,11 @@ import cs3500.animator.model.IReadOnlyAnimationModel;
 
 
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -32,7 +36,8 @@ public class EditorView extends AbstractView {
   private JTextField shapeNameField;
   //dropdown of shape types, rectangle and ellipse
   private JComboBox<String> shapeTypeDropdown;
-  private JLabel tickLabel;
+  private JLabel speedLabel;
+
 
   //text fields for adding a motion
   private JTextField dimensionWidthField;
@@ -60,6 +65,24 @@ public class EditorView extends AbstractView {
   private JButton increaseSpeedButton;
   private JButton decreaseSpeedButton;
 
+  boolean addShapeFlag = false;
+  boolean removeShapeFlag = false;
+  boolean addKeyframeFlag = false;
+  boolean removeKeyframeFlag = false;
+  boolean editKeyframeFlag = false;
+  boolean shapeTypeFlag = false;
+  boolean shapeNameFlag = false;
+  boolean allFieldsFilledFlag = false;
+
+//  boolean tickFieldFlag;
+//  boolean xFieldFlag;
+//  boolean yFieldFlag;
+//  boolean widthFieldFlag;
+//  boolean heightFieldFlag;
+//  boolean redFieldFlag;
+//  boolean greenFieldFlag;
+//  boolean blueFieldFlag;
+
 
   /**
    * Constructs an Editor View.
@@ -80,37 +103,33 @@ public class EditorView extends AbstractView {
 
     shapeNames = getShapeNames().toArray(new String[0]);
 
-    shapeNameField = new JTextField("Shape Name");
+    shapeNameField = new JTextField();
+    shapeNameField.setPreferredSize(new Dimension(90, 20));
     shapeTypeDropdown = new JComboBox<String>(new String[]{"rectangle", "ellipse"});
     shapesDropdown = new JComboBox<>(shapeNames);
     keyframesDropdown = new JComboBox<String>();
-//    keyframesDropdown.setFixedCellWidth(200);
-    tickLabel = new JLabel("Tick: " + this.features.getCurrentTick());
+    speedLabel = new JLabel("speed2: " + features.getTicksPerMilisecond());
+
 
     addShapeButton = new JButton("Add Shape");
-    addShapeButton.setBackground(new Color(200, 200, 100));
-    addShapeButton.setOpaque(true);
     addShapeButton.setPreferredSize(new Dimension(200, 20));
+    addShapeButton.setEnabled(shapeNameFlag && shapeTypeFlag);
 
     removeShapeButton = new JButton("Remove Shape");
-    removeShapeButton.setBackground(new Color(200, 200, 100));
-    removeShapeButton.setOpaque(true);
     removeShapeButton.setPreferredSize(new Dimension(200, 20));
+    removeShapeButton.setEnabled(removeShapeFlag);
 
     addKeyframeButton = new JButton("Add KeyFrame");
-    addKeyframeButton.setBackground(new Color(200, 100, 200));
-    addKeyframeButton.setOpaque(true);
     addKeyframeButton.setPreferredSize(new Dimension(200, 20));
+//    addKeyframeButton.setEnabled(addKeyframeFlag);
 
     removeKeyframeButton = new JButton("Remove KeyFrame");
-    removeKeyframeButton.setBackground(new Color(200, 100, 200));
-    removeKeyframeButton.setOpaque(true);
     removeKeyframeButton.setPreferredSize(new Dimension(200, 20));
+    removeKeyframeButton.setEnabled(removeKeyframeFlag);
 
     editKeyframeButton = new JButton("Edit KeyFrame");
-    editKeyframeButton.setBackground(new Color(100, 200, 200));
-    editKeyframeButton.setOpaque(true);
     editKeyframeButton.setPreferredSize(new Dimension(200, 20));
+//    editKeyframeButton.setEnabled(editKeyframeFlag);
 
 
     positionXField = new JTextField();
@@ -187,14 +206,33 @@ public class EditorView extends AbstractView {
     pauseButton.addActionListener(event -> features.pause());
     resumeButton.addActionListener(event -> features.resume());
     loopButton.addActionListener(event -> features.loop());
-    increaseSpeedButton.addActionListener(event -> features.increaseSpeed());
-    decreaseSpeedButton.addActionListener(event -> features.decreaseSpeed());
+    increaseSpeedButton.addActionListener(event -> handleIncreaseSpeedButton());
+    decreaseSpeedButton.addActionListener(event -> handleDecreaseSpeedButton());
 
     shapesDropdown.addActionListener(event -> handleShapeDropdown());
+    keyframesDropdown.addActionListener(event -> handleKeyframeDropdown());
+    shapeTypeDropdown.addActionListener(event -> handleTypeDropdown());
     addShapeButton.addActionListener(event -> handleAddShapeButton());
     removeShapeButton.addActionListener(event -> handleRemoveShapeButton());
     addKeyframeButton.addActionListener(event -> handleAddKeyframeButton());
     removeKeyframeButton.addActionListener(event -> handleRemoveKeyframeButton());
+    editKeyframeButton.addActionListener(event -> handleEditKeyframeButton());
+    shapeNameField.addKeyListener(new KeyListener() {
+      @Override
+      public void keyTyped(KeyEvent e) {
+        shapeNameFlag = true;
+        addShapeButton.setEnabled(true);
+      }
+
+      @Override
+      public void keyPressed(KeyEvent e) {
+      }
+
+      @Override
+      public void keyReleased(KeyEvent e) {
+      }
+    });
+
 
     this.playbackPanel.add(startButton);
     this.playbackPanel.add(restartButton);
@@ -203,7 +241,7 @@ public class EditorView extends AbstractView {
     this.playbackPanel.add(loopButton);
     this.playbackPanel.add(increaseSpeedButton);
     this.playbackPanel.add(decreaseSpeedButton);
-    this.playbackPanel.add(tickLabel);
+    this.playbackPanel.add(speedLabel);
 
     this.visualPanel = this.visualView.getPanel();
     this.delegate.add(this.visualPanel, BorderLayout.EAST);
@@ -214,39 +252,95 @@ public class EditorView extends AbstractView {
     this.delegate.setVisible(true);
   }
 
+  private void handleIncreaseSpeedButton() {
+    features.increaseSpeed();
+    speedLabel.setText("speed: " + features.getTicksPerMilisecond());
+
+  }
+
+  private void handleDecreaseSpeedButton() {
+    features.decreaseSpeed();
+    speedLabel.setText("speed2: " + features.getTicksPerMilisecond());
+  }
+
+  private void handleEditKeyframeButton() {
+    ensureTextFieldNotEmpty();
+    if (allFieldsFilledFlag) {
+      String selectedKeyframeStr = keyframesDropdown.getSelectedItem().toString();
+      keyframesDropdown.removeItem(keyframesDropdown.getSelectedItem());
+      System.out.println("removed selected item from dropdown");
+      String shapeName = getShapeNameFromShapeDropdown();
+      features.removeKeyFrame(shapeName, selectedKeyframeStr);
+      System.out.println("removed selected motion from model");
+      handleAddKeyframeButton();
+
+//      editKeyframeFlag = false;
+//      editKeyframeButton.setEnabled(editKeyframeFlag);
+    }
+  }
+
   private void handleShapeDropdown() {
-    String selectedShapeStr = shapesDropdown.getSelectedItem().toString().split(" ")[0];
-    String[] keyframes = features.showKeyframes(selectedShapeStr).toArray(new String[0]);
+    removeShapeFlag = true;
+    removeShapeButton.setEnabled(removeShapeFlag);
+    String shapeName = getShapeNameFromShapeDropdown();
+    keyframesDropdown.removeAllItems();
+    System.out.println("shape dropdown shape name: " + shapeName);
+    String[] keyframes = features.getKeyframes(shapeName).toArray(new String[0]);
+    System.out.println("shape's motions: " + keyframes.length);
     for (String keyframe : keyframes) {
       keyframesDropdown.addItem(keyframe);
     }
   }
 
+
+  private void handleKeyframeDropdown() {
+    removeKeyframeFlag = true;
+    removeKeyframeButton.setEnabled(removeKeyframeFlag);
+
+  }
+
+  private void handleTypeDropdown() {
+    shapeTypeFlag = true;
+  }
+
+//  private void handleShapeNameTextField(){
+//    if(ensureTextFieldNotEmpty(shapeNameField)){
+//      shapeTypeFlag = true;
+//    }
+//  }
+
   private void handleAddKeyframeButton() {
-    String shapeName = shapesDropdown.getSelectedItem().toString().split(" ")[0];
-    features.addKeyFrame(shapeName, Integer.parseInt(tickField.getText()),
-            Integer.parseInt(positionXField.getText()),
-            Integer.parseInt(positionYField.getText()),
-            Integer.parseInt(dimensionWidthField.getText()),
-            Integer.parseInt(dimensionWidthField.getText()),
-            Integer.parseInt(redField.getText()),
-            Integer.parseInt(greenField.getText()),
-            Integer.parseInt(blueField.getText()));
-    StringBuilder strBuilder = new StringBuilder();
-    strBuilder.append(shapeName + " ");
-    strBuilder.append(tickField + " ");
-    strBuilder.append(positionXField + " ");
-    strBuilder.append(positionYField + " ");
-    strBuilder.append(dimensionWidthField + " ");
-    strBuilder.append(dimensionHeightField + " ");
-    strBuilder.append(redField + " ");
-    strBuilder.append(greenField + " ");
-    strBuilder.append(blueField);
-    keyframesDropdown.addItem(strBuilder.toString());
+    ensureTextFieldNotEmpty();
+    if (allFieldsFilledFlag) {
+      String shapeName = getShapeNameFromShapeDropdown();
+
+      features.addKeyFrame(shapeName, Integer.parseInt(tickField.getText()),
+              Integer.parseInt(positionXField.getText()),
+              Integer.parseInt(positionYField.getText()),
+              Integer.parseInt(dimensionWidthField.getText()),
+              Integer.parseInt(dimensionHeightField.getText()),
+              Integer.parseInt(redField.getText()),
+              Integer.parseInt(greenField.getText()),
+              Integer.parseInt(blueField.getText()));
+      String newString = tickField.getText() + " " + positionXField.getText()
+              + " " + positionYField.getText() + " " + dimensionWidthField.getText()
+              + " " + dimensionHeightField.getText() + " " + redField.getText() + " "
+              + greenField.getText() + " " + blueField.getText();
+      keyframesDropdown.addItem(newString);
+//      allFieldsFilledFlag = false;
+//      addKeyframeButton.setEnabled(allFieldsFilledFlag);
+
+      ArrayList<JTextField> allFields = new ArrayList<>(Arrays.asList(tickField, positionXField,
+              positionYField, dimensionWidthField, dimensionHeightField, redField, greenField, blueField));
+      for(JTextField field : allFields){
+        field.setText("");
+      }
+
+    }
   }
 
   private void handleRemoveKeyframeButton() {
-    String shapeName = shapesDropdown.getSelectedItem().toString().split(" ")[0];
+    String shapeName = getShapeNameFromShapeDropdown();
     String keyframeStr = keyframesDropdown.getSelectedItem().toString();
     features.removeKeyFrame(shapeName, keyframeStr);
     for (int i = 0; i < keyframesDropdown.getModel().getSize(); i++) {
@@ -254,15 +348,25 @@ public class EditorView extends AbstractView {
         keyframesDropdown.removeItemAt(i);
       }
     }
+
+    removeKeyframeFlag = false;
+    removeKeyframeButton.setEnabled(removeKeyframeFlag);
+
   }
 
   private void handleAddShapeButton() {
     String shapeName = shapeNameField.getText();
     String shapeType = shapeTypeDropdown.getSelectedItem().toString();
     features.addShape(shapeName, shapeType);
-    features.addKeyFrame(shapeName, 0, 0, 0, 1, 1, 0, 0, 0);
     shapesDropdown.addItem(shapeName + " " + shapeType);
+
+    shapeNameField.setText("");
+    shapeTypeFlag = false;
+    shapeNameFlag = false;
+    addShapeButton.setEnabled(shapeNameFlag && shapeTypeFlag);
   }
+
+  //todo null pointer if there are no more shapes
 
   private void handleRemoveShapeButton() {
     String shapeName = shapesDropdown.getSelectedItem().toString().split(" ")[0];
@@ -272,9 +376,9 @@ public class EditorView extends AbstractView {
         shapesDropdown.removeItemAt(i);
       }
     }
-
+    removeShapeFlag = false;
+    removeShapeButton.setEnabled(removeShapeFlag);
   }
-
 
   @Override
   public void render() {
@@ -301,9 +405,36 @@ public class EditorView extends AbstractView {
 
   private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
     ArrayList<String> keyFramesInfo = new ArrayList<>();
-    for (IMotion motion : shape.getMotions()) {
-      keyFramesInfo.add(motion.writeMotion());
+    if (keyFramesInfo.size() != 0) {
+      for (IMotion motion : shape.getMotions()) {
+        keyFramesInfo.add(motion.writeMotion());
+      }
     }
     return keyFramesInfo;
+  }
+
+  private String getShapeNameFromShapeDropdown() {
+    String[] fullShapeInfo = shapesDropdown.getSelectedItem().toString().split(" ");
+    fullShapeInfo = Arrays.copyOf(fullShapeInfo, fullShapeInfo.length - 1);
+    String shapeName = features.arrayToString(fullShapeInfo);
+    return shapeName;
+  }
+
+
+  private boolean ensureDropdownHasSelected(JComboBox<String> dropdown) {
+    return dropdown.getSelectedObjects().length > 0;
+  }
+
+  private void ensureTextFieldNotEmpty() {
+    System.out.println("here");
+    ArrayList<JTextField> allFields = new ArrayList<>(Arrays.asList(tickField, positionXField,
+            positionYField, dimensionWidthField, dimensionHeightField, redField, greenField, blueField));
+    for (JTextField f : allFields) {
+      if (f.getText().length() == 0) {
+        allFieldsFilledFlag = false;
+      } else {
+        allFieldsFilledFlag = true;
+      }
+    }
   }
 }

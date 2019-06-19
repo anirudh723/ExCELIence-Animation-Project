@@ -2,6 +2,7 @@ package cs3500.animator.controller;
 
 import cs3500.animator.model.AnimationModel;
 import cs3500.animator.model.Motion;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -50,18 +51,18 @@ public class Controller implements IController, Features {
         maxTick = shape.getMotions().get(shape.getMotions().size() - 1).getTick();
       }
     }
-      timer = new Timer(ticksPerMillisecond, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (tick < maxTick) {
-              List<ArrayList<String>> shapesToRender = getShapesAtTick(tick++);
-              System.out.println("tick: " + tick);
-              view.renderGUIShapes(shapesToRender);
-            } else if (loopOn && tick >= maxTick) {
-              tick = 1;
-            }
-          }
-      });
+    timer = new Timer(ticksPerMillisecond, new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (tick < maxTick) {
+          List<ArrayList<String>> shapesToRender = getShapesAtTick(tick++);
+//          System.out.println("tick: " + tick);
+          view.renderGUIShapes(shapesToRender);
+        } else if (loopOn && tick >= maxTick) {
+          tick = 1;
+        }
+      }
+    });
   }
 
 
@@ -77,7 +78,7 @@ public class Controller implements IController, Features {
       view.render();
     }
     if (view.getViewType() == ViewType.EDITOR) {
-     // timer.start();
+      // timer.start();
     }
   }
 
@@ -87,23 +88,25 @@ public class Controller implements IController, Features {
     ArrayList<String> data = new ArrayList<>();
     for (IAnimatableShapeReadOnly shape : model.getShapeMap().values()) {
       if (shape.getMotions().size() != 0) {
-        if (shape.getMotions().size() == 1) {
-          IMotion motion = shape.getMotions().get(0);
+        if (shape.getMotions().size() == 1 && tick < shape.getMotions().get(0).getTick()) {
+          System.out.println("don't do anything");
+        } else if (shape.getMotions().size() == 1 && tick >= shape.getMotions().get(0).getTick()){
+                    IMotion motion = shape.getMotions().get(0);
           data = formatData(motion.getPosition().getX(), motion.getPosition().getY(),
                   motion.getDimension().getWidth(), motion.getDimension().getHeight(),
                   motion.getColor().getRed(), motion.getColor().getGreen(),
                   motion.getColor().getBlue());
           data.add(shape.getType());
           shapesAtTick.add(data);
-        } else {
+        }else {
           int index = relativeTickInMotions(shape.getMotions(), tick);
           if (index != -1) {
             if (index == shape.getMotions().size() - 1) {
               IMotion motion = shape.getMotions().get(shape.getMotions().size() - 1);
               data = formatData(motion.getPosition().getX(), motion.getPosition().getY(),
-                  motion.getDimension().getWidth(), motion.getDimension().getHeight(),
-                  motion.getColor().getRed(), motion.getColor().getGreen(),
-                  motion.getColor().getBlue());
+                      motion.getDimension().getWidth(), motion.getDimension().getHeight(),
+                      motion.getColor().getRed(), motion.getColor().getGreen(),
+                      motion.getColor().getBlue());
               data.add(shape.getType());
               shapesAtTick.add(data);
             } else {
@@ -178,7 +181,6 @@ public class Controller implements IController, Features {
   @Override
   public void start() {
     System.out.println("Start button has been pressed");
-   // running = true;
     timer.start();
   }
 
@@ -207,8 +209,7 @@ public class Controller implements IController, Features {
     System.out.println("Loop button has been pressed");
     if (loopOn) {
       loopOn = false;
-    }
-    else {
+    } else {
       loopOn = true;
     }
   }
@@ -247,34 +248,30 @@ public class Controller implements IController, Features {
 
   @Override
   public void addKeyFrame(String shapeId, int tick, int posX, int posY, int width, int height,
-      int red, int green, int blue) {
+                          int red, int green, int blue) {
     IMotion motion = new Motion(tick, new Point(posX, posY), new Dimension(width, height),
-        new Color(red, green, blue));
+            new Color(red, green, blue));
     model.addMotion(shapeId, motion);
   }
 
   @Override
-  public ArrayList<String> showKeyframes(String shapeInfo) {
-    String[] info = shapeInfo.split(" ");
-    String shapeId = info[0];
-    IAnimatableShapeReadOnly shape = model.getShapeMap().get(shapeId);
+  public ArrayList<String> getKeyframes(String shapeName) {
+    IAnimatableShapeReadOnly shape = model.getShapeMap().get(shapeName);
     return this.getkeyFrameInfo(shape);
   }
 
   @Override
-  public void removeKeyFrame(String shapeInfo, String keyFrameInfo) {
-    String[] info = shapeInfo.split(" ");
-    String shapeId = info[0];
-
+  public void removeKeyFrame(String shapeName, String keyFrameInfo) {
     String[] keyFrameStuff = keyFrameInfo.split(" ");
     String keyFrameTick = keyFrameStuff[0];
-    for (IMotion motion : model.getShapeMap().get(shapeId).getMotions()) {
+    for (IMotion motion : model.getShapeMap().get(shapeName).getMotions()) {
       if (Integer.toString(motion.getTick()).equals(keyFrameTick)) {
-        model.removeMotion(shapeId, motion);
+        model.removeMotion(shapeName, motion);
         return;
       }
     }
   }
+
 
   @Override
   public void editKeyFrame(String keyFrameInfo) {
@@ -288,11 +285,25 @@ public class Controller implements IController, Features {
 
   private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
     ArrayList<String> keyFramesInfo = new ArrayList<>();
-    if(keyFramesInfo.size() > 0) {
+    if (shape.getMotions().size() > 0) {
       for (IMotion motion : shape.getMotions()) {
         keyFramesInfo.add(motion.writeMotion());
       }
     }
     return keyFramesInfo;
+  }
+
+  @Override
+  public String arrayToString(String[] shapeNameList) {
+    String newStr ="";
+    for (String str : shapeNameList) {
+      newStr += str + " ";
+    }
+    return newStr.substring(0, newStr.length() - 1);
+  }
+
+  @Override
+  public int getTicksPerMilisecond() {
+    return this.ticksPerMillisecond;
   }
 }
