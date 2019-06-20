@@ -1,5 +1,6 @@
 package cs3500.animator.view;
 
+import com.intellij.ui.components.JBScrollPane;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,10 +43,10 @@ public class VisualView extends AbstractView implements IView {
   public VisualView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model) {
     super(ap, rd, ticksPerSecond, model);
     this.panel = new DrawingPanel();
-    panel.setMinimumSize(calculateMaxDimension());
-    panel.setPreferredSize(calculateMaxDimension());
-    JScrollPane scrollPane = new JScrollPane(panel);
-    scrollPane.setSize(calculateMaxDimension());
+    panel.setMinimumSize(canvas);
+    panel.setPreferredSize(canvas);
+    JScrollPane scrollPane = new JBScrollPane(panel);
+    scrollPane.setSize(this.canvas);
     delegate.setLayout(new BorderLayout());
     delegate.setSize(scrollPane.getWidth(), scrollPane.getHeight());
     delegate.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

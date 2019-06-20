@@ -25,16 +25,12 @@ public interface Features {
   void addKeyFrame(String shapeId, int tick, int posX, int posY, int width, int height,
       int red, int green, int blue);
 
-  ArrayList<String> getKeyframes(String shapeInfo);
+  ArrayList<String> showKeyFrames(String shapeInfo);
 
   void removeKeyFrame(String shapeId, String keyFrameInfo);
 
-  void editKeyFrame(String keyFrameInfo);
+  String arrayToString(String[] list);
 
-  int getCurrentTick();
-
-   String arrayToString(String[] list);
-
-   int getTicksPerMilisecond();
+  int getTicksPerMilisecond();
 
 }

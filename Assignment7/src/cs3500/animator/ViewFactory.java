@@ -2,7 +2,6 @@ package cs3500.animator;
 
 import cs3500.animator.controller.Controller;
 import cs3500.animator.model.AnimationModel;
-import cs3500.animator.model.IReadOnlyAnimationModel;
 import cs3500.animator.model.ReadOnlyAnimationModel;
 import cs3500.animator.view.EditorView;
 import cs3500.animator.view.IView;

@@ -49,5 +49,4 @@ public interface IView {
    *     since they don't have panels.
    */
   DrawingPanel getPanel() throws UnsupportedOperationException;
-
 }
