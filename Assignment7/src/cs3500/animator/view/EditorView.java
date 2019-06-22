@@ -1,100 +1,119 @@
 package cs3500.animator.view;
 
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
-
-import com.intellij.ui.components.JBScrollPane;
 import cs3500.animator.controller.Features;
-import cs3500.animator.model.IAnimatableShapeReadOnly;
-import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTabbedPane;
-import sun.plugin.javascript.JSClassLoader;
 
+/**
+ * Produced a GUI of the animation, complete with controls to change how the animation is played
+ * (changing speed, looping, playing, pausing, etc), as well as the ability for the user to edit the
+ * animation by adding and removing shapes, and adding, removing, and editing keyframes. This view
+ * uses the animation rendering provided by another view, {@link VisualView}.
+ */
 public class EditorView extends AbstractView {
-  private JFrame delegate;
-  private IView visualView;
+  IView delegateView;
   IReadOnlyAnimationModel model;
-  private Features features;
-  private DrawingPanel visualPanel;
+  Features features;
+  JFrame delegate;
   JPanel animationControls;
   JTabbedPane editorTabs;
-  JScrollPane scrollPane;
 
+  /**
+   * Constructs an Editor View. Sets the sizes of the frame, ticks per second, the view to get the
+   * rendered animation from, and other specifications.
+   *
+   * @param ap             the file to append to.
+   * @param rd             the file to read from.
+   * @param ticksPerSecond the ticks per second of the animation
+   * @param model          the model the use for this view.
+   * @param view           the view to provide the animation rendering for this view.
+   * @param features       the controller for this view.
+   */
   public EditorView(Appendable ap, Readable rd, int ticksPerSecond, IReadOnlyAnimationModel model,
-      IView visualView, Features features) {
+                    VisualView view, Features features) {
     super(ap, rd, ticksPerSecond, model);
-    this.visualView = visualView;
-    this.features = features;
     this.model = model;
-    delegate = this.visualView.getFrame();
-    this.visualPanel = this.visualView.getPanel();
-    scrollPane = new JBScrollPane(this.visualPanel);
-    scrollPane.setPreferredSize(new Dimension(500, 300));
+    this.features = features;
+    this.delegateView = view;
+    this.delegate = view.getFrame();
+    this.animationControls = new AnimationControls(this.features);
+    this.editorTabs = new EditorTabs(this.features, this.model);
     initGUI();
   }
 
+  /**
+   * Initialize elements of this view's GUI such as the menu, controls, layout, size, and tabs.
+   */
   private void initGUI() {
     delegate.setTitle("ExCELlence Animator");
-//    delegate.setMinimumSize(new Dimension(1500, 1000));
-//    delegate.setPreferredSize(new Dimension(1500, 1000));
-
-    animationControls = new AnimationControls(this.features);
-    //JScrollPane animationPanel = new AnimationPanel();
-    editorTabs = new EditorTabs(this.features, this.model);
-
-    this.delegate.add(scrollPane, BorderLayout.EAST);
-    this.delegate.add(animationControls, BorderLayout.NORTH);
-    this.delegate.add(editorTabs, BorderLayout.WEST);
-
 
     JMenuBar menuBar = new JMenuBar();
     JMenu menu = new JMenu("Menu");
     menuBar.add(menu);
     delegate.setJMenuBar(menuBar);
 
-    this.delegate.pack();
-    this.delegate.setVisible(true);
+    delegate.add(animationControls, BorderLayout.NORTH);
+    delegate.add(editorTabs, BorderLayout.WEST);
+    delegate.setMinimumSize(new Dimension(1000, 800));
+    delegate.setVisible(true);
   }
 
+  /**
+   * Factory class to create line separators.
+   *
+   * @param orientation the orientation of the separator.
+   * @return the line separator.
+   */
   public static JSeparator separatorFactory(int orientation) {
     JSeparator result = new JSeparator(orientation);
     result.setBackground(Color.gray);
     return result;
   }
 
+  /**
+   * Renders the GUI shapes using tweening to calculate the steps in between keyframes.
+   *
+   * @throws UnsupportedOperationException for views that do not have a GUI rendering, such as
+   *                                       {@link TextView} and {@link SVGView}.
+   */
   @Override
-  public void render() {
-    this.visualView.render();
+  public void renderGUIShapes(List<ArrayList<String>> shapesToDraw) {
+    this.delegateView.renderGUIShapes(shapesToDraw);
   }
 
+  /**
+   * Renders the animations into a view. This is only supported by views that do not have visual
+   * elements and do not show the animation in a window. Not supported for this view.
+   *
+   * @throws UnsupportedOperationException for views that render the shapes in a window with Java
+   *                                       Swing, and therefore require a list of information about
+   *                                       the shapes at every interval between keyframes.
+   */
   @Override
-  public void renderGUIShapes(List<ArrayList<String>> shapesToRender) {
-    this.visualView.renderGUIShapes(shapesToRender);
+  public void render() throws UnsupportedOperationException {
+    throw new UnsupportedOperationException("Can not render in this IView implementation");
   }
 
+  /**
+   * Gets the {@link ViewType} of the view. Can be TEXT, SVG, VISUAL, or EDIT
+   *
+   * @return the view type of the view.
+   */
   @Override
   public ViewType getViewType() {
     return ViewType.EDITOR;
   }
 
-
-  private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
-    ArrayList<String> keyFramesInfo = new ArrayList<>();
-    for (IMotion motion : shape.getMotions()) {
-      keyFramesInfo.add(motion.writeMotion());
-    }
-    return keyFramesInfo;
-  }
 }

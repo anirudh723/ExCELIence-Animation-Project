@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Tests the methods regarding Animatable Shapes.
@@ -129,8 +130,8 @@ public class AnimatableShapeTest {
     animatableRectangle.addMotionInShape(motionR2);
     animatableRectangle.addMotionInShape(motionR3);
     assertEquals(animatableRectangle.getMotions().size(), 3);
-    String str = "motion R 1 200 200 50 100 255 0 0\t\t10 200 200 50 100 255 0 0\n"
-            + "motion R 10 200 200 50 100 255 0 0\t\t50 300 300 50 100 255 0 0\n";
+    String str = "motion R 1 200 200 50 100 255 0 0 10 200 200 50 100 255 0 0\n"
+        + "motion R 10 200 200 50 100 255 0 0 50 300 300 50 100 255 0 0\n";
     assertEquals(str, iAnimatableShapeReadOnly.outputMotions("R"));
   }
 
@@ -147,8 +148,8 @@ public class AnimatableShapeTest {
     animatableEllipse.addMotionInShape(motionE2);
     animatableEllipse.addMotionInShape(motionE3);
     assertEquals(animatableEllipse.getMotions().size(), 3);
-    String str = "motion C 6 440 70 120 60 0 0 255\t\t20 440 70 120 60 0 0 255\n"
-            + "motion C 20 440 70 120 60 0 0 255\t\t50 440 250 120 60 0 0 255\n";
+    String str = "motion C 6 440 70 120 60 0 0 255 20 440 70 120 60 0 0 255\n" +
+            "motion C 20 440 70 120 60 0 0 255 50 440 250 120 60 0 0 255\n";
     assertEquals(str, iAnimatableShapeReadOnly2.outputMotions("C"));
   }
 
@@ -306,10 +307,15 @@ public class AnimatableShapeTest {
   /**
    * Tests adding a motion to a shape that already has a motion there.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testAddMotionAtSameTimeToAnother() {
     setUp();
     animatableRectangle.addMotionInShape(motionR6);
+    List<IMotion> before = animatableRectangle.getMotions();
     animatableRectangle.addMotionInShape(motionE6);
+    List<IMotion> after = animatableRectangle.getMotions();
+    for (int i = 0; i < before.size(); i++) {
+      assertEquals(before.get(i).writeMotion(), after.get(i).writeMotion());
+    }
   }
 }

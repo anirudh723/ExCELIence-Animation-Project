@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
  * A helper to read animation data and construct an animation from it.
  */
 public class AnimationReader {
+
   /**
    * A factory for producing new animations, given a source of shapes and a builder for constructing
    * animations.
@@ -27,8 +28,8 @@ public class AnimationReader {
    * </p>
    *
    * @param readable The source of data for the animation
-   * @param builder  A builder for helping to construct a new animation
-   * @param <Doc>    The main model interface type describing animations
+   * @param builder A builder for helping to construct a new animation
+   * @param <Doc> The main model interface type describing animations
    */
   public static <Doc> Doc parseFile(Readable readable, AnimationBuilder<Doc> builder) {
     Objects.requireNonNull(readable, "Must have non-null readable source");
@@ -82,14 +83,14 @@ public class AnimationReader {
 
   private static <Doc> void readMotion(Scanner s, AnimationBuilder<Doc> builder) {
     String[] fieldNames = new String[]{
-            "initial time",
-            "initial x-coordinate", "initial y-coordinate",
-            "initial width", "initial height",
-            "initial red value", "initial green value", "initial blue value",
-            "final time",
-            "final x-coordinate", "final y-coordinate",
-            "final width", "final height",
-            "final red value", "final green value", "final blue value",
+        "initial time",
+        "initial x-coordinate", "initial y-coordinate",
+        "initial width", "initial height",
+        "initial red value", "initial green value", "initial blue value",
+        "final time",
+        "final x-coordinate", "final y-coordinate",
+        "final width", "final height",
+        "final red value", "final green value", "final blue value",
     };
     int[] vals = new int[16];
     String name;
@@ -102,8 +103,8 @@ public class AnimationReader {
       vals[i] = getInt(s, "Motion", fieldNames[i]);
     }
     builder.addMotion(name,
-            vals[0], vals[1], vals[2], vals[3], vals[4], vals[5], vals[6], vals[7],
-            vals[8], vals[9], vals[10], vals[11], vals[12], vals[13], vals[14], vals[15]);
+        vals[0], vals[1], vals[2], vals[3], vals[4], vals[5], vals[6], vals[7],
+        vals[8], vals[9], vals[10], vals[11], vals[12], vals[13], vals[14], vals[15]);
   }
 
   private static int getInt(Scanner s, String label, String fieldName) {
@@ -111,11 +112,11 @@ public class AnimationReader {
       return s.nextInt();
     } else if (s.hasNext()) {
       throw new IllegalStateException(
-              String.format("%s: expected integer for %s, got: %s", label, fieldName, s.next()));
+          String.format("%s: expected integer for %s, got: %s", label, fieldName, s.next()));
     } else {
       throw new IllegalStateException(
-              String.format("%s: expected integer for %s, but no more input available",
-                      label, fieldName));
+          String.format("%s: expected integer for %s, but no more input available",
+              label, fieldName));
     }
   }
 

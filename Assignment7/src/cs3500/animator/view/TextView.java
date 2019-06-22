@@ -28,6 +28,14 @@ public class TextView extends AbstractView {
     super(ap, rd, ticksPerSecond, model);
   }
 
+  /**
+   * Renders the animations into a view. This is only supported by views that do not have visual
+   * elements and do not show the animation in a window.
+   *
+   * @throws UnsupportedOperationException for views that render the shapes in a window with Java
+   *                                       Swing, and therefore require a list of information about
+   *                                       the shapes at every interval between keyframes.
+   */
   @Override
   public void render() {
     StringBuilder str = new StringBuilder();
@@ -43,6 +51,12 @@ public class TextView extends AbstractView {
     tryAppend(str.substring(0, str.toString().length() - 1));
   }
 
+
+  /**
+   * Gets the {@link ViewType} of the view. Can be TEXT, SVG, VISUAL, or EDIT
+   *
+   * @return the view type of the view.
+   */
   @Override
   public ViewType getViewType() {
     return ViewType.TEXT;

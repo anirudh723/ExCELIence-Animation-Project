@@ -88,11 +88,11 @@ public class AnimatableShape implements IAnimatableShape {
         motions.add(m);
         putShapeAtInitialMotion();
         return;
-      } else {
       }
     } else {
       for (int i = 0; i < motions.size() - 1; i++) {
         if (motions.get(i).getTick() == m.getTick()) {
+          System.out.println("Cannot add motion at a tick that already had a motion");
         } else if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m
                 .getTick()) {
           motions.add(i + 1, m);

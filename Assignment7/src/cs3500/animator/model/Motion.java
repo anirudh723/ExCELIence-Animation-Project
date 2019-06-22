@@ -38,26 +38,51 @@ public class Motion implements IMotion {
     this.color = color;
   }
 
+  /**
+   * Gets the tick of this Motion.
+   *
+   * @return the tick of this Motion.
+   */
   @Override
   public int getTick() {
     return this.tick;
   }
 
+  /**
+   * Returns a new Position with the x and y coordinates of this position.
+   *
+   * @return the new Position.
+   */
   @Override
   public Point2D getPosition() {
     return new Point2D.Double(this.position.getX(), this.position.getY());
   }
 
+  /**
+   * Returns a new Dimension with the width and height elements of this dimension.
+   *
+   * @return the new Dimension.
+   */
   @Override
   public Dimension getDimension() {
     return new Dimension((int) dimension.getWidth(), (int) dimension.getHeight());
   }
 
+  /**
+   * Returns a new Color with the red, green, and blue components of this color.
+   *
+   * @return the new Color.
+   */
   @Override
   public Color getColor() {
     return new Color(this.color.getRed(), this.color.getGreen(), this.color.getBlue());
   }
 
+  /**
+   * Builds a string of this Motion.
+   *
+   * @return this resulting Motion in one String.
+   */
   @Override
   public String writeMotion() {
     StringBuilder str = new StringBuilder();

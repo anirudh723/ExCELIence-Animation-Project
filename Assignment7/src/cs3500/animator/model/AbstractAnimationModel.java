@@ -30,7 +30,8 @@ public abstract class AbstractAnimationModel implements AnimationModel {
    * @throws IllegalArgumentException if the height is negative or 0.
    */
   public AbstractAnimationModel(LinkedHashMap<String, IAnimatableShape> shapes, int leftMostX,
-                                int topMostY, int width, int height) throws IllegalArgumentException {
+                                int topMostY, int width, int height)
+          throws IllegalArgumentException {
     if (shapes == null) {
       throw new IllegalArgumentException("Map of shapes is null");
     }

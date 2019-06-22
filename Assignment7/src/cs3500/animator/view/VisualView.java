@@ -1,25 +1,17 @@
 package cs3500.animator.view;
 
-import com.intellij.ui.components.JBScrollPane;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import cs3500.animator.model.IAnimatableShapeReadOnly;
-import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
+
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- * A GUI that draws and plays an animation in a window, using Java Swing.
+ * A GUI that renders and plays an animation in a window, using Java Swing.
  */
 public class VisualView extends AbstractView implements IView {
 
@@ -45,7 +37,7 @@ public class VisualView extends AbstractView implements IView {
     this.panel = new DrawingPanel();
     panel.setMinimumSize(canvas);
     panel.setPreferredSize(canvas);
-    JScrollPane scrollPane = new JBScrollPane(panel);
+    JScrollPane scrollPane = new JScrollPane(panel);
     scrollPane.setSize(this.canvas);
     delegate.setLayout(new BorderLayout());
     delegate.setSize(scrollPane.getWidth(), scrollPane.getHeight());
@@ -53,60 +45,55 @@ public class VisualView extends AbstractView implements IView {
     delegate.setLocationRelativeTo(null);
     delegate.add(scrollPane);
     delegate.pack();
-    delegate.setVisible(true);
   }
 
+  /**
+   * Renders the GUI shapes using tweening to calculate the steps in between keyframes.
+   *
+   * @throws UnsupportedOperationException for views that do not have a GUI rendering, such as
+   *                                       {@link TextView} and {@link SVGView}.
+   */
   @Override
   public void renderGUIShapes(List<ArrayList<String>> shapesToDraw) {
+    delegate.setVisible(true);
     panel.draw(shapesToDraw);
 
   }
 
+  /**
+   * Renders the animations into a view. This is only supported by views that do not have visual
+   * elements and do not show the animation in a window. Not supported by this view.
+   *
+   * @throws UnsupportedOperationException for views that render the shapes in a window with Java
+   *                                       Swing, and therefore require a list of information about
+   *                                       the shapes at every interval between keyframes.
+   */
   @Override
   public void render() {
     throw new UnsupportedOperationException("Can not render in this IView implementation");
   }
 
-  private Dimension calculateMaxDimension() {
-    int furthestX = 0;
-    int furthestY = 0;
-    int furthestWidth = 0;
-    int furthestHeight = 0;
-    for (IAnimatableShapeReadOnly shape : this.model.getShapeMap().values()) {
-      for (IMotion motion : shape.getMotions()) {
-        if (motion.getPosition().getX() > furthestX) {
-          furthestX = (int) ((motion.getPosition().getX()));
-        }
-        if (motion.getPosition().getY() > furthestY) {
-          furthestY = (int) ((motion.getPosition().getY()));
-        }
-        if (motion.getDimension().getWidth() > furthestWidth) {
-          furthestWidth = (int) motion.getDimension().getWidth();
-        }
-        if (motion.getDimension().getHeight() > furthestHeight) {
-          furthestHeight = (int) motion.getDimension().getHeight();
-        }
-      }
-    }
-    return new Dimension(furthestX + furthestWidth, furthestY + furthestHeight);
-  }
-
+  /**
+   * Gets the {@link ViewType} of the view. Can be TEXT, SVG, VISUAL, or EDIT
+   *
+   * @return the view type of the view.
+   */
   @Override
   public ViewType getViewType() {
     return ViewType.VISUAL;
   }
 
+  /**
+   * Returns the JFrame which will be used to create the visual and editor views.
+   *
+   * @return the JFrame.
+   * @throws UnsupportedOperationException if called to return a frame from an SVGView or TextView
+   *                                       since they do not have visual rendering capability and
+   *                                       therefore do not incorporate the use of a JFrame.
+   */
   @Override
   public JFrame getFrame() {
     return this.delegate;
   }
 
-  @Override
-  public DrawingPanel getPanel() {
-    return this.panel;
-  }
-
-  public IReadOnlyAnimationModel getModel() {
-    return this.model;
-  }
 }

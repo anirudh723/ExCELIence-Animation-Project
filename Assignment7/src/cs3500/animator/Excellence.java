@@ -1,6 +1,7 @@
 package cs3500.animator;
 
 import cs3500.animator.model.AnimationModel;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,7 +9,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import cs3500.animator.controller.Controller;
 import cs3500.animator.controller.IController;
@@ -17,7 +19,6 @@ import cs3500.animator.model.IReadOnlyAnimationModel;
 import cs3500.animator.model.ReadOnlyAnimationModel;
 import cs3500.animator.util.AnimationReader;
 import cs3500.animator.view.IView;
-
 
 
 /**
@@ -78,7 +79,7 @@ public class Excellence {
 
         Readable input = new FileReader(config.get("-in"));
         AnimationModel model = AnimationReader.parseFile(input,
-            new AnimationModelImpl.Builder());
+                new AnimationModelImpl.Builder());
         IReadOnlyAnimationModel readModel = new ReadOnlyAnimationModel(model);
 
         int ticksPerSec = Integer.parseInt(config.getOrDefault("-speed", "1"));

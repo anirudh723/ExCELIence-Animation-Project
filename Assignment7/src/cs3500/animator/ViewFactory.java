@@ -28,17 +28,18 @@ final class ViewFactory {
    */
   final IView create(Appendable output, Readable input, String viewType, int speed,
                      AnimationModel model) throws IllegalArgumentException {
-    IView visualView = new VisualView(output, input, speed, new ReadOnlyAnimationModel(model));
     switch (viewType) {
       case "text":
         return new TextView(output, input, speed, new ReadOnlyAnimationModel(model));
       case "svg":
         return new SVGView(output, input, speed, new ReadOnlyAnimationModel(model));
       case "visual":
-        return visualView;
+        return new VisualView(output, input, speed, new ReadOnlyAnimationModel(model));
       case "edit":
+        VisualView visualView = new VisualView(output, input, speed,
+                new ReadOnlyAnimationModel(model));
         return new EditorView(output, input, speed, new ReadOnlyAnimationModel(model), visualView,
-            new Controller(model, visualView));
+                new Controller(model, visualView));
       default:
         throw new IllegalArgumentException("Invalid view type");
     }

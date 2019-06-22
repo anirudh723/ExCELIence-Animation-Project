@@ -1,43 +1,30 @@
 package cs3500.animator.view;
 
-import com.intellij.openapi.ui.ComboBox;
-import com.intellij.ui.components.JBList;
-import com.intellij.ui.components.JBScrollPane;
 import cs3500.animator.controller.Features;
 import cs3500.animator.model.IAnimatableShapeReadOnly;
 import cs3500.animator.model.IMotion;
 import cs3500.animator.model.IReadOnlyAnimationModel;
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.Box.Filler;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JRadioButton;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Class that creates and formats the layout and styling of necessary fields for the {@link
+ * EditorView}. Has handler for action listeners for fields and buttons that relate to editing in
+ * the editor view.
+ */
 public class ShapeEditorTab extends JPanel {
   IReadOnlyAnimationModel model;
   Features features;
@@ -46,7 +33,6 @@ public class ShapeEditorTab extends JPanel {
   JPanel shapeSelectPanel;
   JPanel keyframePanel;
   JPanel shapeEditorPanel;
-  JPanel colorPreviewPanel;
 
   TitledBorder shapeSelectBorder;
   TitledBorder keyframePanelBorder;
@@ -59,14 +45,12 @@ public class ShapeEditorTab extends JPanel {
   JLabel createShapeLabel;
   JLabel newShapeLabel;
   JLabel newShapeTypeLabel;
-  JLabel keyframeListLabel;
   JLabel xLabel;
   JLabel yLabel;
   JLabel wLabel;
   JTextField wField;
   JLabel hLabel;
   JLabel tickLabel;
-  JLabel cPrevLabel;
   JLabel rLabel;
   JLabel bLabel;
   JLabel gLabel;
@@ -83,8 +67,6 @@ public class ShapeEditorTab extends JPanel {
   JComboBox<String> existingShapesDropdown;
   JComboBox<String> shapeTypeDropdown;
   JComboBox<String> keyframesDropdown;
-  JList<String> keyframeList;
-  DefaultListModel<String> keyframeListModel;
 
   JButton createShapeButton;
   JButton removeShapeButton;
@@ -92,361 +74,236 @@ public class ShapeEditorTab extends JPanel {
   JButton deleteKeyframe;
   JButton addKeyFrame;
 
-  boolean addShapeFlag = false;
   boolean removeShapeFlag = false;
-  boolean addKeyframeFlag = false;
   boolean removeKeyframeFlag = false;
-  boolean editKeyframeFlag = false;
   boolean shapeTypeFlag = false;
   boolean shapeNameFlag = false;
   boolean allFieldsFilledFlag = false;
 
+  /**
+   * Constructs the ShapeEditorTab with the given controller and model.
+   *
+   * @param features the given controller.
+   * @param model    the given model.
+   */
   public ShapeEditorTab(Features features, IReadOnlyAnimationModel model) {
     this.features = features;
     this.model = model;
 
-    setLayout(new GridLayout(3,1));
+    setLayout(new GridBagLayout());
+    GridBagConstraints setC = new GridBagConstraints();
+    setC.fill = GridBagConstraints.HORIZONTAL;
+    setC.anchor = GridBagConstraints.PAGE_START;
 
     Font fNorm = this.getFont();
     Font fPanelTitle = new Font(fNorm.toString(), Font.BOLD, 12);
     Font fTitleBold = new Font(fNorm.toString(), Font.BOLD, 12);
     Font fFieldBold = new Font(fNorm.toString(), Font.BOLD, 11);
-    Color titleColor = new Color(0,65,255);
+    Color titleColor = new Color(0, 65, 255);
 
-    // START SHAPESELECTIONPANEL
+    //Start Shape Selection Panel
     shapeSelectPanel = new JPanel();
 
-    shapeSelectBorder = new TitledBorder("SHAPE SELECTION");
+    shapeSelectBorder = new TitledBorder("SHAPE");
     shapeSelectBorder.setTitleFont(fPanelTitle);
     shapeSelectBorder.setTitleColor(titleColor);
-    shapeSelectBorder.setBorder(new LineBorder(new Color(0,65,255)));
+    shapeSelectBorder.setBorder(new LineBorder(new Color(0, 65, 255)));
     shapeSelectPanel.setBorder(shapeSelectBorder);
 
     shapeSelectPanel.setLayout(new GridBagLayout());
     ssc = new GridBagConstraints();
-
-    ssc.gridx = 0;
-    ssc.gridy = 0;
-    ssc.gridwidth = 2;
-    ssc.fill = GridBagConstraints.BOTH;
-    shapeSelectPanel.add(EditorView.separatorFactory(0), ssc);
-
+    ssc.anchor = GridBagConstraints.LINE_START;
 
     ssc.gridy = 1;
-    selectShapeLabel = new JLabel("SELECT SHAPE");
+    selectShapeLabel = new JLabel("SELECT");
     selectShapeLabel.setFont(fTitleBold);
     shapeSelectPanel.add(selectShapeLabel, ssc);
-    shapeSelectPanel.add(EditorView.separatorFactory(0));
 
-
-    ssc.gridy = 2;
-    ssc.gridwidth = 1;
+    ssc.gridy = 3;
     existingShapesLabel = new JLabel("Existing shapes:");
     existingShapesLabel.setFont(fFieldBold);
     shapeSelectPanel.add(existingShapesLabel, ssc);
 
     ssc.gridx = 1;
     shapeNames = this.getShapeNames().toArray(new String[0]);
-    existingShapesDropdown = new ComboBox(shapeNames);
-    existingShapesDropdown.setPreferredSize(new Dimension(110,30));
+    existingShapesDropdown = new JComboBox<>(shapeNames);
+    existingShapesDropdown.setPreferredSize(new Dimension(150, 30));
     shapeSelectPanel.add(existingShapesDropdown, ssc);
 
-
-    ssc.gridy = 3;
+    ssc.gridy = 4;
     ssc.gridx = 0;
     ssc.gridwidth = GridBagConstraints.REMAINDER;
+    ssc.fill = GridBagConstraints.HORIZONTAL;
     shapeSelectPanel.add(EditorView.separatorFactory(0), ssc);
+    ssc.gridwidth = 1;
+    ssc.fill = GridBagConstraints.NONE;
 
-
-    ssc.gridy = 4;
-    ssc.gridwidth = 2;
-    createShapeLabel = new JLabel("CREATE SHAPE");
+    ssc.gridy = 5;
+    createShapeLabel = new JLabel("CREATE");
     createShapeLabel.setFont(fTitleBold);
     shapeSelectPanel.add(createShapeLabel, ssc);
 
-
-    ssc.gridy = 5;
-    ssc.gridwidth = 1;
+    ssc.gridy = 6;
     newShapeLabel = new JLabel("Name:");
     newShapeLabel.setFont(fFieldBold);
     shapeSelectPanel.add(newShapeLabel, ssc);
 
     ssc.gridx = 1;
     newShapeNameField = new JTextField();
-    newShapeNameField.setColumns(8);
+    newShapeNameField.setColumns(10);
     shapeSelectPanel.add(newShapeNameField, ssc);
 
-
-    ssc.gridy = 6;
+    ssc.gridy = 7;
     ssc.gridx = 0;
     newShapeTypeLabel = new JLabel("Type:");
     newShapeTypeLabel.setFont(fFieldBold);
     shapeSelectPanel.add(newShapeTypeLabel, ssc);
 
     ssc.gridx = 1;
-    shapeTypeDropdown = new ComboBox(new String[]{"rectangle", "ellipse"});
-    shapeTypeDropdown.setPreferredSize(new Dimension(110,30));
+    shapeTypeDropdown = new JComboBox<>(new String[]{"rectangle", "ellipse"});
+    shapeTypeDropdown.setPreferredSize(new Dimension(150, 30));
     shapeSelectPanel.add(shapeTypeDropdown, ssc);
 
-    ssc.gridy = 7;
+    ssc.gridy = 8;
+    ssc.gridx = 0;
+    ssc.gridwidth = GridBagConstraints.REMAINDER;
+    ssc.fill = GridBagConstraints.HORIZONTAL;
+    shapeSelectPanel.add(EditorView.separatorFactory(0), ssc);
+    ssc.gridwidth = 1;
+    ssc.fill = GridBagConstraints.NONE;
+
+    ssc.gridy = 9;
     ssc.gridx = 0;
     createShapeButton = new JButton("Create Shape");
     shapeSelectPanel.add(createShapeButton, ssc);
 
-    ssc.gridy = 7;
     ssc.gridx = 1;
-    removeShapeButton = new JButton("Remove Shape");
+    removeShapeButton = new JButton("Delete Shape");
     shapeSelectPanel.add(removeShapeButton, ssc);
 
-    ssc.gridy = 12;
-    shapeSelectPanel.add(EditorView.separatorFactory(0), ssc);
-
-    add(shapeSelectPanel);
-    // END SHAPESELECTIONPANEL
+    add(shapeSelectPanel, setC);
+    //End Shape Selection Panel
 
 
-
-
-    // START KEYFRAMEPANEL
+    //Start Keyframe Panel
     keyframePanel = new JPanel();
 
     keyframePanelBorder = new TitledBorder("SHAPE'S KEYFRAMES");
     keyframePanelBorder.setTitleFont(fPanelTitle);
     keyframePanelBorder.setTitleColor(titleColor);
-    keyframePanelBorder.setBorder(new LineBorder(new Color(0,65,255)));
+    keyframePanelBorder.setBorder(new LineBorder(new Color(0, 65, 255)));
     keyframePanel.setBorder(keyframePanelBorder);
-    keyframePanel.setLayout(new FlowLayout());
+    keyframePanel.setLayout(new GridBagLayout());
     GridBagConstraints kfc = new GridBagConstraints();
-    kfc.fill = GridBagConstraints.BOTH;
-
-    kfc.gridx = 0;
-    kfc.gridy = 0;
-    kfc.gridwidth = GridBagConstraints.HORIZONTAL;
-    keyframePanel.add(EditorView.separatorFactory(0), kfc);
-
-//    kfc.gridy = 1;
-//    kfc.gridwidth = 1;
-//    JLabel shapeIdLabel = new JLabel("Selected Shape: ");
-//    shapeIdLabel.setFont(fTitleBold);
-//    keyframePanel.add(shapeIdLabel, kfc);
-
-//    kfc.gridx = 1;
-//    JLabel selectedShapeId = new JLabel("unselected");
-//    selectedShapeId.setHorizontalAlignment(SwingConstants.RIGHT);
-//    selectedShapeId.setFont(fTitleBold);
-//    keyframePanel.add(selectedShapeId, kfc);
-
-    kfc.gridy = 2;
-    kfc.gridx = 0;
-
-    kfc.gridwidth = GridBagConstraints.HORIZONTAL;
-    keyframePanel.add(EditorView.separatorFactory(0), kfc);
-
-//    kfc.gridy = 3;
-//    kfc.gridwidth = 1;
-//    keyframeListLabel = new JLabel("Shape's Keyframes: ");
-//    keyframeListLabel.setFont(fTitleBold);
-//    keyframePanel.add(keyframeListLabel, kfc);
-
-//    kfc.gridy = 4;
-//    Component keyframesLabelListSpacer = new Filler(new Dimension(1,5), new Dimension(1,5),new Dimension(1,5));
-//    keyframePanel.add(keyframesLabelListSpacer, kfc);
 
     kfc.gridy = 0;
+    kfc.gridx = 1;
+    keyframesDropdown = new JComboBox<>();
+    keyframesDropdown.setPreferredSize(new Dimension(175, 30));
+    keyframePanel.add(keyframesDropdown, kfc);
+
     kfc.gridx = 0;
-    keyframesDropdown = new ComboBox<>();
-    keyframesDropdown.setPreferredSize(new Dimension(200, 30));
-    keyframePanel.add(keyframesDropdown);
+    deleteKeyframe = new JButton("Delete");
+    keyframePanel.add(deleteKeyframe, kfc);
 
-    // Creates the list ...
-//    keyframeListModel = new DefaultListModel<>();
-//    keyframeList = new JBList<>(keyframeListModel);
-//    keyframeList.setVisibleRowCount(-1);
-//    keyframeList.setLayoutOrientation(JList.VERTICAL);
-//    keyframeList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//    keyframeList.setListData(new String[]{});
-//    // Creates the list scroller
-//    JScrollPane keyframeListScrollerPanel = new JBScrollPane(keyframeList);
-//    keyframeListScrollerPanel.setMinimumSize(new Dimension(225, 60));
-//    keyframeListScrollerPanel.setPreferredSize(new Dimension(225, 60));
-//    keyframePanel.add(keyframeListScrollerPanel, kfc);
+    keyframePanel.setMaximumSize(new Dimension(200, 50));
 
-//
-    kfc.gridx = GridBagConstraints.WEST;
-    deleteKeyframe = new JButton("Delete Keyframe");
-    keyframePanel.add(deleteKeyframe, FlowLayout.CENTER);
-
-//    kfc.gridy = 8;
-//    kfc.gridwidth = GridBagConstraints.HORIZONTAL;
-//    keyframePanel.add(EditorView.separatorFactory(0), kfc);
-
-    add(keyframePanel);
-    //END KEYFRAMEPANEL
+    setC.gridy = 1;
+    add(keyframePanel, setC);
+    //End Keyframe Panel
 
 
-    // START KEYFRAMEPANEL
+    //Start Shape Editor Panel
     shapeEditorPanel = new JPanel();
 
     shapeEditorBorder = new TitledBorder("KEYFRAME ADD/EDIT");
     shapeEditorBorder.setTitleFont(fPanelTitle);
     shapeEditorBorder.setTitleColor(titleColor);
-    shapeEditorBorder.setBorder(new LineBorder(new Color(0,65,255)));
+    shapeEditorBorder.setBorder(new LineBorder(new Color(0, 65, 255)));
     shapeEditorPanel.setBorder(shapeEditorBorder);
 
     shapeEditorPanel.setLayout(new GridBagLayout());
     t = new GridBagConstraints();
     t.anchor = GridBagConstraints.LINE_START;
-    t.gridx = 5;
-
-
-//    t.gridx = 0;
-//    t.gridy = 0;
-//    t.gridwidth = GridBagConstraints.REMAINDER;
-//    t.fill =  GridBagConstraints.HORIZONTAL;
-//    shapeEditorPanel.add(EditorView.separatorFactory(0), t);
-//    t.fill =  GridBagConstraints.NONE;
-
-
-//    t.gridx = 0;
-//    t.gridy = 1;
-//    t.gridwidth = 2;
-//    JLabel changeNameLabel = new JLabel("Name:");
-//    changeNameLabel.setFont(fFieldBold);
-//    shapeEditorPanel.add(changeNameLabel, t);
-//
-//    t.gridx = 2;
-//    JTextField changeNameField = new JTextField();
-//    changeNameField.setColumns(8);
-//    shapeEditorPanel.add(changeNameField, t);
-//
-//
-//    t.gridx = 0;
-//    t.gridy = 2;
-//    JLabel shapeTypeLabel = new JLabel("Shape Type: ");
-//    shapeTypeLabel.setFont(fFieldBold);
-//    shapeEditorPanel.add(shapeTypeLabel, t);
-//
-//    t.gridx = 2;
-//    JComboBox<String> selectedShapeType = new JComboBox<>();
-//    selectedShapeType.setPreferredSize(new Dimension(110,30));
-//    shapeEditorPanel.add(selectedShapeType, t);
-
-
-//    t.gridx = 0;
-//    t.gridy = 3;
-//    t.gridwidth = GridBagConstraints.REMAINDER;
-//    t.fill =  GridBagConstraints.HORIZONTAL;
-//    shapeEditorPanel.add(EditorView.separatorFactory(0), t);
-//    t.fill =  GridBagConstraints.NONE;
 
     t.gridy = 0;
+    t.gridx = 0;
+    tickLabel = new JLabel("tick:");
+    tickLabel.setFont(fFieldBold);
+    shapeEditorPanel.add(tickLabel, t);
+
     t.gridx = 1;
-    //t.gridwidth = 1;
-    //t.anchor = GridBagConstraints.LINE_END;
+    tickField = new JTextField(3);
+    shapeEditorPanel.add(tickField, t);
+
+    t.gridy = 1;
+    t.gridx = 0;
+    t.gridwidth = 8;
+    t.fill = GridBagConstraints.HORIZONTAL;
+    shapeEditorPanel.add(EditorView.separatorFactory(0), t);
+    t.gridwidth = 1;
+    t.fill = GridBagConstraints.NONE;
+
+    t.gridy = 2;
+    t.gridx = 0;
+    t.anchor = GridBagConstraints.LINE_END;
     xLabel = new JLabel("x:");
     xLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     xLabel.setFont(fFieldBold);
     shapeEditorPanel.add(xLabel, t);
 
     t.gridx = 1;
-    t.gridy = 1;
     xField = new JTextField(3);
     shapeEditorPanel.add(xField, t);
 
-    t.gridy = 0;
     t.gridx = 2;
     yLabel = new JLabel("y:");
     yLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     yLabel.setFont(fFieldBold);
     shapeEditorPanel.add(yLabel, t);
 
-    t.gridx = 2;
-    t.gridy = 1;
-    yField= new JTextField(3);
+    t.gridx = 3;
+    yField = new JTextField(3);
     shapeEditorPanel.add(yField, t);
 
-    t.gridx = 1;
-    t.gridy = 1;
-   // t.anchor = GridBagConstraints.LINE_END;
+    t.gridx = 4;
     wLabel = new JLabel("w:");
-    //wLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+    wLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     wLabel.setFont(fFieldBold);
     shapeEditorPanel.add(wLabel, t);
 
-    t.gridx = 1;
-    t.gridy = 1;
-    //t.anchor = GridBagConstraints.LINE_START;
+    t.gridx = 5;
     wField = new JTextField(3);
     shapeEditorPanel.add(wField, t);
 
-    t.gridx = 2;
+    t.gridx = 6;
     hLabel = new JLabel("h:");
     hLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     hLabel.setFont(fFieldBold);
     shapeEditorPanel.add(hLabel, t);
 
-    t.gridx = 3;
+    t.gridx = 7;
     hField = new JTextField(3);
     shapeEditorPanel.add(hField, t);
 
-    t.gridx = -1;
-    t.gridy = 0;
-    tickLabel = new JLabel("tick:");
-    hLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-    hLabel.setFont(fFieldBold);
-    shapeEditorPanel.add(tickLabel, t);
-
+    t.gridy = 3;
     t.gridx = 0;
-    t.gridy = 1;
-    t.gridwidth = 4;
-    tickField = new JTextField(3);
-    shapeEditorPanel.add(tickField, t);
+    t.gridwidth = 8;
+    t.fill = GridBagConstraints.HORIZONTAL;
+    shapeEditorPanel.add(EditorView.separatorFactory(0), t);
+    t.gridwidth = 1;
+    t.fill = GridBagConstraints.NONE;
 
-//
-//    t.gridx = 0;
-//    t.gridy = 6;
-//    t.gridwidth = GridBagConstraints.REMAINDER;
-//    t.fill =  GridBagConstraints.HORIZONTAL;
-//    shapeEditorPanel.add(EditorView.separatorFactory(0), t);
-//    t.fill =  GridBagConstraints.NONE;
-
-//
-//    t.gridx = 0;
-//    t.gridy = 7;
-//    t.gridwidth = 1;
-//    t.anchor = GridBagConstraints.CENTER;
-//    cPrevLabel = new JLabel("Preview:");
-//    cPrevLabel.setFont(fFieldBold);
-//    shapeEditorPanel.add(cPrevLabel, t);
-
-    t.gridx = 1;
-    t.gridheight = 3;
-    t.fill =  GridBagConstraints.VERTICAL;
-    shapeEditorPanel.add(EditorView.separatorFactory(1), t);
-    t.fill =  GridBagConstraints.NONE;
-
-    t.gridx = 2;
-    t.gridheight = 1;
-    t.anchor = GridBagConstraints.LINE_START;
+    t.gridy = 4;
+    t.gridx = 0;
     rLabel = new JLabel("r:");
     rLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     rLabel.setFont(fFieldBold);
     shapeEditorPanel.add(rLabel, t);
 
-    t.gridx = 3;
+    t.gridx = 1;
     rField = new JTextField(3);
     shapeEditorPanel.add(rField, t);
-
-
-//    t.gridx = 0;
-//    t.gridy = 8;
-//    t.gridheight = 2;
-//    t.anchor = GridBagConstraints.CENTER;
-//    colorPreviewPanel = new JPanel();
-//    colorPreviewPanel.setBackground(Color.BLUE);
-//    colorPreviewPanel.setPreferredSize(new Dimension(40,40));
-//    colorPreviewPanel.setMaximumSize(new Dimension(40,40));
-//    shapeEditorPanel.add(colorPreviewPanel, t);
 
     t.gridx = 2;
     t.gridheight = 1;
@@ -460,50 +317,40 @@ public class ShapeEditorTab extends JPanel {
     bField = new JTextField(3);
     shapeEditorPanel.add(bField, t);
 
-
-    t.gridx = 2;
-    t.gridy = 9;
+    t.gridx = 4;
     gLabel = new JLabel("g:");
     gLabel.setHorizontalAlignment(SwingConstants.RIGHT);
     gLabel.setFont(fFieldBold);
     shapeEditorPanel.add(gLabel, t);
 
-    t.gridx = 3;
+    t.gridx = 5;
     gField = new JTextField(3);
     shapeEditorPanel.add(gField, t);
 
-
+    t.gridy = 6;
     t.gridx = 0;
-    t.gridy = 10;
-    t.gridwidth = GridBagConstraints.REMAINDER;
-    t.fill =  GridBagConstraints.HORIZONTAL;
+    t.gridwidth = 8;
+    t.fill = GridBagConstraints.HORIZONTAL;
     shapeEditorPanel.add(EditorView.separatorFactory(0), t);
 
+
+    t.gridy = 7;
     t.gridx = 0;
-    t.gridy = 11;
-    t.gridwidth = 1;
+    t.fill = GridBagConstraints.HORIZONTAL;
     addKeyFrame = new JButton("Add Keyframe");
     shapeEditorPanel.add(addKeyFrame, t);
 
-    t.gridx = 1;
-    t.gridy = 11;
-    t.gridwidth = GridBagConstraints.EAST;
+    t.gridy = 8;
     editKeyframe = new JButton("Edit Keyframe");
     shapeEditorPanel.add(editKeyframe, t);
 
 
+    setC.gridy = 2;
+    add(shapeEditorPanel, setC);
+    //End Shape Editor Panel
 
 
-//    t.gridy = 12;
-//    shapeEditorPanel.add(AnimationGUI.separatorFactory(0), t);
-
-    add(shapeEditorPanel);
-    // END SHAPEEDITORPANEL
-
-    // END SHAPEEDITOR
-
-
-    ///////////////////////Ani's work/////////////////////////////////////
+    //Add action listeners to panel buttons
     existingShapesDropdown.addActionListener(event -> handleShapeDropdown());
     createShapeButton.addActionListener(event -> handleAddShapeButton());
     removeShapeButton.addActionListener(event -> handleRemoveShapeButton());
@@ -513,17 +360,10 @@ public class ShapeEditorTab extends JPanel {
 
   }
 
-  private void handleIncreaseSpeedButton() {
-    features.increaseSpeed();
-    //speedLabel.setText("speed: " + features.getTicksPerMilisecond());
-
-  }
-
-  private void handleDecreaseSpeedButton() {
-    features.decreaseSpeed();
-    //speedLabel.setText("speed2: " + features.getTicksPerMilisecond());
-  }
-
+  /**
+   * Handler to edit a keyframe. Ensures that all of the keyframe fields are not empty, and that a
+   * shape is selected, then edits the keyframe.
+   */
   private void handleEditKeyframeButton() {
     ensureTextFieldNotEmpty();
     if (allFieldsFilledFlag) {
@@ -534,98 +374,105 @@ public class ShapeEditorTab extends JPanel {
       features.removeKeyFrame(shapeName, selectedKeyframeStr);
       System.out.println("removed selected motion from model");
       handleAddKeyframeButton();
-
-//      editKeyframeFlag = false;
-//      editKeyframeButton.setEnabled(editKeyframeFlag);
     }
   }
 
+  /**
+   * Handler for the shape combobox. Populates the keyframe dropdown with the selected shape's
+   * keyframes.
+   */
   private void handleShapeDropdown() {
     removeShapeFlag = true;
-    removeShapeButton.setEnabled(removeShapeFlag);
     String shapeName = getShapeNameFromShapeDropdown();
     keyframesDropdown.removeAllItems();
-    System.out.println("shape dropdown shape name: " + shapeName);
-    String[] keyframes = features.showKeyFrames(shapeName).toArray(new String[0]);
-    System.out.println("shape's motions: " + keyframes.length);
+    String[] keyframes = this.showKeyFrames(shapeName).toArray(new String[0]);
     for (String keyframe : keyframes) {
       keyframesDropdown.addItem(keyframe);
     }
   }
 
+  /**
+   * Handler to add a shape. Ensures that the user has entered a name for the shape, and that a
+   * shape with the name does not already exist.
+   */
   private void handleAddShapeButton() {
-    String shapeName = newShapeNameField.getText();
-    String shapeType = shapeTypeDropdown.getSelectedItem().toString();
-    features.addShape(shapeName, shapeType);
-    existingShapesDropdown.addItem(shapeName + " " + shapeType);
+    String nameInField = newShapeNameField.getText();
+    boolean alreadyExists = false;
+    for (int i = 0; i < existingShapesDropdown.getItemCount(); i++) {
+      String[] fullShapeInfo = existingShapesDropdown.getItemAt(i).split(" ");
+      fullShapeInfo = Arrays.copyOf(fullShapeInfo, fullShapeInfo.length - 1);
+      String shapeNameAtI = this.arrayToString(fullShapeInfo);
 
-    newShapeNameField.setText("");
-    shapeTypeFlag = false;
-    shapeNameFlag = false;
-    createShapeButton.setEnabled(shapeNameFlag && shapeTypeFlag);
+      if (shapeNameAtI.equals(nameInField)) {
+        alreadyExists = true;
+      }
+    }
+
+    if (newShapeNameField.getText().length() > 0 && !alreadyExists) {
+      String shapeName = newShapeNameField.getText();
+      String shapeType = shapeTypeDropdown.getSelectedItem().toString();
+      features.addShape(shapeName, shapeType);
+      existingShapesDropdown.addItem(shapeName + " " + shapeType);
+
+      newShapeNameField.setText("");
+      shapeTypeFlag = false;
+      shapeNameFlag = false;
+    }
   }
 
+  /**
+   * Handler to remove a shape. Ensures that a shape is selected, then removes it from the model.
+   */
   private void handleRemoveShapeButton() {
     String shapeName = existingShapesDropdown.getSelectedItem().toString().split(" ")[0];
     features.removeShape(shapeName);
     for (int i = 0; i < existingShapesDropdown.getModel().getSize(); i++) {
-      if (existingShapesDropdown.getItemAt(i).equals(existingShapesDropdown.getSelectedItem().toString())) {
+      if (existingShapesDropdown.getItemAt(i).equals(existingShapesDropdown.
+              getSelectedItem().toString())) {
         existingShapesDropdown.removeItemAt(i);
       }
     }
     removeShapeFlag = false;
-    removeShapeButton.setEnabled(removeShapeFlag);
   }
 
-  private void handleKeyframeDropdown() {
-    removeKeyframeFlag = true;
-    deleteKeyframe.setEnabled(removeKeyframeFlag);
-
-  }
-
-  private void handleTypeDropdown() {
-    shapeTypeFlag = true;
-  }
-
-
-//  private void handleShapeNameTextField(){
-//    if(ensureTextFieldNotEmpty(shapeNameField)){
-//      shapeTypeFlag = true;
-//    }
-//  }
-
+  /**
+   * Handler to add a keyframe. Ensures that all keyframe fields are not empty, and adds the
+   * keyframe to the selected shape.
+   */
   private void handleAddKeyframeButton() {
     ensureTextFieldNotEmpty();
     if (allFieldsFilledFlag) {
       String shapeName = getShapeNameFromShapeDropdown();
 
       features.addKeyFrame(shapeName, Integer.parseInt(tickField.getText()),
-          Integer.parseInt(xField.getText()),
-          Integer.parseInt(yField.getText()),
-          Integer.parseInt(wField.getText()),
-          Integer.parseInt(hField.getText()),
-          Integer.parseInt(rField.getText()),
-          Integer.parseInt(gField.getText()),
-          Integer.parseInt(bField.getText()));
+              Integer.parseInt(xField.getText()),
+              Integer.parseInt(yField.getText()),
+              Integer.parseInt(wField.getText()),
+              Integer.parseInt(hField.getText()),
+              Integer.parseInt(rField.getText()),
+              Integer.parseInt(gField.getText()),
+              Integer.parseInt(bField.getText()));
       String newString = tickField.getText() + " " + xField.getText()
-          + " " + yField.getText() + " " + wField.getText()
-          + " " + hField.getText() + " " + rField.getText() + " "
-          + gField.getText() + " " + bField.getText();
+              + " " + yField.getText() + " " + wField.getText()
+              + " " + hField.getText() + " " + rField.getText() + " "
+              + gField.getText() + " " + bField.getText();
       keyframesDropdown.addItem(newString);
-//      allFieldsFilledFlag = false;
-//      addKeyframeButton.setEnabled(allFieldsFilledFlag);
 
       ArrayList<JTextField> allFields = new ArrayList<>(Arrays.asList(tickField, xField,
-          yField, wField, hField, rField, gField, bField));
-      for(JTextField field : allFields){
+              yField, wField, hField, rField, gField, bField));
+      for (JTextField field : allFields) {
         field.setText("");
       }
-
     }
   }
 
+  /**
+   * Handler to remove a keyframe. Ensures that a keyframe and shape are selected, then removes the
+   * keyframe.
+   */
   private void handleRemoveKeyframeButton() {
-    if (ensureDropdownHasSelected(keyframesDropdown) && ensureDropdownHasSelected(existingShapesDropdown)) {
+    if (ensureDropdownHasSelected(keyframesDropdown)
+            && ensureDropdownHasSelected(existingShapesDropdown)) {
       String shapeName = getShapeNameFromShapeDropdown();
       String keyframeStr = keyframesDropdown.getSelectedItem().toString();
       features.removeKeyFrame(shapeName, keyframeStr);
@@ -635,140 +482,14 @@ public class ShapeEditorTab extends JPanel {
         }
       }
       removeKeyframeFlag = false;
-      deleteKeyframe.setEnabled(removeKeyframeFlag);
     }
   }
 
-  private void initControls() {
-
-    Color bg1 = new Color(211,211,211);
-    setBackground(bg1);
-    setLayout(new BorderLayout());
-    setBorder(BorderFactory.createEtchedBorder());
-
-    JButton playButton = new JButton("Play");
-    JButton pauseButton = new JButton("Pause");
-
-    JButton restartButton = new JButton("Restart");
-    JButton resumeButton = new JButton("Resume");
-    //JLabel fromLabel = new JLabel("From:");
-    //JTextField restartFrom = new JTextField("0",3);
-    //restartFrom.setHorizontalAlignment(SwingConstants.RIGHT);
-
-    JButton fasterButton = new JButton("Faster");
-    JButton slowerButton = new JButton("Slower");
-//    JSlider ticksPerSec = new JSlider(SwingConstants.HORIZONTAL, 0, 50, 25);
-//    ticksPerSec.createStandardLabels(1);
-//    ticksPerSec.setMajorTickSpacing(10);
-//    ticksPerSec.setMinorTickSpacing(1);
-//    ticksPerSec.setPaintTicks(true);
-//    ticksPerSec.setPaintLabels(true);
-
-    JRadioButton enableLoop = new JRadioButton("Infinite loop");
-    JRadioButton disableLoop = new JRadioButton("Single play");
-    enableLoop.setSelected(true);
-    ButtonGroup loopGroup = new ButtonGroup();
-    loopGroup.add(enableLoop);
-    loopGroup.add(disableLoop);
-
-    JLabel currentTickNum = new JLabel("tickNum");
-    currentTickNum.setHorizontalAlignment(SwingConstants.CENTER);
-    JProgressBar tickProgress = new JProgressBar(SwingConstants.HORIZONTAL, 0, 100);
-    tickProgress.setStringPainted(true);
-    tickProgress.setIndeterminate(true);
-
-    JPanel playbackControls = new JPanel(new GridBagLayout());
-    GridBagConstraints c = new GridBagConstraints();
-    c.fill = GridBagConstraints.BOTH;
-    playbackControls.setBackground(bg1);
-    TitledBorder pbcOuter = BorderFactory.createTitledBorder("PLAYBACK CONTROLS");
-    pbcOuter.setTitleFont(new Font(getFont().toString(), Font.BOLD, 14));
-    pbcOuter.setTitleColor(new Color(0,65,255));
-    pbcOuter.setTitleJustification(TitledBorder.CENTER);
-    pbcOuter.setBorder(new LineBorder(new Color(0,65,255)));
-    playbackControls.setBorder(pbcOuter);
-
-    c.gridx = 0;
-    c.gridy = 0;
-    c.gridwidth = 2;
-    playbackControls.add(playButton, c);
-
-    c.gridx = 0;
-    c.gridy = 1;
-    playbackControls.add(pauseButton, c);
-
-    c.gridx = 3;
-    c.gridy = 0;
-    c.gridheight = GridBagConstraints.VERTICAL;
-    c.gridwidth = 1;
-    playbackControls.add(EditorView.separatorFactory(1), c);
-
-    c.gridx = 4;
-    c.gridy = 0;
-    c.gridheight = 1;
-    c.gridwidth = 2;
-    playbackControls.add(restartButton, c);
-
-//    c.gridy = 1;
-//    c.gridwidth = 1;
-//    playbackControls.add(fromLabel, c);
-
-    c.gridx = 4;
-    playbackControls.add(resumeButton, c);
-
-    c.gridx = 6;
-    c.gridy = 0;
-    c.gridheight = GridBagConstraints.VERTICAL;
-    playbackControls.add(EditorView.separatorFactory(1), c);
-
-    c.gridx = 7;
-    c.gridy = 0;
-    c.gridwidth = 2;
-    c.gridheight = 1;
-    playbackControls.add(fasterButton, c);
-
-    c.gridy = 1;
-    playbackControls.add(slowerButton, c);
-
-//    c.gridx = 54;
-//    c.gridy = 0;
-//    c.gridwidth =1;
-//    c.gridheight = 2;
-//    playbackControls.add(ticksPerSec, c);
-
-    c.gridx = 108;
-    c.gridy = 0;
-    c.gridwidth = 1;
-    c.gridheight = GridBagConstraints.VERTICAL;
-    playbackControls.add(EditorView.separatorFactory(1), c);
-
-    c.gridx = 109;
-    c.gridy = 0;
-    c.gridheight = 1;
-    playbackControls.add(enableLoop, c);
-
-    c.gridy = 1;
-    playbackControls.add(disableLoop, c);
-    add(playbackControls, BorderLayout.LINE_START);
-
-
-    JPanel tickClock = new JPanel(new GridLayout(2, 1));
-    TitledBorder clockBorder = BorderFactory.createTitledBorder("CLOCK");
-    clockBorder.setTitleFont(new Font(getFont().toString(), Font.BOLD, 14));
-    clockBorder.setTitleColor(new Color(0,65,255));
-    clockBorder.setTitleJustification(TitledBorder.CENTER);
-    clockBorder.setBorder(new LineBorder(new Color(0,65,255)));
-    tickClock.setBackground(bg1);
-    tickClock.setBorder(clockBorder);
-    tickClock.add(currentTickNum);
-    tickClock.add(tickProgress);
-    add(tickClock, BorderLayout.LINE_END);
-
-    add(new Box.Filler(new Dimension(0,15), new Dimension(0,15),
-        new Dimension(0,15)), BorderLayout.PAGE_END);
-  }
-
-
+  /**
+   * Creates a list of all shapes in the model, with their type.
+   *
+   * @return a list of all shapes in the model, represented as their name and type:  "name type"
+   */
   private ArrayList<String> getShapeNames() {
     ArrayList<String> shapeNames = new ArrayList<>();
     for (String shapeName : model.getShapeMap().keySet()) {
@@ -777,9 +498,15 @@ public class ShapeEditorTab extends JPanel {
     return shapeNames;
   }
 
+  /**
+   * Given a shape, returns a list of that shape's keyframes, represented out as strings.
+   *
+   * @param shape the shape to write the motions of.
+   * @return a string of the given shape's motions.
+   */
   private ArrayList<String> getkeyFrameInfo(IAnimatableShapeReadOnly shape) {
     ArrayList<String> keyFramesInfo = new ArrayList<>();
-    if (keyFramesInfo.size() != 0) {
+    if (shape.getMotions().size() != 0) {
       for (IMotion motion : shape.getMotions()) {
         keyFramesInfo.add(motion.writeMotion());
       }
@@ -787,21 +514,32 @@ public class ShapeEditorTab extends JPanel {
     return keyFramesInfo;
   }
 
+  /**
+   * Gets the shape name of the selected item in the shape dropdown.
+   *
+   * @return the name of the shape.
+   */
   private String getShapeNameFromShapeDropdown() {
     String[] fullShapeInfo = existingShapesDropdown.getSelectedItem().toString().split(" ");
     fullShapeInfo = Arrays.copyOf(fullShapeInfo, fullShapeInfo.length - 1);
-    String shapeName = features.arrayToString(fullShapeInfo);
+    String shapeName = this.arrayToString(fullShapeInfo);
     return shapeName;
   }
 
+  /**
+   * Ensure that the given ComboBox has something selected.
+   */
   private boolean ensureDropdownHasSelected(JComboBox<String> dropdown) {
     return dropdown.getSelectedObjects().length > 0;
   }
 
+  /**
+   * Ensure that all text fields that are used to add and edit keyframes are not empty.
+   */
   private void ensureTextFieldNotEmpty() {
     System.out.println("here");
     ArrayList<JTextField> allFields = new ArrayList<>(Arrays.asList(tickField, xField,
-        yField, wField, hField, rField, gField, bField));
+            yField, wField, hField, rField, gField, bField));
     for (JTextField f : allFields) {
       if (f.getText().length() == 0) {
         allFieldsFilledFlag = false;
@@ -809,6 +547,29 @@ public class ShapeEditorTab extends JPanel {
         allFieldsFilledFlag = true;
       }
     }
+  }
+
+  /**
+   * Convert an array of strings into a string, with each element separated by a space.
+   *
+   * @param shapeNameList the list of strings to convert.
+   * @return the converted string of shape names.
+   */
+  private String arrayToString(String[] shapeNameList) {
+    String newStr = "";
+    for (String str : shapeNameList) {
+      newStr += str + " ";
+    }
+    return newStr.substring(0, newStr.length() - 1);
+  }
+
+
+  /**
+   * Given the name of a shape, returns a string of that shape's keyframes.
+   */
+  private ArrayList<String> showKeyFrames(String shapeName) {
+    IAnimatableShapeReadOnly shape = model.getShapeMap().get(shapeName);
+    return this.getkeyFrameInfo(shape);
   }
 
 }

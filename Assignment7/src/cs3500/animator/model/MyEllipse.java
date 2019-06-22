@@ -26,8 +26,9 @@ public class MyEllipse extends AbstractShape {
    * Convenience constructor, sets the ellipse to some default values. Used for the Builder inside
    * the model.
    */
-   MyEllipse() {
-    super(new Dimension(100, 100), new Color(0, 0, 0), new Point2D.Double(0, 0));
+  MyEllipse() {
+    super(new Dimension(100, 100), new Color(0, 0, 0),
+            new Point2D.Double(0, 0));
 
   }
 

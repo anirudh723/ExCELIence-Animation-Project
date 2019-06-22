@@ -26,6 +26,9 @@ public class TextViewTest {
   private FileReader emptyShapes;
   private FileReader givenReadable;
 
+  /**
+   * Intialize the text files to write to and read from for the tests.
+   */
   private void setFiles() {
     try {
       closedWriter = new FileWriter("test2.txt", true);
@@ -39,6 +42,12 @@ public class TextViewTest {
     }
   }
 
+  /**
+   * Reads from a file.
+   *
+   * @param encoding the encoding.
+   * @return The file as a string.
+   */
   private static String readFile(Charset encoding) {
     String result = "";
     try {
@@ -56,6 +65,7 @@ public class TextViewTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testTextViewConstructorExceptions() {
+    setFiles();
     /*
     ILLEGAL ARGUMENTS:
     1. null Appendable ap
@@ -67,8 +77,8 @@ public class TextViewTest {
     7. null IReadOnlyModel model
     */
     IReadOnlyAnimationModel givenModel
-            = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable,
-            new AnimationModelImpl.Builder()));
+        = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable,
+        new AnimationModelImpl.Builder()));
     setFiles();
     IView nullAp = new TextView(null, givenReadable, 1, givenModel);
     IView nullRd = new TextView(openWriter, null, 1, givenModel);
@@ -84,9 +94,10 @@ public class TextViewTest {
    */
   @Test(expected = IllegalArgumentException.class)
   public void testIllegalAppend() {
+    setFiles();
     IReadOnlyAnimationModel givenModel
-            = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable,
-            new AnimationModelImpl.Builder()));
+        = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable,
+        new AnimationModelImpl.Builder()));
     setFiles();
     IView appendError = new TextView(closedWriter, givenReadable, 1, givenModel);
     appendError.tryAppend("this", "throws", "an", "error");
@@ -96,36 +107,35 @@ public class TextViewTest {
    * Ensures TextView render() functionality for all edge cases.
    */
   @Test
-  public void render() {
+  public void testRender() {
     setFiles();
 
     StringBuilder emptyCanvasOut = new StringBuilder();
     IReadOnlyAnimationModel emptyCanvas
-            = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.emptyCanvas,
-            new AnimationModelImpl.Builder()));
+        = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.emptyCanvas,
+        new AnimationModelImpl.Builder()));
     IView emptyRender = new TextView(emptyCanvasOut, this.emptyCanvas,
-            1, emptyCanvas);
+        1, emptyCanvas);
     emptyRender.render();
     Assert.assertEquals("canvas 200 70 360 360", emptyCanvasOut.toString());
 
     StringBuilder emptyShapesOut = new StringBuilder();
     IReadOnlyAnimationModel emptyShapes
-            = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.emptyShapes,
-            new AnimationModelImpl.Builder()));
+        = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.emptyShapes,
+        new AnimationModelImpl.Builder()));
     IView emptyShapesRender = new TextView(emptyShapesOut, this.emptyShapes, 1,
-            emptyShapes);
+        emptyShapes);
     emptyShapesRender.render();
-    Assert.assertEquals("canvas 200 70 360 360" + System.lineSeparator()
-                    + "shape R rectangle" + System.lineSeparator() + "shape C ellipse",
-            emptyShapesOut.toString());
+    Assert.assertEquals("canvas 200 70 360 360\n"
+        + "shape R rectangle\n" + "shape C ellipse", emptyShapesOut.toString());
 
     StringBuilder givenOut = new StringBuilder();
     IReadOnlyAnimationModel givenModel
-            = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable,
-            new AnimationModelImpl.Builder()));
+        = new ReadOnlyAnimationModel(AnimationReader.parseFile(this.givenReadable,
+        new AnimationModelImpl.Builder()));
     IView givenView = new TextView(givenOut, this.givenReadable, 1, givenModel);
     givenView.render();
     Assert.assertEquals(readFile(
-            Charset.defaultCharset()), givenOut.toString());
+        Charset.defaultCharset()), givenOut.toString());
   }
 }

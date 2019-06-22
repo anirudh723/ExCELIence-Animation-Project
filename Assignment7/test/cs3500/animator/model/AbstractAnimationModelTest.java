@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -272,12 +273,18 @@ public class AbstractAnimationModelTest {
   }
 
   /**
-   * Tests adding a motion to a shape that already has the motion. Expect IllegalArgumentException.
+   * Tests adding a motion to a shape that already has the motion.
    */
-  @Test(expected = IllegalArgumentException.class)
+  @Test
   public void testAddMotionToShapeWithSameMotionAlready() {
     resetRectangle();
+    List<IMotion> before = model.getShapeMap().get("R").getMotions();
     model.addMotion("R", motion3);
+    List<IMotion> after = model.getShapeMap().get("R").getMotions();
+    for (int i = 0; i < before.size(); i++) {
+      assertEquals(before.get(i).writeMotion(), after.get(i).writeMotion());
+    }
+
   }
 }
 

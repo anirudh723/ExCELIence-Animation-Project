@@ -50,17 +50,6 @@ public interface AnimationModel {
    * @throws IllegalArgumentException if a user tries to remove a Motion that doesn't exist
    */
   void removeMotion(String shapeId, IMotion m) throws IllegalArgumentException;
-//
-//  /**
-//   * Returns all the shapes at a certain tick. This is helpful because it can see how the shapes
-//   * have mutated after a certain amount of ticks, even between an occurring motion. This method is
-//   * not going to be implemented yet as it needs more info.
-//   *
-//   * @param tick the given tick in the animation.
-//   * @return the list of all shapes.
-//   * @throws IllegalArgumentException if the given tick is negative
-//   */
-//  List<IShape> getAllShapesAtTick(int tick) throws IllegalArgumentException;
 
   /**
    * Gets the map of shapes from the model.

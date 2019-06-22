@@ -88,12 +88,10 @@ public class AnimatableShape implements IAnimatableShape {
         motions.add(m);
         putShapeAtInitialMotion();
         return;
-      } else {
       }
     } else {
       for (int i = 0; i < motions.size() - 1; i++) {
-        if (motions.get(i).getTick() == m.getTick()) {
-        } else if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m
+        if (motions.get(i).getTick() < m.getTick() && motions.get(i + 1).getTick() > m
                 .getTick()) {
           motions.add(i + 1, m);
           putShapeAtInitialMotion();

@@ -9,8 +9,8 @@ import javax.swing.JPanel;
 
 /**
  * Represents a drawing panel, which will extend the functionality of the JPanel. Consists of the 2D
- * list of information about the shapes at all the ticks, so it can be used to draw the animation of
- * the shapes.
+ * list of information about the shapes at all the ticks, so it can be used to render the animation
+ * of the shapes.
  */
 public abstract class AbstractDrawingPanel extends JPanel {
 
@@ -35,6 +35,12 @@ public abstract class AbstractDrawingPanel extends JPanel {
     repaint();
   }
 
+  /**
+   * Paints the drawing panel when repaint is called on the drawing panel. Converts information
+   * about the shapes into an actual visual rendering of the shapes.
+   *
+   * @param g the graphics object used to repaint the panel.
+   */
   @Override
   public void paintComponent(Graphics g) {
     super.paintComponent(g);
