@@ -1,0 +1,93 @@
+<svg width="555" height= "270" version="1.1"
+     xmlns="http://www.w3.org/2000/svg"  xmlns:xlink="http://www.w3.org/1999/xlink" >
+<rect id="disk1" x="190" y="180" width="20" height="30" fill="rgb(0,49,90)" visibility="visible">
+ <animate xlink:href="#disk1" attributeType="xml" begin="100ms" dur="2400ms" attributeName="x" from="190" to="190" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="100ms" dur="2400ms" attributeName="y" from="180" to="180" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="100ms" dur="2400ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="100ms" dur="2400ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="100ms" dur="2400ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="2400ms" begin="100ms" repeatCount="1" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="2500ms" dur="1000ms" attributeName="x" from="190" to="190" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="2500ms" dur="1000ms" attributeName="y" from="180" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="2500ms" dur="1000ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="2500ms" dur="1000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="2500ms" dur="1000ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="1000ms" begin="2500ms" repeatCount="1" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3500ms" dur="100ms" attributeName="x" from="190" to="190" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3500ms" dur="100ms" attributeName="y" from="50" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3500ms" dur="100ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3500ms" dur="100ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3500ms" dur="100ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="100ms" begin="3500ms" repeatCount="1" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3600ms" dur="1000ms" attributeName="x" from="190" to="490" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3600ms" dur="1000ms" attributeName="y" from="50" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3600ms" dur="1000ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3600ms" dur="1000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="3600ms" dur="1000ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="1000ms" begin="3600ms" repeatCount="1" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4600ms" dur="100ms" attributeName="x" from="490" to="490" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4600ms" dur="100ms" attributeName="y" from="50" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4600ms" dur="100ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4600ms" dur="100ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4600ms" dur="100ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="100ms" begin="4600ms" repeatCount="1" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4700ms" dur="1000ms" attributeName="x" from="490" to="490" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4700ms" dur="1000ms" attributeName="y" from="50" to="240" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4700ms" dur="1000ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4700ms" dur="1000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="4700ms" dur="1000ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="1000ms" begin="4700ms" repeatCount="1" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="5700ms" dur="3200ms" attributeName="x" from="490" to="490" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="5700ms" dur="3200ms" attributeName="y" from="240" to="240" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="5700ms" dur="3200ms" attributeName="width" from="20" to="20" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="5700ms" dur="3200ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk1" attributeType="xml" begin="5700ms" dur="3200ms" attributeName="fill" values="rgb(0,49,90);rgb(0,49,90)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 195" to="0 200 195" dur="3200ms" begin="5700ms" repeatCount="1" /> 
+</rect>
+<rect id="disk2" x="167" y="210" width="65" height="30" fill="rgb(6,247,41)" visibility="visible">
+ <animate xlink:href="#disk2" attributeType="xml" begin="100ms" dur="5600ms" attributeName="x" from="167" to="167" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="100ms" dur="5600ms" attributeName="y" from="210" to="210" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="100ms" dur="5600ms" attributeName="width" from="65" to="65" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="100ms" dur="5600ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="100ms" dur="5600ms" attributeName="fill" values="rgb(6,247,41);rgb(6,247,41)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 199 225" to="0 199 225" dur="5600ms" begin="100ms" repeatCount="1" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="5700ms" dur="1000ms" attributeName="x" from="167" to="167" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="5700ms" dur="1000ms" attributeName="y" from="210" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="5700ms" dur="1000ms" attributeName="width" from="65" to="65" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="5700ms" dur="1000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="5700ms" dur="1000ms" attributeName="fill" values="rgb(6,247,41);rgb(6,247,41)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 199 225" to="0 199 225" dur="1000ms" begin="5700ms" repeatCount="1" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6700ms" dur="100ms" attributeName="x" from="167" to="167" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6700ms" dur="100ms" attributeName="y" from="50" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6700ms" dur="100ms" attributeName="width" from="65" to="65" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6700ms" dur="100ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6700ms" dur="100ms" attributeName="fill" values="rgb(6,247,41);rgb(6,247,41)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 199 225" to="0 199 225" dur="100ms" begin="6700ms" repeatCount="1" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6800ms" dur="1000ms" attributeName="x" from="167" to="317" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6800ms" dur="1000ms" attributeName="y" from="50" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6800ms" dur="1000ms" attributeName="width" from="65" to="65" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6800ms" dur="1000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="6800ms" dur="1000ms" attributeName="fill" values="rgb(6,247,41);rgb(6,247,41)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 199 225" to="0 199 225" dur="1000ms" begin="6800ms" repeatCount="1" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7800ms" dur="100ms" attributeName="x" from="317" to="317" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7800ms" dur="100ms" attributeName="y" from="50" to="50" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7800ms" dur="100ms" attributeName="width" from="65" to="65" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7800ms" dur="100ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7800ms" dur="100ms" attributeName="fill" values="rgb(6,247,41);rgb(6,247,41)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 199 225" to="0 199 225" dur="100ms" begin="7800ms" repeatCount="1" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7900ms" dur="1000ms" attributeName="x" from="317" to="317" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7900ms" dur="1000ms" attributeName="y" from="50" to="240" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7900ms" dur="1000ms" attributeName="width" from="65" to="65" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7900ms" dur="1000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk2" attributeType="xml" begin="7900ms" dur="1000ms" attributeName="fill" values="rgb(6,247,41);rgb(6,247,41)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 199 225" to="0 199 225" dur="1000ms" begin="7900ms" repeatCount="1" /> 
+</rect>
+<rect id="disk3" x="145" y="240" width="110" height="30" fill="rgb(11,45,175)" visibility="visible">
+ <animate xlink:href="#disk3" attributeType="xml" begin="100ms" dur="12000ms" attributeName="x" from="145" to="145" fill="freeze" /> 
+ <animate xlink:href="#disk3" attributeType="xml" begin="100ms" dur="12000ms" attributeName="y" from="240" to="240" fill="freeze" /> 
+ <animate xlink:href="#disk3" attributeType="xml" begin="100ms" dur="12000ms" attributeName="width" from="110" to="110" fill="freeze" /> 
+ <animate xlink:href="#disk3" attributeType="xml" begin="100ms" dur="12000ms" attributeName="height" from="30" to="30" fill="freeze" /> 
+ <animate xlink:href="#disk3" attributeType="xml" begin="100ms" dur="12000ms" attributeName="fill" values="rgb(11,45,175);rgb(11,45,175)" fill="freeze" /> 
+<animateTransform attributeName="transform" attributeType="xml" type="rotate" from="0 200 255" to="0 200 255" dur="12000ms" begin="100ms" repeatCount="1" /> 
+</rect>
+</svg>

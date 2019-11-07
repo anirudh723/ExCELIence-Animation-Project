@@ -2,9 +2,339 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe3d4bcf-4f16-4d52-8dc9-2448e0c16dd1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/Assignment5.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/hw5final.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/README.rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/AbstractAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/AbstractShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/AnimatableShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/AnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/AnimationModelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/IAnimatableShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/IShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/Motion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/MyEllipse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/src/cs3500/animator/model/MyRectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/test/AbstractAnimationModelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/test/AbstractShapeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/test/AnimatableShapeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/test/AnimationModelImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment5/test/MotionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/artifacts/Assignment6_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/Assignment6.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/README.rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/TTemptyCanvas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/TTemptyShapes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/a6.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/big-bang-big-crunch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/buildings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/givenFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/hanoi.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/Assignment6.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/README.rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/TTemptyCanvas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/TTemptyShapes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/big-bang-big-crunch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/buildings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/givenFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/hanoi.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/smalldemo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/temp.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/tgtFile.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/toh-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/toh-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/toh-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/artifacts/Assignment6_jar/toh-8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/META-INF/Assignment5.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/README.rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/AbstractAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/AbstractShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/AnimatableShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/AnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/AnimationModelImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/IAnimatableShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/IMotion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/IShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/Motion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/MyEllipse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment5/cs3500/animator/model/MyRectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/META-INF/Assignment6.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/Excellence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/ViewFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/controller/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/controller/IController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AbstractAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AbstractShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AnimatableShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AnimatableShapeReadOnly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AnimationModelImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AnimationModelImpl$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/AnimationModelImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/IAnimatableShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/IAnimatableShapeReadOnly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/IMotion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/IReadOnlyAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/IShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/Motion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/MyEllipse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/MyRectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/model/ReadOnlyAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/resources/text-transcript.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/resources/toh-at-20.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/util/AnimationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/util/AnimationReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/AbstractDrawingPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/AbstractView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/DrawingPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/IController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/IView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/SVGView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/TextView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/ViewType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/cs3500/animator/view/VisualView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/production/Assignment6/givenFile.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment5/AbstractAnimationModelTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment5/AbstractShapeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment5/AnimatableShapeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment5/AnimationModelImplTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment5/MotionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/META-INF/Assignment6.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/controller/ControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/model/AbstractAnimationModelTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/model/AbstractShapeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/model/AnimatableShapeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/model/MotionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/view/SVGViewTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/view/TextViewTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/out/test/Assignment6/cs3500/animator/view/VisualViewTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/smalldemo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/Excellence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/ViewFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/controller/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/controller/IController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AbstractAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AbstractShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimatableShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimatableShapeReadOnly.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/AnimationModelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/IAnimatableShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/IAnimatableShapeReadOnly.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/IMotion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/IReadOnlyAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/IShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/Motion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/MyEllipse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/MyRectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/model/ReadOnlyAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/resources/text-transcript.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/resources/toh-at-20.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractDrawingPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/DrawingPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/IView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/SVGView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/ViewType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/VisualView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/temp.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/controller/ControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/model/AbstractAnimationModelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/model/AbstractShapeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/model/AnimatableShapeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/model/MotionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/SVGViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/tgtFile.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/toh-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/toh-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/toh-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment6/toh-8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/.idea/artifacts/Assignment7_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/Assignment7.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/Assignment7Stuff.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/TTemptyCanvas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/TTemptyShapes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/big-bang-big-crunch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/buildings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/givenFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/hanoi.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/Assignment7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/TTemptyCanvas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/TTemptyShapes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/big-bang-big-crunch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/buildings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/givenFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/hanoi.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/smalldemo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/toh-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/toh-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/toh-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/artifacts/Assignment7_jar/toh-8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/Assignment7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/Buildings Editor View with scroll bar.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/META-INF/Assignment7.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/META-INF/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/README.rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/TTemptyCanvas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/TTemptyShapes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/big-bang-big-crunch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/buildings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/Excellence.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/ViewFactory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/controller/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/controller/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/controller/Features.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/controller/IController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AbstractAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AbstractShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AnimatableShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AnimatableShapeReadOnly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AnimationModelImpl$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AnimationModelImpl$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/AnimationModelImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/IAnimatableShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/IAnimatableShapeReadOnly.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/IMotion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/IReadOnlyAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/IShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/Motion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/MyEllipse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/MyRectangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/model/ReadOnlyAnimationModel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/util/AnimationBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/util/AnimationReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/AbstractDrawingPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/AbstractView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/AnimationControls.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/DrawingPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/EditorTabs.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/EditorView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/IView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/SVGView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/ShapeEditorTab.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/TextView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/ViewType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/cs3500/animator/view/VisualView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/givenFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/hanoi.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/smalldemo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/tgtFile.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/toh-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/toh-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/toh-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/production/Assignment7/toh-8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/META-INF/Assignment7.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/controller/ControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/controller/MockController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/controller/MockControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/model/AbstractAnimationModelTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/model/AbstractShapeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/model/AnimatableShapeTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/model/MotionTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/view/MockEditorView.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/view/MockEditorViewTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/view/SVGViewTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/out/test/Assignment7/cs3500/animator/view/TextViewTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/Assignment7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/Buildings Editor View with scroll bar.PNG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/META-INF/plugin.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/README.rd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/TTemptyCanvas.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/TTemptyShapes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/big-bang-big-crunch.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/buildings.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/givenFile.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/hanoi.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/smalldemo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/tgtFile.rtf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/toh-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/toh-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/toh-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/resources/toh-8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/smalldemo.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/Excellence.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/ViewFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/controller/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/controller/Features.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/controller/IController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/AbstractAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/AbstractShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/AnimatableShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/AnimatableShapeReadOnly.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/AnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/AnimationModelImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/IAnimatableShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/IAnimatableShapeReadOnly.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/IMotion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/IReadOnlyAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/IShape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/Motion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/MyEllipse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/MyRectangle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/model/ReadOnlyAnimationModel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/util/AnimationBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/util/AnimationReader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/AbstractDrawingPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/AbstractView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/AnimationControls.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/DrawingPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/EditorTabs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/EditorView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/IView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/SVGView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/ShapeEditorTab.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/TextView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/ViewType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/src/cs3500/animator/view/VisualView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/controller/ControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/controller/MockController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/controller/MockControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/model/AbstractAnimationModelTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/model/AbstractShapeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/model/AnimatableShapeTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/model/MotionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/view/MockEditorView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/view/MockEditorViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/view/SVGViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test/cs3500/animator/view/TextViewTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/test2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/toh-12.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/toh-3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/toh-5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assignment7/toh-8.txt" beforeDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,102 +345,6 @@
     <option name="testRunner" value="GRADLE" />
     <option name="delegatedBuild" value="true" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractView.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="633">
-                    <caret line="78" column="3" lean-forward="true" selection-start-line="78" selection-start-column="3" selection-end-line="78" selection-end-column="3" />
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
-  <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/Excellence.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-200">
-              <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/ViewFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="172" column="72" lean-forward="true" selection-start-line="172" selection-start-column="72" selection-end-line="172" selection-end-column="72" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2245#2246#0" expanded="true" />
-                <element signature="e#2297#2298#0" expanded="true" />
-                <element signature="e#2331#2332#0" expanded="true" />
-                <element signature="e#2367#2368#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationReader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="47" column="16" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationBuilder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractView.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>readable</find>
@@ -119,85 +353,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Assignment6/src/cs3500/animator/Excellence.java" />
-        <option value="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java" />
-        <option value="$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractView.java" />
-        <option value="$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java" />
-      </list>
-    </option>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="25" />
-    <option name="y" value="23" />
-    <option name="width" value="1655" />
-    <option name="height" value="1027" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="animator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="animator" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="animator" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="animator" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ExCELIence-Animation-Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Assignment6" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="animator" type="462c0819:PsiDirectoryNode" />
-              <item name="view" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
+  <component name="ProjectId" id="1TIjQGtKRmCFLsXmdVzTmXxDOzC" />
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -207,6 +363,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -328,108 +485,19 @@
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="4731000" />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="25" y="23" width="1655" height="1027" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="Capture Tool" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Learn" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24984501" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Messages" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32941177" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-    </layout>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Assignment6/givenFile.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/AbstractView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="37" column="5" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/view/TextView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/ViewFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="13" column="12" selection-start-line="13" selection-start-column="12" selection-end-line="13" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/Excellence.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-200">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/src/cs3500/animator/util/AnimationReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="47" column="16" lean-forward="true" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Assignment6/test/cs3500/animator/view/TextViewTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="172" column="72" lean-forward="true" selection-start-line="172" selection-start-column="72" selection-end-line="172" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2245#2246#0" expanded="true" />
-            <element signature="e#2297#2298#0" expanded="true" />
-            <element signature="e#2331#2332#0" expanded="true" />
-            <element signature="e#2367#2368#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="masterDetails">
     <states>

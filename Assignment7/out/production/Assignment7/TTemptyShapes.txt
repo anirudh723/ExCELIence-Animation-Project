@@ -1,3 +1,0 @@
-canvas 200 70 360 360
-shape R rectangle
-shape C ellipse
