@@ -9,7 +9,7 @@ import java.util.LinkedHashMap;
  * Represents an abstract Animation Model. It contains a map of shape id's to shapes. Also has four
  * coordinates which can be used to set the bounds when building this model.
  */
-public abstract class   AbstractAnimationModel implements AnimationModel {
+public abstract class AbstractAnimationModel implements AnimationModel {
 
   private LinkedHashMap<String, IAnimatableShape> shapes;
   private int leftMostX;
